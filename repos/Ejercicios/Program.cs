@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using System.Text;
+
 namespace Ejercicios
 {
     class Programa
@@ -25,9 +27,19 @@ namespace Ejercicios
 
             Console.WriteLine("Ejercicio 3:");
             Console.WriteLine(ejercicio3(10));
+
             Console.WriteLine("Ejercicio 4:");
             ejercicio4(2, 2);
 
+            Console.WriteLine();
+            Console.WriteLine("Ejercicio 5:");
+            ejercicio5("Me llamo Sergio");
+
+            Console.WriteLine("Ejercicio 6:");
+            ejercicio6(101010101);
+
+            Console.WriteLine("Ejercicio 7:");
+            ejercicio7("Hola");
 
 
 
@@ -110,6 +122,7 @@ namespace Ejercicios
         }
 
 
+
         static void ejercicio4(int x, int y)
         {
             //Creamos un array bidimensional con la longitud de filas y columnas que le indicamos
@@ -130,20 +143,71 @@ namespace Ejercicios
             int[] array2 = new int[(filas-x) * (colum-y)];
             //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
             int contador = 0;
+            //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
             for (int i = x; i < filas; i++)
             {
                 for (int j = y; j < colum; j++)
                 {
                     array2[contador] = array[i, j];
+                    //Escribimos el número que toca de forma ordenada en una sola línea
                     Console.Write(array2[contador]+" ");
                     contador++;
                 }
             }
         }
     
-        public void ejercicio5()
+        static void ejercicio5(String cadena)
         {
+            //Creamos un array de char del tamaño al menos de la cadena
+           char [] arr = new char [cadena.Length];
+            //Creamos un bucle que ponga en el array los caracteres distintos de ' '
+            for (int i = 0; i < cadena.Length; i++) {
+                if (cadena[i] != ' ')
+                {
+                    arr[i] = cadena[i];
+                }
+            }
+            //Escribimos el array
+            Console.WriteLine(arr);
+        }
+
+        static void ejercicio6(int num) {
+            //Creamos las variables necesarias para el ejercico
+            int deci = 0,usado, potencia = 0;
+
+            while (num > 0)
+            {
+                //Cogemos el número más a la derecha como resto
+                usado = num % 10;
+
+                //Le sumamos al número decimal el resultado de la operación
+                deci += usado * (int) Math.Pow(2, potencia);
+
+                //Eliminamos el último dígito del número binaro y aumentamos la potencia para el siguiente bucle
+                num = num / 10;
+                potencia++;
+
+
+            }
+            Console.WriteLine(deci);
 
         }
+        static void ejercicio7(String cadena)
+        {
+            
+            String reves = "";
+            StringBuilder sb = new StringBuilder(reves);
+
+            for (int i = 0;i < cadena.Length;i++)
+            {
+                sb.Append( cadena[(cadena.Length-1) - (i)]);
+            }
+
+
+            Console.WriteLine(sb);
+
+        }
+        
+
     }
 }
