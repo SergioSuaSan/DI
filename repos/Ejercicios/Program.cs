@@ -10,6 +10,10 @@ namespace Ejercicios
 
         static void Main(string[] args)
         {
+
+            ejercicio10();
+
+            /*
             Console.WriteLine("Estos son los resultados de los ejercicios");
             Console.WriteLine("Ejercicio 1:");
             if (ejercicio1(7))
@@ -43,7 +47,7 @@ namespace Ejercicios
 
             Console.WriteLine("Ejercicio 8:");
             Console.WriteLine( ejercicio8(1.78, 55));
-
+            */
 
         }
         static bool ejercicio1(int num)
@@ -266,6 +270,38 @@ namespace Ejercicios
             }
 
 
+        }
+
+        static void ejercicio10()
+        {
+            Console.WriteLine("Qué función queres hacer?");
+            String teclado = Console.ReadLine();
+            int num = int.Parse(teclado);
+            switch (num) {
+                case 1:
+                    Console.WriteLine("Escribe los parametros");
+                    num = Console.Read();
+                    if (ejercicio1(num))
+                    {
+                        Console.WriteLine("El numero es primo");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("El número no es primo");
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Escribe los parametros");
+                    int a, b, c;
+                    a = Console.Read();
+                    b = Console.Read();
+                    c = Console.Read();
+                    ejercicio2(a, b, c);  break;
+
+                default: Console.WriteLine("Esto es el default"); break;
+
+            }
         }
         
 
