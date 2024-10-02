@@ -186,12 +186,20 @@ namespace Ejercicios
                 //Cogemos el número más a la derecha como resto
                 usado = num % 10;
 
-                //Le sumamos al número decimal el resultado de la operación
-                deci += usado * (int) Math.Pow(2, potencia);
+                if (usado == 0 || usado == 1)
+                {
+                    //Le sumamos al número decimal el resultado de la operación
+                    deci += usado * (int)Math.Pow(2, potencia);
 
-                //Eliminamos el último dígito del número binaro y aumentamos la potencia para el siguiente bucle
-                num = num / 10;
-                potencia++;
+                    //Eliminamos el último dígito del número binaro y aumentamos la potencia para el siguiente bucle
+                    num = num / 10;
+                    potencia++;
+                }
+                else
+                {
+                    throw new Exception("Formato incorrecto");
+                }
+              
 
 
             }
@@ -280,7 +288,8 @@ namespace Ejercicios
             switch (num) {
                 case 1:
                     Console.WriteLine("Escribe los parametros");
-                    num = Console.Read();
+                    teclado = Console.ReadLine();
+                    num = int.Parse(teclado);
                     if (ejercicio1(num))
                     {
                         Console.WriteLine("El numero es primo");
@@ -293,11 +302,56 @@ namespace Ejercicios
                     break;
                 case 2:
                     Console.WriteLine("Escribe los parametros");
-                    int a, b, c;
-                    a = Console.Read();
-                    b = Console.Read();
-                    c = Console.Read();
+                    teclado = Console.ReadLine();
+                    int a = int.Parse(teclado);
+                    Console.WriteLine("Escribe los parametros");
+                    teclado = Console.ReadLine();
+                    int b = int.Parse(teclado);
+                    Console.WriteLine("Escribe los parametros");
+                    teclado = Console.ReadLine();
+                    int c = int.Parse(teclado);
                     ejercicio2(a, b, c);  break;
+                case 3:
+                    Console.WriteLine("Escribe los parámetros");
+                    teclado = Console.ReadLine();
+                    a = int.Parse(teclado);
+                    Console.WriteLine(ejercicio3(a));
+                    break;
+                case 4:
+                    Console.WriteLine("Escribe los parámetros");
+                    teclado = Console.ReadLine();
+                    a = int.Parse(teclado);
+                    Console.WriteLine("Escribe los parametros");
+                    teclado = Console.ReadLine();
+                    b = int.Parse(teclado);
+                    ejercicio4(a, b);
+                    break;
+                case 5:
+                    Console.WriteLine("Escribe los parámetros");
+                    String cadena = Console.ReadLine();
+                    ejercicio5(cadena);
+                    break;
+                case 6:
+                    Console.WriteLine("Escribe los parámetros");
+                    teclado = Console.ReadLine();
+                    a = int.Parse(teclado);
+                    ejercicio6(a);
+                    break;
+                case 7:
+                    Console.WriteLine("Escribe los parámetros");
+                    cadena = Console.ReadLine();
+                    Console.WriteLine(ejercicio7(cadena));
+                    break;
+                case 8:
+                    Console.WriteLine("Escribe los parámetros, bote y cantidad");
+                    teclado = Console.ReadLine();
+                    double d = double.Parse(teclado);   
+                    Console.WriteLine("Escribe los parametros");
+                    teclado = Console.ReadLine();
+                    double e = double.Parse(teclado);  
+                    Console.WriteLine(ejercicio8(d, e));
+                    break;
+
 
                 default: Console.WriteLine("Esto es el default"); break;
 
