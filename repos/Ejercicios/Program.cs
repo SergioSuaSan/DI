@@ -39,8 +39,10 @@ namespace Ejercicios
             ejercicio6(101010101);
 
             Console.WriteLine("Ejercicio 7:");
-            ejercicio7("Hola");
+            Console.WriteLine(ejercicio7("Hola, me llamo Sergio."));
 
+            Console.WriteLine("Ejercicio 8:");
+            Console.WriteLine( ejercicio8(1.78, 55));
 
 
         }
@@ -192,9 +194,9 @@ namespace Ejercicios
             Console.WriteLine(deci);
 
         }
-        static void ejercicio7(String cadena)
+        static String ejercicio7(String cadena)
         {
-            
+            /*
             String reves = "";
             StringBuilder sb = new StringBuilder(reves);
 
@@ -205,6 +207,64 @@ namespace Ejercicios
 
 
             Console.WriteLine(sb);
+            */
+
+            //Creamos un String que va a tener el resultado que vamos a mostrar
+            String reves = "";
+            //Damos los casos base, incluimos la cadena vacía para evitar errores
+            if (cadena.Length == 0) { return "No has escrito nada"; }
+            if (cadena.Length == 1) {
+                //cogemos el último caracter aunque sea uno, nos ayuda a la hora de la recursividad
+                reves += cadena.Substring(cadena.Length-1,cadena.Length);
+                return reves; 
+            }
+            reves += cadena.Substring(cadena.Length - 1);
+            //Al último caracter le añadimos el recursivo de la misma cadena si el último caracter
+            reves += ejercicio7(cadena.Substring(0,cadena.Length - 1)) ;
+            return reves;
+                
+
+        }
+
+        static string ejercicio8(double bote, double cantidad)
+        {
+            //declaro las variables
+            double  cambio;
+            int e2= 0, e1= 0, c50= 0, c20= 0, c10= 0, c5= 0, c2= 0, c1= 0;
+
+            if (cantidad < bote)
+            {
+                //Si la cantidad es menor a lo que se pide, salta un error
+                throw new Exception("No hay suficiente pasta");
+            } else
+            {
+                //calculamos el cambio
+                cambio = cantidad-bote;
+                //Calculamos cuantas monedas se tienen que devolver
+                e2 = (int)(cambio / 2);
+                //Luego se restará la cantidad correspondiente a lo que cuesten ese numero de monedas
+                cambio -=  2 * e2;
+                e1 = (int)(cambio / 1);
+                cambio -= 1 * e1;
+                c50 = (int)(cambio / 0.5);
+                cambio -= 0.5 * c50;
+                c20 = (int)(cambio / 0.2);
+                cambio -= 0.2 * c20;
+                c10 = (int)(cambio / 0.1);
+                cambio -= 0.1 * c10;
+                c5 = (int)(cambio / 0.05);
+                cambio -= 0.05 * c5;
+                c2 = (int)(cambio / 0.02);
+                cambio -= 0.02 * c2;
+                c1 = (int)(cambio / 0.01);
+                cambio -= 0.01 * c1;
+
+                //Sin embargo, las restas por algñun motivo deja decimales periódicos, por lo que hay una moneda de 1c que se acaba perdiendo, no entiendo por qué.
+                return ("Recibes " + e2 + " monedas de 2€, " + e1 + " monedas de 1€, " + c50 + " monedas de 50c, " + c20 + " monedas de 20c, " +
+                    c10 + " monedas de 10c, " + c5 + " monedas de 5c, " + c2 + " monedas de 2c y " + c1 + " monedas de 1");
+
+            }
+
 
         }
         
