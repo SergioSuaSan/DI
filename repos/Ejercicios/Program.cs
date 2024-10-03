@@ -69,10 +69,6 @@ namespace Ejercicios
         static void ejercicio2(int num1, int num2, int num3)
         {
             int a, b, c;
-            if (num1 >= num2 + num3)
-            {
-                Console.WriteLine("No es un triángulo");
-            }
 
             //Comparo los lados para saber cuál es la hipotenusa. Los catetos son indiferentes.
             if (num1 > num3 && num1 > num2)
@@ -96,6 +92,10 @@ namespace Ejercicios
                 c = num2;
             }
 
+            if (a >= b + c)
+            {
+                Console.WriteLine("No es un triángulo");
+            } else 
             //Usamos la fórmula de Pitágoras sabiendo cuál es la hipotenusa
             if (a * a == b * b + c * c)
             {
@@ -287,7 +287,7 @@ namespace Ejercicios
             int num = int.Parse(teclado);
             switch (num) {
                 case 1:
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     num = int.Parse(teclado);
                     if (ejercicio1(num))
@@ -301,52 +301,52 @@ namespace Ejercicios
                     }
                     break;
                 case 2:
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     int a = int.Parse(teclado);
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     int b = int.Parse(teclado);
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     int c = int.Parse(teclado);
                     ejercicio2(a, b, c);  break;
                 case 3:
-                    Console.WriteLine("Escribe los parámetros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     a = int.Parse(teclado);
                     Console.WriteLine(ejercicio3(a));
                     break;
                 case 4:
-                    Console.WriteLine("Escribe los parámetros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     a = int.Parse(teclado);
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     b = int.Parse(teclado);
                     ejercicio4(a, b);
                     break;
                 case 5:
-                    Console.WriteLine("Escribe los parámetros");
+                    Console.WriteLine("Escribe una cadena");
                     String cadena = Console.ReadLine();
                     ejercicio5(cadena);
                     break;
                 case 6:
-                    Console.WriteLine("Escribe los parámetros");
+                    Console.WriteLine("Escribe un numero");
                     teclado = Console.ReadLine();
                     a = int.Parse(teclado);
                     ejercicio6(a);
                     break;
                 case 7:
-                    Console.WriteLine("Escribe los parámetros");
+                    Console.WriteLine("Escribe una cadena");
                     cadena = Console.ReadLine();
                     Console.WriteLine(ejercicio7(cadena));
                     break;
                 case 8:
-                    Console.WriteLine("Escribe los parámetros, bote y cantidad");
+                    Console.WriteLine("Escribe el bote");
                     teclado = Console.ReadLine();
                     double d = double.Parse(teclado);   
-                    Console.WriteLine("Escribe los parametros");
+                    Console.WriteLine("Escribe la cantidad");
                     teclado = Console.ReadLine();
                     double e = double.Parse(teclado);  
                     Console.WriteLine(ejercicio8(d, e));
