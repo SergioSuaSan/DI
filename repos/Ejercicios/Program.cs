@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using System;
 using System.Text;
 
 namespace Ejercicios
@@ -95,7 +96,8 @@ namespace Ejercicios
             if (a >= b + c)
             {
                 Console.WriteLine("No es un triángulo");
-            } else 
+            }
+            else
             //Usamos la fórmula de Pitágoras sabiendo cuál es la hipotenusa
             if (a * a == b * b + c * c)
             {
@@ -134,19 +136,19 @@ namespace Ejercicios
             //Creamos un array bidimensional con la longitud de filas y columnas que le indicamos
             int filas = 4;
             int colum = 4;
-            int[,] array=new int [filas, colum];
+            int[,] array = new int[filas, colum];
 
             //rellenamos el array
-            for (int i = 0; i<filas;i++)
+            for (int i = 0; i < filas; i++)
             {
                 for (int j = 0; j < colum; j++)
                 {
-                    array[i,j] = i + j;
+                    array[i, j] = i + j;
                 }
             }
-            
+
             //creamos un array unidimensional de la longitud que tenga la submatriz
-            int[] array2 = new int[(filas-x) * (colum-y)];
+            int[] array2 = new int[(filas - x) * (colum - y)];
             //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
             int contador = 0;
             //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
@@ -156,18 +158,19 @@ namespace Ejercicios
                 {
                     array2[contador] = array[i, j];
                     //Escribimos el número que toca de forma ordenada en una sola línea
-                    Console.Write(array2[contador]+" ");
+                    Console.Write(array2[contador] + " ");
                     contador++;
                 }
             }
         }
-    
+
         static void ejercicio5(String cadena)
         {
             //Creamos un array de char del tamaño al menos de la cadena
-           char [] arr = new char [cadena.Length];
+            char[] arr = new char[cadena.Length];
             //Creamos un bucle que ponga en el array los caracteres distintos de ' '
-            for (int i = 0; i < cadena.Length; i++) {
+            for (int i = 0; i < cadena.Length; i++)
+            {
                 if (cadena[i] != ' ')
                 {
                     arr[i] = cadena[i];
@@ -177,9 +180,10 @@ namespace Ejercicios
             Console.WriteLine(arr);
         }
 
-        static void ejercicio6(int num) {
+        static void ejercicio6(int num)
+        {
             //Creamos las variables necesarias para el ejercico
-            int deci = 0,usado, potencia = 0;
+            int deci = 0, usado, potencia = 0;
 
             while (num > 0)
             {
@@ -199,7 +203,7 @@ namespace Ejercicios
                 {
                     throw new Exception("Formato incorrecto");
                 }
-              
+
 
 
             }
@@ -225,37 +229,39 @@ namespace Ejercicios
             String reves = "";
             //Damos los casos base, incluimos la cadena vacía para evitar errores
             if (cadena.Length == 0) { return "No has escrito nada"; }
-            if (cadena.Length == 1) {
+            if (cadena.Length == 1)
+            {
                 //cogemos el último caracter aunque sea uno, nos ayuda a la hora de la recursividad
-                reves += cadena.Substring(cadena.Length-1,cadena.Length);
-                return reves; 
+                reves += cadena.Substring(cadena.Length - 1, cadena.Length);
+                return reves;
             }
             reves += cadena.Substring(cadena.Length - 1);
-            //Al último caracter le añadimos el recursivo de la misma cadena si el último caracter
-            reves += ejercicio7(cadena.Substring(0,cadena.Length - 1)) ;
+            //Al último caracter le añadimos el recursivo de la misma cadena sin el último caracter
+            reves += ejercicio7(cadena.Substring(0, cadena.Length - 1));
             return reves;
-                
+
 
         }
 
         static string ejercicio8(double bote, double cantidad)
         {
             //declaro las variables
-            double  cambio;
-            int e2= 0, e1= 0, c50= 0, c20= 0, c10= 0, c5= 0, c2= 0, c1= 0;
+            double cambio;
+            int e2 = 0, e1 = 0, c50 = 0, c20 = 0, c10 = 0, c5 = 0, c2 = 0, c1 = 0;
 
             if (cantidad < bote)
             {
                 //Si la cantidad es menor a lo que se pide, salta un error
                 throw new Exception("No hay suficiente pasta");
-            } else
+            }
+            else
             {
                 //calculamos el cambio
-                cambio = cantidad-bote;
+                cambio = cantidad - bote;
                 //Calculamos cuantas monedas se tienen que devolver
                 e2 = (int)(cambio / 2);
                 //Luego se restará la cantidad correspondiente a lo que cuesten ese numero de monedas
-                cambio -=  2 * e2;
+                cambio -= 2 * e2;
                 e1 = (int)(cambio / 1);
                 cambio -= 1 * e1;
                 c50 = (int)(cambio / 0.5);
@@ -280,84 +286,198 @@ namespace Ejercicios
 
         }
 
-        static void ejercicio10()
+
+        static void ejercicio9(int direccion)
         {
-            Console.WriteLine("Qué función queres hacer?");
-            String teclado = Console.ReadLine();
-            int num = int.Parse(teclado);
-            switch (num) {
-                case 1:
-                    Console.WriteLine("Escribe un numero");
+
+
+            int[][] matriz =
+            {
+                new int []{10,11,12,13,14 },
+                new int []{20,21,22,23,24 },
+                new int []{30,31,32,33,34 },
+                new int []{40,41,42,43,44 },
+                new int []{50,51,52,53,54 }
+            };
+
+
+            void print() {
+                for (int i = 0; i < matriz.Length; i++)
+                {
+                    for (int j = 0; j < matriz[i].Length; j++)
+                    {
+                        Console.Write(matriz[i][j] + ", ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            print();
+
+            switch (direccion)
+            {
+                case 0: //arriba
+                    Console.WriteLine("Escribe cuánto se quiere mover");
+                    String teclado = Console.ReadLine();
+                    int num = int.Parse(teclado);
+
+                    for (int v = 0; v < num; v++)
+                    {
+                        int[] array = matriz[0];
+                        for (int i = 0; i < matriz.Length-1; i++)
+                        {
+                            matriz[i] = matriz[i + 1];
+                        }
+                        matriz[matriz.Length - 1] = array;
+                    }
+                    print();
+                    break;
+                case 1: //Derecha
+                    Console.WriteLine("Escribe cuánto se quiere mover");
                     teclado = Console.ReadLine();
                     num = int.Parse(teclado);
-                    if (ejercicio1(num))
+
+                    for (int v = 0; v < num; v++)
                     {
-                        Console.WriteLine("El numero es primo");
-
+                        int guardado;
+                        for (int i = 0; i < matriz.Length; i++)
+                        {
+                            guardado = matriz[i][matriz.Length - 1];
+                            for (int j = matriz[i].Length-2; j >=0; j--)
+                            {
+                                matriz[i][j+1] = matriz[i][j];
+                            }
+                            matriz[i][0] = guardado;
+                        }
                     }
-                    else
+
+                    print();   
+                    break;
+                case 2: //abajo
+                    Console.WriteLine("Escribe cuánto se quiere mover");
+                    teclado = Console.ReadLine();
+                    num = int.Parse(teclado);
+
+                    for (int v = 0; v < num; v++)
                     {
-                        Console.WriteLine("El número no es primo");
+                        int[] array = matriz[matriz.Length-1];
+                        for (int i = matriz.Length-2; i >= 0; i--)
+                        {
+                            matriz[i+1] = matriz[i];
+                        }
+                        matriz[0] = array;
                     }
+                    print();
                     break;
-                case 2:
-                    Console.WriteLine("Escribe un numero");
+                case 3: //Izquierda
+                    Console.WriteLine("Escribe cuánto se quiere mover");
                     teclado = Console.ReadLine();
-                    int a = int.Parse(teclado);
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    int b = int.Parse(teclado);
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    int c = int.Parse(teclado);
-                    ejercicio2(a, b, c);  break;
-                case 3:
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    a = int.Parse(teclado);
-                    Console.WriteLine(ejercicio3(a));
-                    break;
-                case 4:
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    a = int.Parse(teclado);
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    b = int.Parse(teclado);
-                    ejercicio4(a, b);
-                    break;
-                case 5:
-                    Console.WriteLine("Escribe una cadena");
-                    String cadena = Console.ReadLine();
-                    ejercicio5(cadena);
-                    break;
-                case 6:
-                    Console.WriteLine("Escribe un numero");
-                    teclado = Console.ReadLine();
-                    a = int.Parse(teclado);
-                    ejercicio6(a);
-                    break;
-                case 7:
-                    Console.WriteLine("Escribe una cadena");
-                    cadena = Console.ReadLine();
-                    Console.WriteLine(ejercicio7(cadena));
-                    break;
-                case 8:
-                    Console.WriteLine("Escribe el bote");
-                    teclado = Console.ReadLine();
-                    double d = double.Parse(teclado);   
-                    Console.WriteLine("Escribe la cantidad");
-                    teclado = Console.ReadLine();
-                    double e = double.Parse(teclado);  
-                    Console.WriteLine(ejercicio8(d, e));
-                    break;
+                    num = int.Parse(teclado);
 
+                    for (int v = 0; v < num; v++)
+                    {
+                        int guardado;
+                        for (int i = 0; i < matriz.Length; i++)
+                        {
+                            guardado = matriz[i][0];
+                            for (int j = 0; j < matriz[i].Length-1; j++)
+                            {
+                                matriz[i][j] = matriz[i][j+1];
+                            }
+                            matriz[i][matriz.Length-1] = guardado;
+                        }
+                    }
 
-                default: Console.WriteLine("Esto es el default"); break;
+                    print();
+                    break;
 
             }
         }
-        
 
+            static void ejercicio10()
+            {
+                Console.WriteLine("Qué función queres hacer? \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide");
+                String teclado = Console.ReadLine();
+                int num = int.Parse(teclado);
+                switch (num)
+                {
+                    case 1:
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        num = int.Parse(teclado);
+                        if (ejercicio1(num))
+                        {
+                            Console.WriteLine("El numero es primo");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("El número no es primo");
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        int a = int.Parse(teclado);
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        int b = int.Parse(teclado);
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        int c = int.Parse(teclado);
+                        ejercicio2(a, b, c); break;
+                    case 3:
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        a = int.Parse(teclado);
+                        Console.WriteLine(ejercicio3(a));
+                        break;
+                    case 4:
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        a = int.Parse(teclado);
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        b = int.Parse(teclado);
+                        ejercicio4(a, b);
+                        break;
+                    case 5:
+                        Console.WriteLine("Escribe una cadena");
+                        String cadena = Console.ReadLine();
+                        ejercicio5(cadena);
+                        break;
+                    case 6:
+                        Console.WriteLine("Escribe un numero");
+                        teclado = Console.ReadLine();
+                        a = int.Parse(teclado);
+                        ejercicio6(a);
+                        break;
+                    case 7:
+                        Console.WriteLine("Escribe una cadena");
+                        cadena = Console.ReadLine();
+                        Console.WriteLine(ejercicio7(cadena));
+                        break;
+                    case 8:
+                        Console.WriteLine("Escribe el bote");
+                        teclado = Console.ReadLine();
+                        double d = double.Parse(teclado);
+                        Console.WriteLine("Escribe la cantidad");
+                        teclado = Console.ReadLine();
+                        double e = double.Parse(teclado);
+                        Console.WriteLine(ejercicio8(d, e));
+                        break;
+                    case 9:
+                    Console.WriteLine("Escribe la dirección en la que se moverá la matriz: \n 0 = arriba \n 1 = derecha \n 2 = abajo \n 3 = izquierda");
+                    teclado = Console.ReadLine();
+                    a = int.Parse(teclado);
+                    ejercicio9(a);
+                        break;
+
+
+                    default: Console.WriteLine("Esto es el default"); break;
+
+                }
+            }
+
+
+        }
     }
-}
