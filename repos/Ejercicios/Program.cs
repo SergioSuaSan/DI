@@ -4,6 +4,7 @@
 using System;
 using System.Text;
 
+
 namespace Ejercicios
 {
     class Programa
@@ -395,7 +396,7 @@ namespace Ejercicios
 
             static void ejercicio10()
             {
-                Console.WriteLine("Qué función queres hacer? \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide");
+                Console.WriteLine("Qué función queres hacer? \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto");
                 String teclado = Console.ReadLine();
                 int num = int.Parse(teclado);
                 switch (num)
@@ -471,13 +472,41 @@ namespace Ejercicios
                     a = int.Parse(teclado);
                     ejercicio9(a);
                         break;
+                    case 10:
+                    Console.WriteLine("Escribe un numero");
+                    teclado = Console.ReadLine();
+                    a = int.Parse(teclado);
+                    ejercicio11(a);
+                    break;
 
 
-                    default: Console.WriteLine("Esto es el default"); break;
+                default: Console.WriteLine("Esta opción no existe");
+                    ejercicio10();
+                    break;
 
                 }
             }
 
+        static void ejercicio11(int num)
+        {
+            int acumulador = 0;
+            //Buscamos todos los números por los que se pueda dividir el parámetro y se suma en el acumulador.
+            for (int i = num - 1; i >= 1; i--)
+            {
+                if (num % i == 0)
+                {
+                    acumulador += i;
+                }
+            }
+            //Comparación final
+            if (acumulador == num) {
+                Console.WriteLine("EL número es perfecto");
+            }
+            else {
+                Console.WriteLine("El número NO es perfecto");
+            }
 
         }
+
     }
+}
