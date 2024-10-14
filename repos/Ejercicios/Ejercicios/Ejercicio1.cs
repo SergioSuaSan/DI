@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ejercicios.Ejercicios
 {
-    internal class Ejercicio1
+    internal class Ejercicio1:Ejercicio
     {
-        internal void ejecutar()
+        public override void ejecutar()
         {
             bool ejercicio1(int num)
             {

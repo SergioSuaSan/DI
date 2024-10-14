@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ejercicios.Ejercicios
 {
-    internal class Ejercicio9
+    internal class Ejercicio9:Ejercicio
     {
         private string? teclado;
 
-        internal void ejecutar()
+        public override void ejecutar()
         {
             Console.WriteLine("Escribe la dirección en la que se moverá la matriz: \n 0 = arriba \n 1 = derecha \n 2 = abajo \n 3 = izquierda");
             teclado = Console.ReadLine();

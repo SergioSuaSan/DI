@@ -9,6 +9,11 @@ namespace Ejercicios
 {
     internal class Menu
     {
+
+
+        private Ejercicio[] ejer;
+        
+        /*
         private Ejercicio1 ejer1;
         private Ejercicio2 ejer2;
         private Ejercicio3 ejer3;
@@ -19,9 +24,23 @@ namespace Ejercicios
         private Ejercicio8 ejer8;
         private Ejercicio9 ejer9;
         private Ejercicio11 ejer11;
+        */
 
-
-        public Menu() { 
+        public Menu() {
+            ejer = new Ejercicio[12];
+           
+            ejer[1] = new Ejercicio1();
+            ejer[2] = new Ejercicio2();
+            ejer[3] = new Ejercicio3();
+            ejer[4] = new Ejercicio4();
+            ejer[5] = new Ejercicio5();
+            ejer[6] = new Ejercicio6();
+            ejer[7] = new Ejercicio7();
+            ejer[8] = new Ejercicio8();
+            ejer[9] = new Ejercicio9();
+            ejer[10] = new Ejercicio11();
+            ejer[11] = new Ejercicio11();
+            /*
             ejer1 = new Ejercicio1();
             ejer2 = new Ejercicio2();
             ejer3 = new Ejercicio3();
@@ -32,16 +51,30 @@ namespace Ejercicios
             ejer8 = new Ejercicio8();
             ejer9 = new Ejercicio9();
             ejer11 = new Ejercicio11();
-
+            */
         }
 
         
 
         public void ejercicio10()
         {
-            Console.WriteLine("Qué función queres hacer? \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto");
+            Console.WriteLine("Qué función queres hacer? \n 0: Salir \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto");
             String teclado = Console.ReadLine();
             int num = int.Parse(teclado);
+
+            while (num != 0)
+            {
+               
+                ejer[num].ejecutar();
+                Console.ReadLine();
+                Console.Clear();
+                ejercicio10();
+                
+            }
+            Console.WriteLine("Adios");
+          
+
+            /*
             switch (num)
             {
                 case 1:
@@ -88,6 +121,8 @@ namespace Ejercicios
                     break;
 
             }
+            */
+
         }
     }
 }

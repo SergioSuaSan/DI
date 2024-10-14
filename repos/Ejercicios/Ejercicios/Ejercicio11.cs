@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ejercicios.Ejercicios
 {
-    internal class Ejercicio11
+    internal class Ejercicio11: Ejercicio
     {
-       
 
-        internal void ejecutar()
+
+        public override void ejecutar()
         {
             Console.WriteLine("Escribe un numero");
             string? teclado = Console.ReadLine();

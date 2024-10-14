@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ejercicios.Ejercicios
 {
-    internal class Ejercicio8
+    internal class Ejercicio8:Ejercicio
     {
-        internal void ejecutar()
+        public override void ejecutar()
         {
             Console.WriteLine("Escribe el bote");
             string? teclado = Console.ReadLine();

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ejercicios.Ejercicios
 {
-    internal class Ejercicio7
+    internal class Ejercicio7: Ejercicio
     {
-        internal void ejecutar()
+        public override void ejecutar()
         {
             Console.WriteLine("Escribe una cadena");
             string? cadena = Console.ReadLine();
