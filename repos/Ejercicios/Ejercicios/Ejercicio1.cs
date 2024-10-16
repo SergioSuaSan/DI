@@ -27,16 +27,18 @@ namespace Ejercicios.Ejercicios
 
             }
             Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int num = int.Parse(teclado);
-            if (ejercicio1(num))
-            {
-                Console.WriteLine("El numero es primo");
-
-            }
-            else
-            {
-                Console.WriteLine("El número no es primo");
+            int num = LeerDato.LeerEntero();
+            //Compruebo que el valor introducido es correcto indicando que no es positivo
+            if (num >= 2)
+            {  
+                if (ejercicio1(num))
+                {
+                    Console.WriteLine("El numero es primo");
+                }
+                else
+                {
+                    Console.WriteLine("El número no es primo");
+                }
             }
         }
     }

@@ -59,8 +59,7 @@ namespace Ejercicios
         public void ejercicio10()
         {
             Console.WriteLine("Qué función queres hacer? \n 0: Salir \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto");
-            String teclado = Console.ReadLine();
-            int num = int.Parse(teclado);
+            int num = LeerDato.LeerEntero();
 
             while (num != 0)
             {
@@ -72,6 +71,7 @@ namespace Ejercicios
                 
             }
             Console.WriteLine("Adios");
+           
           
 
             /*

@@ -11,14 +11,12 @@ namespace Ejercicios.Ejercicios
         public override void ejecutar()
         {
             Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+           
+            int a = LeerDato.LeerEntero();
             Console.WriteLine("Escribe un numero");
-            teclado = Console.ReadLine();
-            int b = int.Parse(teclado);
+            int b = LeerDato.LeerEntero();
             Console.WriteLine("Escribe un numero");
-            teclado = Console.ReadLine();
-            int c = int.Parse(teclado);
+            int c = LeerDato.LeerEntero();
             ejercicio2(a, b, c);
         }
 
