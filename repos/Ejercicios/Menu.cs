@@ -63,14 +63,16 @@ namespace Ejercicios
 
             while (num != 0)
             {
-               
-                ejer[num].ejecutar();
+                if (num > 0 && num <12)
+                {
+                    ejer[num].ejecutar();
+                }
                 Console.ReadLine();
                 Console.Clear();
                 ejercicio10();
-                
             }
             Console.WriteLine("Adios");
+            Environment.Exit(0);
            
           
 

@@ -11,8 +11,7 @@ namespace Ejercicios.Ejercicios
         public override void ejecutar()
         {
             Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+            int a = LeerDato.LeerEntero();
         }
         void ejercicio6(int num)
         {

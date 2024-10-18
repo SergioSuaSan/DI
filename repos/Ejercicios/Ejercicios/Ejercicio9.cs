@@ -8,13 +8,12 @@ namespace Ejercicios.Ejercicios
 {
     internal class Ejercicio9:Ejercicio
     {
-        private string? teclado;
+        
 
         public override void ejecutar()
         {
             Console.WriteLine("Escribe la dirección en la que se moverá la matriz: \n 0 = arriba \n 1 = derecha \n 2 = abajo \n 3 = izquierda");
-            teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+            int a = LeerDato.LeerEntero();
             ejercicio9(a);
         }
         void ejercicio9(int direccion)
@@ -48,8 +47,7 @@ namespace Ejercicios.Ejercicios
             {
                 case 0: //arriba
                     Console.WriteLine("Escribe cuánto se quiere mover");
-                    String teclado = Console.ReadLine();
-                    int num = int.Parse(teclado);
+                    int num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
                     {
@@ -64,8 +62,7 @@ namespace Ejercicios.Ejercicios
                     break;
                 case 1: //Derecha
                     Console.WriteLine("Escribe cuánto se quiere mover");
-                    teclado = Console.ReadLine();
-                    num = int.Parse(teclado);
+                    num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
                     {
@@ -85,8 +82,7 @@ namespace Ejercicios.Ejercicios
                     break;
                 case 2: //abajo
                     Console.WriteLine("Escribe cuánto se quiere mover");
-                    teclado = Console.ReadLine();
-                    num = int.Parse(teclado);
+                    num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
                     {
@@ -101,8 +97,7 @@ namespace Ejercicios.Ejercicios
                     break;
                 case 3: //Izquierda
                     Console.WriteLine("Escribe cuánto se quiere mover");
-                    teclado = Console.ReadLine();
-                    num = int.Parse(teclado);
+                    num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
                     {

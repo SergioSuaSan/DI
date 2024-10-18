@@ -11,11 +11,9 @@ namespace Ejercicios.Ejercicios
         public override void ejecutar()
         {
             Console.WriteLine("Escribe el bote");
-            string? teclado = Console.ReadLine();
-            double d = double.Parse(teclado);
+            double d = LeerDato.LeerDouble();
             Console.WriteLine("Escribe la cantidad");
-            teclado = Console.ReadLine();
-            double e = double.Parse(teclado);
+            double e = LeerDato.LeerDouble();
             Console.WriteLine(ejercicio8(d, e));
         }
         string ejercicio8(double bote, double cantidad)
@@ -24,13 +22,14 @@ namespace Ejercicios.Ejercicios
             double cambio;
             int e2 = 0, e1 = 0, c50 = 0, c20 = 0, c10 = 0, c5 = 0, c2 = 0, c1 = 0;
 
-            if (cantidad < bote)
+            while(cantidad < bote)
             {
                 //Si la cantidad es menor a lo que se pide, salta un error
-                throw new Exception("No hay suficiente pasta");
+                Console.WriteLine("No hay suficiente pasta, escribe la cantidad:");
+                cantidad = LeerDato.LeerDouble();
+
             }
-            else
-            {
+           
                 //calculamos el cambio
                 cambio = cantidad - bote;
                 //Calculamos cuantas monedas se tienen que devolver
@@ -56,7 +55,7 @@ namespace Ejercicios.Ejercicios
                 return ("Recibes " + e2 + " monedas de 2€, " + e1 + " monedas de 1€, " + c50 + " monedas de 50c, " + c20 + " monedas de 20c, " +
                     c10 + " monedas de 10c, " + c5 + " monedas de 5c, " + c2 + " monedas de 2c y " + c1 + " monedas de 1c");
 
-            }
+            
 
 
         }

@@ -11,8 +11,7 @@ namespace Ejercicios.Ejercicios
         public override void ejecutar()
         {
             Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+            int a = LeerDato.LeerEntero();
             Console.WriteLine(ejercicio3(a));
         }
 
@@ -28,7 +27,12 @@ namespace Ejercicios.Ejercicios
                 return 1;
 
             }
+            if (n <1) {
+                return -1;
+            }
             return ejercicio3(n - 1) + ejercicio3(n - 2);
+
+           
         }
     }
 }

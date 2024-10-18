@@ -51,6 +51,28 @@ namespace Ejercicios
                 return -3;
             }
         }
+        internal static double LeerDouble()
+        {
+            try
+            {
+                return double.Parse(Console.ReadLine());
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("No has introducido nada. Debes introducir algún número decimal");
+                return -1;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("El tipo de dato es incorrecto. Debe ser un número entero");
+                return -2;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("El valor introducido es mayor que el máximo permitido. Introduce un número menor");
+                return -3;
+            }
+        }
 
     }
 }

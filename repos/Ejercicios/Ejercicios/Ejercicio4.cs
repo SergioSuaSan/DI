@@ -11,11 +11,9 @@ namespace Ejercicios.Ejercicios
         public override void ejecutar()
         {
             Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+            int a = LeerDato.LeerEntero();
             Console.WriteLine("Escribe un numero");
-            teclado = Console.ReadLine();
-            int b = int.Parse(teclado);
+            int b = LeerDato.LeerEntero();
             ejercicio4(a, b);
         }
 
@@ -36,19 +34,31 @@ namespace Ejercicios.Ejercicios
             }
 
             //creamos un array unidimensional de la longitud que tenga la submatriz
-            int[] array2 = new int[(filas - x) * (colum - y)];
-            //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
-            int contador = 0;
-            //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
-            for (int i = x; i < filas; i++)
+            try
             {
-                for (int j = y; j < colum; j++)
+                int[] array2 = new int[(filas - x) * (colum - y)];
+
+
+
+
+                //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
+                int contador = 0;
+                //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
+                for (int i = x; i < filas; i++)
                 {
-                    array2[contador] = array[i, j];
-                    //Escribimos el número que toca de forma ordenada en una sola línea
-                    Console.Write(array2[contador] + " ");
-                    contador++;
+                    for (int j = y; j < colum; j++)
+                    {
+                        array2[contador] = array[i, j];
+
+                        //Escribimos el número que toca de forma ordenada en una sola línea
+                        Console.Write(array2[contador] + " ");
+                        contador++;
+                    }
                 }
+            }
+            catch (OverflowException e)
+            {
+                Console.WriteLine("Te has pasado");
             }
         }
     }
