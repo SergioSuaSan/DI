@@ -10,55 +10,66 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe un numero de la fila por la que comenzaremos a leer");
+            Console.WriteLine("Escribe el número de filas del array");
             int a = LeerDato.LeerEntero();
-            Console.WriteLine("Escribe un numero de la columna por la que comenzaremos a leer");
+            Console.WriteLine("Escribe el número de columnas del array");
             int b = LeerDato.LeerEntero();
-            ejercicio4(a, b);
+            Console.WriteLine("Escribe un numero de la fila por la que comenzaremos a leer");
+            int c = LeerDato.LeerEntero();
+            Console.WriteLine("Escribe un numero de la columna por la que comenzaremos a leer");
+            int d = LeerDato.LeerEntero();
+            ejercicio4(a, b, c, d);
         }
 
-        void ejercicio4(int x, int y)
+        void ejercicio4(int a, int b, int c, int d)
         {
-            //Creamos un array bidimensional con la longitud de filas y columnas que le indicamos
-            int filas = 4;
-            int colum = 4;
-            int[,] array = new int[filas, colum];
-
-            //rellenamos el array
-            for (int i = 0; i < filas; i++)
+            if (a > c && b > d)
             {
-                for (int j = 0; j < colum; j++)
+                //Creamos un array bidimensional con la longitud de filas y columnas que le indicamos
+                int filas = a;
+                int colum = b;
+                int[,] array = new int[filas, colum];
+
+                //rellenamos el array
+                for (int i = 0; i < filas; i++)
                 {
-                    array[i, j] = i + j;
-                }
-            }
-
-            //creamos un array unidimensional de la longitud que tenga la submatriz
-            try
-            {
-                int[] array2 = new int[(filas - x) * (colum - y)];
-
-
-
-
-                //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
-                int contador = 0;
-                //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
-                for (int i = x; i < filas; i++)
-                {
-                    for (int j = y; j < colum; j++)
+                    for (int j = 0; j < colum; j++)
                     {
-                        array2[contador] = array[i, j];
-
-                        //Escribimos el número que toca de forma ordenada en una sola línea
-                        Console.Write(array2[contador] + " ");
-                        contador++;
+                        array[i, j] = i + j;
                     }
                 }
+
+                //creamos un array unidimensional de la longitud que tenga la submatriz
+                try
+                {
+                    int[] array2 = new int[(filas - c) * (colum - d)];
+
+
+
+
+                    //Inicializamos un contador que nos indicará la posición en la que se tiene que poner el número del array
+                    int contador = 0;
+                    //Creamos un doble bucle que escriba en el array unidimensional los datos de la matriz en orden
+                    for (int i = c; i < filas; i++)
+                    {
+                        for (int j = d; j < colum; j++)
+                        {
+                            array2[contador] = array[i, j];
+
+                            //Escribimos el número que toca de forma ordenada en una sola línea
+                            Console.Write(array2[contador] + " ");
+                            contador++;
+                        }
+                    }
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Te has pasado");
+                }
             }
-            catch (OverflowException e)
+            else
             {
-                Console.WriteLine("Te has pasado");
+                Console.WriteLine("El número que indica donde se empieza debe ser menor que el número de filas y/o columnas del array");
             }
         }
     }

@@ -12,7 +12,13 @@ namespace Ejercicios.Ejercicios
         {
             Console.WriteLine("Escribe la frase que quieres escribir al revés");
             string? cadena = Console.ReadLine();
-            Console.WriteLine(ejercicio7(cadena));
+
+            if (cadena.Equals(ejercicio7(cadena))) {
+                Console.WriteLine("Son palíndromos");
+            }
+            else {
+                Console.WriteLine("NO son palíndromos");
+            }
         }
         String ejercicio7(String cadena)
         {
