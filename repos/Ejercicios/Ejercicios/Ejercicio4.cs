@@ -10,9 +10,9 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe un numero de la fila por la que comenzaremos a leer");
             int a = LeerDato.LeerEntero();
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe un numero de la columna por la que comenzaremos a leer");
             int b = LeerDato.LeerEntero();
             ejercicio4(a, b);
         }

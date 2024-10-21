@@ -10,7 +10,7 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe una cadena");
+            Console.WriteLine("Escribe la frase que quieres escribir al revés");
             string? cadena = Console.ReadLine();
             Console.WriteLine(ejercicio7(cadena));
         }

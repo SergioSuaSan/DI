@@ -67,6 +67,12 @@ namespace Ejercicios
                 {
                     ejer[num].ejecutar();
                 }
+                if (num >= 12 || num <0)
+                {
+                    Console.WriteLine("No existe ese ejercicio");
+
+                }
+                Console.WriteLine("Pulsa INTRO para continuar");
                 Console.ReadLine();
                 Console.Clear();
                 ejercicio10();

@@ -10,7 +10,7 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe una cadena");
+            Console.WriteLine("Escribe la frase que quieres ver sin espacios");
             String cadena = Console.ReadLine();
             ejercicio5(cadena);
         }

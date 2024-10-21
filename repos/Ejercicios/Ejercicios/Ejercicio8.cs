@@ -10,6 +10,8 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
+            Console.WriteLine("Vamos a escribir cantidades.Los decimales se escriben con ','");
+
             Console.WriteLine("Escribe el bote");
             double d = LeerDato.LeerDouble();
             Console.WriteLine("Escribe la cantidad");

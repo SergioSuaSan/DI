@@ -10,12 +10,12 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe la longitud de un lado del triángulo");
            
             int a = LeerDato.LeerEntero();
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe la longitud de otro lado del triángulo");
             int b = LeerDato.LeerEntero();
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe la longitud del último lado del triángulo");
             int c = LeerDato.LeerEntero();
             ejercicio2(a, b, c);
         }

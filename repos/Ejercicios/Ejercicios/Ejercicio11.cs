@@ -12,9 +12,8 @@ namespace Ejercicios.Ejercicios
 
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe un numero");
-            string? teclado = Console.ReadLine();
-            int a = int.Parse(teclado);
+            Console.WriteLine("Escribe un numero para comprobar si es perfecto");
+            int a = LeerDato.LeerEntero();
             ejercicio11(a);
         }
 
@@ -32,7 +31,7 @@ namespace Ejercicios.Ejercicios
             //Comparación final
             if (acumulador == num)
             {
-                Console.WriteLine("EL número es perfecto");
+                Console.WriteLine("El número es perfecto");
             }
             else
             {

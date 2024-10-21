@@ -26,7 +26,7 @@ namespace Ejercicios.Ejercicios
                 return true;
 
             }
-            Console.WriteLine("Escribe un numero");
+            Console.WriteLine("Escribe un numero para saber si es primo");
             int num = LeerDato.LeerEntero();
             //Compruebo que el valor introducido es correcto indicando que no es positivo
             if (num >= 2)
@@ -39,6 +39,10 @@ namespace Ejercicios.Ejercicios
                 {
                     Console.WriteLine("El número no es primo");
                 }
+            } else
+            {
+                Console.WriteLine("El número tiene que ser mínimo 2");
+                ejecutar();
             }
         }
     }

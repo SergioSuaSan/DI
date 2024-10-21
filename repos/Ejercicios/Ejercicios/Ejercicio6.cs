@@ -10,13 +10,15 @@ namespace Ejercicios.Ejercicios
     {
         public override void ejecutar()
         {
-            Console.WriteLine("Escribe un numero");
-            int a = LeerDato.LeerEntero();
+            Console.WriteLine("Escribe el número binario que quieres pasar a decimal");
+            long a = LeerDato.LeerEnteroLargo();
+            ejercicio6(a);
         }
-        void ejercicio6(int num)
+        void ejercicio6(long num)
         {
             //Creamos las variables necesarias para el ejercico
-            int deci = 0, usado, potencia = 0;
+            long deci = 0, usado, potencia = 0;
+            bool error = false;
 
             while (num > 0)
             {
@@ -34,13 +36,21 @@ namespace Ejercicios.Ejercicios
                 }
                 else
                 {
-                    throw new Exception("Formato incorrecto");
+                    num = 0;
+                    error = true ;
                 }
-
+              
 
 
             }
+            if (error)
+            {
+                Console.WriteLine("El formato del binario es incorrecto");
+            } else
+            {
             Console.WriteLine(deci);
+
+            }
 
         }
     }

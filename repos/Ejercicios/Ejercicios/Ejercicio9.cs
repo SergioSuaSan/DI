@@ -42,11 +42,11 @@ namespace Ejercicios.Ejercicios
                 }
             }
             print();
-
+            Console.WriteLine("Escribe cuánto se quiere mover");
             switch (direccion)
             {
                 case 0: //arriba
-                    Console.WriteLine("Escribe cuánto se quiere mover");
+                   
                     int num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
@@ -61,7 +61,7 @@ namespace Ejercicios.Ejercicios
                     print();
                     break;
                 case 1: //Derecha
-                    Console.WriteLine("Escribe cuánto se quiere mover");
+                  
                     num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
@@ -81,7 +81,7 @@ namespace Ejercicios.Ejercicios
                     print();
                     break;
                 case 2: //abajo
-                    Console.WriteLine("Escribe cuánto se quiere mover");
+                   
                     num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
@@ -96,7 +96,7 @@ namespace Ejercicios.Ejercicios
                     print();
                     break;
                 case 3: //Izquierda
-                    Console.WriteLine("Escribe cuánto se quiere mover");
+                  
                     num = LeerDato.LeerEntero();
 
                     for (int v = 0; v < num; v++)
