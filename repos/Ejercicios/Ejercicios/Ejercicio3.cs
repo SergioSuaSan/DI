@@ -8,7 +8,10 @@ namespace Ejercicios.Ejercicios
 {
     internal class Ejercicio3: Ejercicio
     {
-        /*
+        /**
+         * <summary> esto hace tal </summary>
+         * <returns>algo</returns>
+         * 
          * Método que realiza la opción 3 del menú,
          * para ello usará la llamada a la función recursiva Fibo
          * No recibe ni devuelve ningún valor
