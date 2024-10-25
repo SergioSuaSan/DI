@@ -8,6 +8,13 @@ namespace Ejercicios.Ejercicios
 {
     internal class Ejercicio4: Ejercicio
     {
+        /**
+         * 
+         * <summary>Te permite crear un array bidimensional y un array unidimensional
+         * que coja solo los datos a partir de la fila y columna que indiques</summary>
+         * <returns>El array unidimensional</returns>
+         * 
+         */
         public override void ejecutar()
         {
             Console.WriteLine("Escribe el número de filas del array");

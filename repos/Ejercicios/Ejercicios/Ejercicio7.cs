@@ -8,6 +8,12 @@ namespace Ejercicios.Ejercicios
 {
     internal class Ejercicio7: Ejercicio
     {
+        /**
+         * 
+         * <summary>Metodo que te da la vuelta a la frase que le des y la compara con su original</summary>
+         * <returns>Si la frase es palíndroma o no</returns>
+         * 
+         */
         public override void ejecutar()
         {
             Console.WriteLine("Escribe la frase que quieres escribir al revés");

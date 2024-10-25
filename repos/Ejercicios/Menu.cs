@@ -39,7 +39,7 @@ namespace Ejercicios
             ejer[8] = new Ejercicio8();
             ejer[9] = new Ejercicio9();
             ejer[10] = new Ejercicio11();
-            ejer[11] = new Ejercicio11();
+            ejer[11] = new Ejercicio12();
             /*
             ejer1 = new Ejercicio1();
             ejer2 = new Ejercicio2();
@@ -58,7 +58,7 @@ namespace Ejercicios
 
         public void ejercicio10()
         {
-            Console.WriteLine("Qué función queres hacer? \n 0: Salir \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto");
+            Console.WriteLine("Qué función queres hacer? \n 0: Salir \n 1: numero primo \n 2: triangulo \n 3: fibonacci \n 4: submatriz \n 5: Sin espacios \n 6: binario \n 7: palindromos \n 8: cambio monedas \n 9: toroide \n 10: opcional perfecto \n 11: pirámide");
             int num = LeerDato.LeerEntero();
 
             while (num != 0)

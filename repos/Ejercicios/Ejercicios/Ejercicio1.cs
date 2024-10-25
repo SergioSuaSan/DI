@@ -8,6 +8,12 @@ namespace Ejercicios.Ejercicios
 {
     internal class Ejercicio1:Ejercicio
     {
+        /**
+         * 
+         * <summary>Esta clase utiliza un bucle para averiguar si un número es primo o no</summary>
+         * <returns>Si el número es primo o no</returns>
+         * 
+         */
         public override void ejecutar()
         {
             bool ejercicio1(int num)
@@ -41,8 +47,8 @@ namespace Ejercicios.Ejercicios
                 }
             } else
             {
-                Console.WriteLine("El número tiene que ser mínimo 2");
-                ejecutar();
+                //Si no es positivo, lo indico y termina el ejercicio, devolviendote al menú principal
+                Console.WriteLine("El número no puede ser menor a 2");
             }
         }
     }
