@@ -37,13 +37,11 @@ namespace Ejercicios.Ejercicios
                 Cateto1 = num2;
                 Cateto2 = num3;
             }
-
             else if (num2 > num3 && num2 > num1)
             {
                 hipotenusa = num2;
                 Cateto1 = num1;
                 Cateto2 = num3;
-
             }
             else
             {
