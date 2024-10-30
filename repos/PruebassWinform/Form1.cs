@@ -15,5 +15,32 @@ namespace PruebassWinform
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.MiFormulario_MouseMove(sender, (MouseEventArgs)e);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.MiFormulario_MouseMove(sender, (MouseEventArgs)e);
+        }
+
+        private void MiFormulario_MouseMove(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = e.Y;
+            MouseButtons botones = e.Button;
+            // Pueden estar múltiples botones presionados simultáneamente
+            int numeroDeClics = e.Clicks;
+            string mensaje = $"Posición: X = {x}, Y = {y}\nBotones: {botones}\nNúmero de clics:{numeroDeClics}";
+            label1.Text = mensaje;
+            // Supongamos que hay un control Label llamado lblInformacion
+        }
+
     }
 }
