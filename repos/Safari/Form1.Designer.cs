@@ -43,24 +43,31 @@
             ayudaToolStripMenuItem1 = new ToolStripMenuItem();
             acercaDeToolStripMenuItem = new ToolStripMenuItem();
             groupBox1 = new GroupBox();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            buttonStep = new Button();
+            buttonReset = new Button();
+            buttonPause = new Button();
+            buttonStop = new Button();
+            buttonPlay = new Button();
             panel1 = new Panel();
             groupBox2 = new GroupBox();
-            label3 = new Label();
-            label2 = new Label();
+            numeroPlantas = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            groupBox4 = new GroupBox();
+            numeroLeones = new Label();
+            label6 = new Label();
             panel3 = new Panel();
+            groupBox3 = new GroupBox();
+            numeroGacelas = new Label();
+            label4 = new Label();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             panel2.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -82,7 +89,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { funcionesPrincipalesToolStripMenuItem1, ayudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
+            menuStrip1.Size = new Size(798, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -127,8 +134,9 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(129, 26);
+            exitToolStripMenuItem.Size = new Size(224, 26);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // ayudaToolStripMenuItem
             // 
@@ -151,62 +159,62 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button5);
-            groupBox1.Controls.Add(button4);
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(buttonStep);
+            groupBox1.Controls.Add(buttonReset);
+            groupBox1.Controls.Add(buttonPause);
+            groupBox1.Controls.Add(buttonStop);
+            groupBox1.Controls.Add(buttonPlay);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(504, 76);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             // 
-            // button5
+            // buttonStep
             // 
-            button5.Location = new Point(407, 26);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 4;
-            button5.Text = "STEP";
-            button5.UseVisualStyleBackColor = true;
+            buttonStep.Location = new Point(407, 26);
+            buttonStep.Name = "buttonStep";
+            buttonStep.Size = new Size(94, 29);
+            buttonStep.TabIndex = 4;
+            buttonStep.Text = "STEP";
+            buttonStep.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonReset
             // 
-            button4.Location = new Point(307, 26);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 3;
-            button4.Text = "RESET";
-            button4.UseVisualStyleBackColor = true;
+            buttonReset.Location = new Point(307, 26);
+            buttonReset.Name = "buttonReset";
+            buttonReset.Size = new Size(94, 29);
+            buttonReset.TabIndex = 3;
+            buttonReset.Text = "RESET";
+            buttonReset.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonPause
             // 
-            button3.Location = new Point(207, 26);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 2;
-            button3.Text = "PAUSE";
-            button3.UseVisualStyleBackColor = true;
+            buttonPause.Location = new Point(207, 26);
+            buttonPause.Name = "buttonPause";
+            buttonPause.Size = new Size(94, 29);
+            buttonPause.TabIndex = 2;
+            buttonPause.Text = "PAUSE";
+            buttonPause.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonStop
             // 
-            button2.Location = new Point(107, 26);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 1;
-            button2.Text = "STOP";
-            button2.UseVisualStyleBackColor = true;
+            buttonStop.Location = new Point(107, 26);
+            buttonStop.Name = "buttonStop";
+            buttonStop.Size = new Size(94, 29);
+            buttonStop.TabIndex = 1;
+            buttonStop.Text = "STOP";
+            buttonStop.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonPlay
             // 
-            button1.Location = new Point(7, 26);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "PLAY";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonPlay.Location = new Point(7, 26);
+            buttonPlay.Name = "buttonPlay";
+            buttonPlay.Size = new Size(94, 29);
+            buttonPlay.TabIndex = 0;
+            buttonPlay.Text = "PLAY";
+            buttonPlay.UseVisualStyleBackColor = true;
+            buttonPlay.Click += button1_Click;
             // 
             // panel1
             // 
@@ -219,34 +227,24 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label3);
-            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(numeroPlantas);
             groupBox2.Controls.Add(label1);
             groupBox2.Location = new Point(0, 0);
             groupBox2.Margin = new Padding(0);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(0);
-            groupBox2.Size = new Size(250, 63);
+            groupBox2.Size = new Size(163, 63);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             // 
-            // label3
+            // numeroPlantas
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(183, 20);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 20);
-            label3.TabIndex = 2;
-            label3.Text = "label3";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(93, 20);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 1;
-            label2.Text = "label2";
+            numeroPlantas.AutoSize = true;
+            numeroPlantas.Location = new Point(93, 20);
+            numeroPlantas.Name = "numeroPlantas";
+            numeroPlantas.Size = new Size(17, 20);
+            numeroPlantas.TabIndex = 1;
+            numeroPlantas.Text = "0";
             // 
             // label1
             // 
@@ -260,6 +258,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.Controls.Add(groupBox4);
             panel2.Controls.Add(groupBox2);
             panel2.Location = new Point(12, 118);
             panel2.Name = "panel2";
@@ -267,24 +266,90 @@
             panel2.TabIndex = 5;
             panel2.Paint += panel2_Paint;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(numeroLeones);
+            groupBox4.Controls.Add(label6);
+            groupBox4.Location = new Point(542, 0);
+            groupBox4.Margin = new Padding(0);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Padding = new Padding(0);
+            groupBox4.Size = new Size(163, 63);
+            groupBox4.TabIndex = 6;
+            groupBox4.TabStop = false;
+            // 
+            // numeroLeones
+            // 
+            numeroLeones.AutoSize = true;
+            numeroLeones.Location = new Point(90, 17);
+            numeroLeones.Name = "numeroLeones";
+            numeroLeones.Size = new Size(17, 20);
+            numeroLeones.TabIndex = 1;
+            numeroLeones.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(15, 17);
+            label6.Name = "label6";
+            label6.Size = new Size(55, 20);
+            label6.TabIndex = 0;
+            label6.Text = "Leones";
+            // 
             // panel3
             // 
+            panel3.AutoSize = true;
             panel3.BackColor = SystemColors.AppWorkspace;
             panel3.Location = new Point(12, 187);
             panel3.Name = "panel3";
-            panel3.Size = new Size(776, 251);
+            panel3.Size = new Size(776, 475);
             panel3.TabIndex = 6;
+            // 
+            // groupBox3
+            // 
+            groupBox3.BackColor = SystemColors.GradientActiveCaption;
+            groupBox3.Controls.Add(numeroGacelas);
+            groupBox3.Controls.Add(label4);
+            groupBox3.Location = new Point(242, 118);
+            groupBox3.Margin = new Padding(0);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new Padding(0);
+            groupBox3.Size = new Size(163, 63);
+            groupBox3.TabIndex = 6;
+            groupBox3.TabStop = false;
+            // 
+            // numeroGacelas
+            // 
+            numeroGacelas.AutoSize = true;
+            numeroGacelas.Location = new Point(90, 17);
+            numeroGacelas.Name = "numeroGacelas";
+            numeroGacelas.Size = new Size(17, 20);
+            numeroGacelas.TabIndex = 1;
+            numeroGacelas.Text = "0";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 17);
+            label4.Name = "label4";
+            label4.Size = new Size(63, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Gacelas:";
+            label4.Click += label4_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(798, 674);
+            Controls.Add(groupBox3);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Safari de Sergio";
             Load += Form1_Load_2;
@@ -296,6 +361,10 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             panel2.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -316,17 +385,22 @@
         private ToolStripMenuItem ayudaToolStripMenuItem1;
         private ToolStripMenuItem acercaDeToolStripMenuItem;
         private GroupBox groupBox1;
-        private Button button1;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
+        private Button buttonPlay;
+        private Button buttonStep;
+        private Button buttonReset;
+        private Button buttonPause;
+        private Button buttonStop;
         private Panel panel1;
         private GroupBox groupBox2;
-        private Label label3;
-        private Label label2;
+        private Label numeroPlantas;
         private Label label1;
         private Panel panel2;
         private Panel panel3;
+        private GroupBox groupBox4;
+        private Label numeroLeones;
+        private Label label6;
+        private GroupBox groupBox3;
+        private Label numeroGacelas;
+        private Label label4;
     }
 }
