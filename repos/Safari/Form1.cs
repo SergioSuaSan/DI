@@ -5,6 +5,8 @@ namespace Safari
         public Form1()
         {
             InitializeComponent();
+            Safari miSafari = new Safari(); //Creación e instanciación del Safari
+            Console.WriteLine(miSafari.ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -51,6 +53,16 @@ namespace Safari
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonStep_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numeroPlantas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

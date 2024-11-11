@@ -4,8 +4,7 @@
     {
         protected int nacimiento;
         protected int tiempoVida;
-        protected int posicionx;
-        protected int posiciony;
+        protected int posicionindice;
 
         public int posibles;
 
@@ -13,23 +12,21 @@
         {
             nacimiento = 0;
             tiempoVida = 0;
-            posicionx = 0;
-            posiciony = 0;
+            posicionindice = 0;
 
         }
-        public Ser(int nacimiento, int tiempoVida, int posicionx, int posiciony)
+        public Ser(int nacimiento, int tiempoVida, int posicionx)
         {
             this.nacimiento = nacimiento;
             this.tiempoVida = tiempoVida;
-            this.posicionx = posicionx;
-            this.posiciony = posiciony;
+            this.posicionindice = posicionx;
 
         }
         public abstract void reproduccion();
         public abstract void morir();
         public  void comprobarCasillas()
         {
-            if (posiciony == 0 && posicionx == 0)
+            if (posicionindice == 0)
             {
 
             }

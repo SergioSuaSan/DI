@@ -9,26 +9,25 @@ namespace Safari
 {
     public class Safari
     {
-        private Ser[] seres;
-        private int filas;
-        private int columnas;
-        private int[,] array;
-        private int leones;
-        private int gacelas;
-        private int plantas;
-        private int pasos;
-        private bool pausado = false;
+        private Ser[] seres {  get; set; }
+        private int filas {  get; set; }
+        private int columnas { get; set; }
+        private int leones { get; set; }
+        private int gacelas { get; set; }
+        private int plantas { get; set; }
+        private int pasos { get; set; }
+        private bool pausado { get; set; }
 
         public Safari()
         {
             this.seres = new Ser[60];
             this.filas = 10;
             this.columnas = 10;
-            this.array[0,0] = array[filas, columnas];
             this.leones = 20;
             this.gacelas = 20;
             this.plantas = 20;
             this.pasos = 0;
+            this.pausado = false;
 
 
 

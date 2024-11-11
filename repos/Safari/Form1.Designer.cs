@@ -53,19 +53,23 @@
             numeroPlantas = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            groupBox5 = new GroupBox();
+            numeroPasos = new Label();
+            label3 = new Label();
             groupBox4 = new GroupBox();
             numeroLeones = new Label();
             label6 = new Label();
-            panel3 = new Panel();
             groupBox3 = new GroupBox();
             numeroGacelas = new Label();
             label4 = new Label();
+            panel3 = new Panel();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             panel2.SuspendLayout();
+            groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             SuspendLayout();
@@ -134,7 +138,7 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(224, 26);
+            exitToolStripMenuItem.Size = new Size(129, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -178,6 +182,7 @@
             buttonStep.TabIndex = 4;
             buttonStep.Text = "STEP";
             buttonStep.UseVisualStyleBackColor = true;
+            buttonStep.Click += buttonStep_Click;
             // 
             // buttonReset
             // 
@@ -245,6 +250,7 @@
             numeroPlantas.Size = new Size(17, 20);
             numeroPlantas.TabIndex = 1;
             numeroPlantas.Text = "0";
+            numeroPlantas.Click += numeroPlantas_Click;
             // 
             // label1
             // 
@@ -258,7 +264,9 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.Controls.Add(groupBox5);
             panel2.Controls.Add(groupBox4);
+            panel2.Controls.Add(groupBox3);
             panel2.Controls.Add(groupBox2);
             panel2.Location = new Point(12, 118);
             panel2.Name = "panel2";
@@ -266,11 +274,41 @@
             panel2.TabIndex = 5;
             panel2.Paint += panel2_Paint;
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(numeroPasos);
+            groupBox5.Controls.Add(label3);
+            groupBox5.Location = new Point(578, 3);
+            groupBox5.Margin = new Padding(0);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Padding = new Padding(0);
+            groupBox5.Size = new Size(163, 63);
+            groupBox5.TabIndex = 7;
+            groupBox5.TabStop = false;
+            // 
+            // numeroPasos
+            // 
+            numeroPasos.AutoSize = true;
+            numeroPasos.Location = new Point(87, 14);
+            numeroPasos.Name = "numeroPasos";
+            numeroPasos.Size = new Size(17, 20);
+            numeroPasos.TabIndex = 1;
+            numeroPasos.Text = "0";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 14);
+            label3.Name = "label3";
+            label3.Size = new Size(45, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Pasos";
+            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(numeroLeones);
             groupBox4.Controls.Add(label6);
-            groupBox4.Location = new Point(542, 0);
+            groupBox4.Location = new Point(394, 3);
             groupBox4.Margin = new Padding(0);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(0);
@@ -296,21 +334,12 @@
             label6.TabIndex = 0;
             label6.Text = "Leones";
             // 
-            // panel3
-            // 
-            panel3.AutoSize = true;
-            panel3.BackColor = SystemColors.AppWorkspace;
-            panel3.Location = new Point(12, 187);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(776, 475);
-            panel3.TabIndex = 6;
-            // 
             // groupBox3
             // 
             groupBox3.BackColor = SystemColors.GradientActiveCaption;
             groupBox3.Controls.Add(numeroGacelas);
             groupBox3.Controls.Add(label4);
-            groupBox3.Location = new Point(242, 118);
+            groupBox3.Location = new Point(197, 0);
             groupBox3.Margin = new Padding(0);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(0);
@@ -337,12 +366,20 @@
             label4.Text = "Gacelas:";
             label4.Click += label4_Click;
             // 
+            // panel3
+            // 
+            panel3.AutoSize = true;
+            panel3.BackColor = SystemColors.AppWorkspace;
+            panel3.Location = new Point(12, 187);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(776, 475);
+            panel3.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(798, 674);
-            Controls.Add(groupBox3);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -361,6 +398,8 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             panel2.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -402,5 +441,8 @@
         private GroupBox groupBox3;
         private Label numeroGacelas;
         private Label label4;
+        private GroupBox groupBox5;
+        private Label numeroPasos;
+        private Label label3;
     }
 }
