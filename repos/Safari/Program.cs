@@ -8,10 +8,14 @@ namespace Safari
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Safari miSafari = new Safari(10,10);
+            Controlador controlador = new Controlador();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            VentanaP ventanaP = new VentanaP(controlador);
+
+            Application.Run();
         }
     }
 }

@@ -1,8 +1,8 @@
 namespace Safari
 {
-    public partial class Form1 : Form
+    public partial class VentanaP : Form
     {
-        public Form1()
+        public VentanaP(Controlador controlador)
         {
             InitializeComponent();
             Safari miSafari = new Safari(); //Creación e instanciación del Safari
@@ -63,6 +63,20 @@ namespace Safari
         private void numeroPlantas_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Font font = new Font("Arial", 10);
+            string texto;
+            Icon iconoSer;
+           
         }
     }
 }

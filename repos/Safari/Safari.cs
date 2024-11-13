@@ -32,6 +32,20 @@ namespace Safari
 
 
         }
+        public Safari(int filas, int columnas)
+        {
+            this.seres = new Ser[60];
+            this.filas = filas;
+            this.columnas = columnas;
+            this.leones = 20;
+            this.gacelas = 20;
+            this.plantas = 20;
+            this.pasos = 0;
+            this.pausado = false;
+
+
+
+        }
         public void avanzar() 
         {
             pausado = false;

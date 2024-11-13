@@ -1,6 +1,6 @@
 ﻿namespace Safari
 {
-    partial class Form1
+    partial class VentanaP
     {
         /// <summary>
         ///  Required designer variable.
@@ -333,6 +333,7 @@
             label6.Size = new Size(55, 20);
             label6.TabIndex = 0;
             label6.Text = "Leones";
+            label6.Click += label6_Click;
             // 
             // groupBox3
             // 
@@ -374,6 +375,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(776, 475);
             panel3.TabIndex = 6;
+            panel3.Paint += panel3_Paint;
             // 
             // Form1
             // 
