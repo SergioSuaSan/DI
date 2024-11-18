@@ -79,6 +79,7 @@ namespace Safari
             Pen pen = new Pen(Color.Black, 2);
             string texto;
             Icon iconoSer;
+            Image imgSer; 
             int filas = 10;
             int columnas = 10;
             int anchoCelda = 50;
@@ -110,6 +111,7 @@ namespace Safari
                     int xTexto = xInicial + (columna * anchoCelda);
                     int yTexto = yInicial + (fila * altoCelda);
                     g.DrawString(texto, fuente, pincel, xTexto, yTexto);
+                    
                 }
             }
 
