@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace Safari
 {
     public partial class VentanaP : Form
@@ -6,7 +8,7 @@ namespace Safari
         {
             InitializeComponent();
             Safari miSafari = new Safari(); //Creación e instanciación del Safari
-            Console.WriteLine(miSafari.ToString());
+            //Console.WriteLine(miSafari.ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -74,9 +76,43 @@ namespace Safari
         {
             Graphics g = e.Graphics;
             Font font = new Font("Arial", 10);
+            Pen pen = new Pen(Color.Black, 2);
             string texto;
             Icon iconoSer;
-           
+            int filas = 10;
+            int columnas = 10;
+            int anchoCelda = 50;
+            int altoCelda = 40;
+            int xInicial = 50;
+            int yInicial = 50;
+
+            // Dibujar las líneas de la tabla
+            for (int i = 0; i <= filas; i++)
+            {
+                // Dibujar las líneas horizontales
+                g.DrawLine(pen, xInicial, yInicial + (i * altoCelda), xInicial + (columnas * anchoCelda), yInicial + (i * altoCelda));
+            }
+
+            for (int j = 0; j <= columnas; j++)
+            {
+                // Dibujar las líneas verticales
+                g.DrawLine(pen, xInicial + (j * anchoCelda), yInicial, xInicial + (j * anchoCelda), yInicial + (filas * altoCelda));
+            }
+
+            // Rellenar las celdas con texto de ejemplo
+            Font fuente = new Font("Arial", 12);
+            Brush pincel = Brushes.Black;
+            for (int fila = 0; fila < filas; fila++)
+            {
+                for (int columna = 0; columna < columnas; columna++)
+                {
+                    texto = $"({fila + 1}, {columna + 1})";
+                    int xTexto = xInicial + (columna * anchoCelda);
+                    int yTexto = yInicial + (fila * altoCelda);
+                    g.DrawString(texto, fuente, pincel, xTexto, yTexto);
+                }
+            }
+
         }
     }
 }

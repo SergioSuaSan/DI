@@ -93,7 +93,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { funcionesPrincipalesToolStripMenuItem1, ayudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(798, 28);
+            menuStrip1.Size = new Size(797, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -373,15 +373,15 @@
             panel3.BackColor = SystemColors.AppWorkspace;
             panel3.Location = new Point(12, 187);
             panel3.Name = "panel3";
-            panel3.Size = new Size(776, 475);
+            panel3.Size = new Size(776, 856);
             panel3.TabIndex = 6;
             panel3.Paint += panel3_Paint;
             // 
-            // Form1
+            // VentanaP
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(798, 674);
+            ClientSize = new Size(797, 1055);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -389,7 +389,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "VentanaP";
             Text = "Safari de Sergio";
             Load += Form1_Load_2;
             contextMenuStrip1.ResumeLayout(false);

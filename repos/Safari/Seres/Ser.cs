@@ -24,13 +24,8 @@
         }
         public abstract void reproduccion();
         public abstract void morir();
-        public  void comprobarCasillas()
-        {
-            if (posicionindice == 0)
-            {
-
-            }
-
-        }
+        public abstract void comprobarCasillas();
+       
+        
     }
 }
