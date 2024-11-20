@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Safari.Seres;
@@ -34,7 +35,7 @@ namespace Safari
             this.maxLeones = (filas * columnas) * 2 / 9;
             this.maxGacelas = (filas * columnas) * 4 / 9;
             this.maxPlantas = (filas * columnas) / 3;
-            this.maxNulos = (filas * columnas) / 3;
+            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
             this.pasos = 0;
             this.seres = new Ser[10,10];
             this.pausado = false;
@@ -51,7 +52,7 @@ namespace Safari
             this.gacelas = 0;
             this.plantas = 0;
             this.nulos = 0;
-            this.maxNulos = (filas * columnas) / 3;
+            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
             this.maxLeones = (filas * columnas) * 2 / 9;
             this.maxGacelas = (filas * columnas) * 4 / 9;
             this.maxPlantas = (filas * columnas) / 3;
@@ -71,17 +72,14 @@ namespace Safari
         public void pausar() {
             pausado = true;
         }
-        public void resetear() { }
+        public void resetear() { iniciarSafari(); }
         public void autoplay() 
         {
             while (!pausado)
             {
                 avanzar();
-                System.Threading.Thread.Sleep(3000);
+               
             }
-        }
-        public void terminar() {
-            
         }
 
        
@@ -94,15 +92,17 @@ namespace Safari
             this.maxLeones = (filas * columnas)/9;
             this.maxGacelas = (filas * columnas) * 2 / 9;
             this.maxPlantas = (filas * columnas) / 3;
-            this.maxNulos = (filas * columnas) / 3;
+            this.maxNulos = (filas * columnas)-(maxGacelas+maxLeones+maxPlantas);
             this.nulos = 0;
             this.leones = 0;
             this.gacelas = 0;
             this.plantas = 0;
             this.seres = new Ser[filas , columnas];
 
-           
-                for (int i = 0; i < filas; i++)
+            
+
+
+            for (int i = 0; i < filas; i++)
                 {
                     for (int j = 0; j < columnas; j++)
                     {

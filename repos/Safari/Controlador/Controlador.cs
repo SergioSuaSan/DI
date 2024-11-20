@@ -27,6 +27,7 @@ namespace Safari
         {
            return miSafari.getFilas();
         }
+        public void resetear() { miSafari.resetear(); }
         public int getColumnas() { return miSafari.getColumnas();}
         public Ser[,] getSeres() { return miSafari.getSeres(); }
         public Ser getSer(int fila, int columna) { return miSafari.getSer(fila, columna); }
