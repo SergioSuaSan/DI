@@ -8,7 +8,7 @@ namespace Safari.Seres
 {
     internal class Planta : Ser
     {
-        public Planta(int v, int v1, int posicionposible) : base() { }
+        public Planta(int i, int j) : base() { }
 
        
 
@@ -21,14 +21,7 @@ namespace Safari.Seres
         {
             comprobarCasillas();
 
-            if (base.posibles >= 1)
-            {
-                int posicionposible = base.posibles;
-                
-
-                new Planta(0, 0, posicionposible);
-            }
-
+        
 
         }
 

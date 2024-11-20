@@ -8,7 +8,7 @@ namespace Safari.Seres
 {
     internal class Leon : Carnivoro
     {
-        public Leon() : base() { }
+        public Leon(int i, int j) : base() { }
 
         public override void alimentarse()
         {

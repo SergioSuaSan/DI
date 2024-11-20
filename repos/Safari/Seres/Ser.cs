@@ -5,8 +5,7 @@
         protected int nacimiento;
         protected int tiempoVida;
         protected int posicionindice;
-
-        public int posibles;
+    
 
         public Ser()
         {

@@ -18,9 +18,20 @@ namespace Safari
             this.miSafari = misafari;
         }
 
-        internal void iniciarSafari()
+        public void iniciarSafari()
         {
             miSafari.iniciarSafari();
         }
+
+        public int getFilas()
+        {
+           return miSafari.getFilas();
+        }
+        public int getColumnas() { return miSafari.getColumnas();}
+        public Ser[,] getSeres() { return miSafari.getSeres(); }
+        public Ser getSer(int fila, int columna) { return miSafari.getSer(fila, columna); }
+        public String getNombre(Ser ser) { return miSafari.getNombre(ser); }
+
+
     }
 }
