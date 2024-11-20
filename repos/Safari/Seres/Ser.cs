@@ -1,6 +1,6 @@
 ﻿namespace Safari.Seres
 {
-    internal abstract class Ser
+    public abstract class Ser
     {
         protected int nacimiento;
         protected int tiempoVida;

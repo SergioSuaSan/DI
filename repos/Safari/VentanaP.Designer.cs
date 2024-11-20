@@ -1,4 +1,5 @@
-﻿namespace Safari
+﻿
+namespace Safari
 {
     partial class VentanaP
     {
@@ -192,6 +193,7 @@
             buttonReset.TabIndex = 3;
             buttonReset.Text = "RESET";
             buttonReset.UseVisualStyleBackColor = true;
+            buttonReset.Click += buttonReset_click;
             // 
             // buttonPause
             // 
@@ -201,6 +203,7 @@
             buttonPause.TabIndex = 2;
             buttonPause.Text = "PAUSE";
             buttonPause.UseVisualStyleBackColor = true;
+            buttonPause.Click += buttonPause_click;
             // 
             // buttonStop
             // 
@@ -210,6 +213,7 @@
             buttonStop.TabIndex = 1;
             buttonStop.Text = "STOP";
             buttonStop.UseVisualStyleBackColor = true;
+            buttonStop.Click += buttonStop_click;
             // 
             // buttonPlay
             // 
@@ -219,7 +223,7 @@
             buttonPlay.TabIndex = 0;
             buttonPlay.Text = "PLAY";
             buttonPlay.UseVisualStyleBackColor = true;
-            buttonPlay.Click += button1_Click;
+            buttonPlay.Click += buttonPlay_Click;
             // 
             // panel1
             // 
@@ -409,6 +413,7 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Safari.Seres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace Safari
         }
         public Controlador(Safari misafari) {
             this.miSafari = misafari;
+        }
+
+        internal void iniciarSafari()
+        {
+            miSafari.iniciarSafari();
         }
     }
 }
