@@ -181,6 +181,203 @@ namespace Safari
             
           }
 
+
+        public Ser buscarGacela(int fila, int columna)
+        {
+            if (fila == 0)
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna - 1; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+
+            }
+            if (columna == 0)
+            {
+                for (int i = fila - 1; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+
+            if ((fila == 0) && (columna == 0))
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if (fila == getSeres().GetLength(0)){
+                for (int i = fila; i < fila; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if (columna == getSeres().GetLength(1))
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if ((fila == getSeres().GetLength(0)) && (columna == getSeres().GetLength(1)))
+            {
+                for (int i = fila; i < fila; i++)
+                {
+                    for (int j = columna; j < columna; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = fila - 1; i < fila + 1; i++)
+            {
+                for (int j = columna-1; j<columna + 1;j++)
+                {
+                    if (getSer(i, j) is Gacela)
+                    {
+                        return getSer(i, j);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public Ser buscarPlanta(int fila, int columna)
+        {
+            if (fila == 0)
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna - 1; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+
+            }
+            if (columna == 0)
+            {
+                for (int i = fila - 1; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                   
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+
+            if ((fila == 0) && (columna == 0))
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if (fila == getSeres().GetLength(0))
+            {
+                for (int i = fila; i < fila; i++)
+                {
+                    for (int j = columna; j < columna + 1; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if (columna == getSeres().GetLength(1))
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna; j < columna; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            if ((fila == getSeres().GetLength(0)) && (columna == getSeres().GetLength(1)))
+            {
+                for (int i = fila; i < fila; i++)
+                {
+                    for (int j = columna; j < columna; j++)
+                    {
+                        if (getSer(i, j) is Planta)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = fila - 1; i < fila + 1; i++)
+            {
+                for (int j = columna - 1; j < columna + 1; j++)
+                {
+                    if (getSer(i, j) is Planta)
+                    {
+                        return getSer(i, j);
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 
 }

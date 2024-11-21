@@ -15,10 +15,7 @@ namespace Safari.Seres
             throw new NotImplementedException();
         }
 
-        public override void comprobarCasillas()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public override void morir()
         {

@@ -10,7 +10,8 @@ namespace Safari.Seres
     {
         public Planta(int i, int j) : base() { }
 
-       
+
+
 
         public override void morir()
         {
@@ -19,16 +20,12 @@ namespace Safari.Seres
 
         public override void reproduccion()
         {
-            comprobarCasillas();
+            
 
         
 
         }
 
-        public override void comprobarCasillas()
-        {
-            
-        }
 
      
     }
