@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -66,6 +67,28 @@ namespace Safari
         {
             pausado = false;
             pasos++;
+            for (int i = 0; i < this.filas; i++)
+            {
+                for (int j = 0; j < this.columnas; j++)
+                {
+                    if (this.seres[i, j] is Leon)
+                    {
+                        Ser provisional = buscarGacela(i, j);
+             
+                        if (provisional is Gacela)
+                        {
+                            
+                            seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i,j];
+                            Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
+                            seres[i, j] = new Vacio();
+                            gacelas--;
+                        }
+                        
+                    }
+                   
+                }
+            }
+          
 
             
         }
@@ -184,34 +207,6 @@ namespace Safari
 
         public Ser buscarGacela(int fila, int columna)
         {
-            if (fila == 0)
-            {
-                for (int i = fila; i < fila + 1; i++)
-                {
-                    for (int j = columna - 1; j < columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            return getSer(i, j);
-                        }
-                    }
-                }
-
-            }
-            if (columna == 0)
-            {
-                for (int i = fila - 1; i < fila + 1; i++)
-                {
-                    for (int j = columna; j < columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            return getSer(i, j);
-                        }
-                    }
-                }
-            }
-
             if ((fila == 0) && (columna == 0))
             {
                 for (int i = fila; i < fila + 1; i++)
@@ -225,31 +220,7 @@ namespace Safari
                     }
                 }
             }
-            if (fila == getSeres().GetLength(0)){
-                for (int i = fila; i < fila; i++)
-                {
-                    for (int j = columna; j < columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            return getSer(i, j);
-                        }
-                    }
-                }
-            }
-            if (columna == getSeres().GetLength(1))
-            {
-                for (int i = fila; i < fila + 1; i++)
-                {
-                    for (int j = columna; j < columna; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            return getSer(i, j);
-                        }
-                    }
-                }
-            }
+            else
             if ((fila == getSeres().GetLength(0)) && (columna == getSeres().GetLength(1)))
             {
                 for (int i = fila; i < fila; i++)
@@ -263,31 +234,42 @@ namespace Safari
                     }
                 }
             }
-
-
-            for (int i = fila - 1; i < fila + 1; i++)
+            else
+             if (fila == getSeres().GetLength(0) && columna == 0)
             {
-                for (int j = columna-1; j<columna + 1;j++)
+                for (int i = fila - 1; i < fila; i++)
                 {
-                    if (getSer(i, j) is Gacela)
+                    for (int j = columna; j < columna + 1; j++)
                     {
-                        return getSer(i, j);
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
                     }
                 }
             }
-
-            return null;
-        }
-
-        public Ser buscarPlanta(int fila, int columna)
-        {
+            else
+            if (fila == 0 && columna == getSeres().GetLength(1))
+            {
+                for (int i = fila; i < fila + 1; i++)
+                {
+                    for (int j = columna - 1; j < columna; j++)
+                    {
+                        if (getSer(i, j) is Gacela)
+                        {
+                            return getSer(i, j);
+                        }
+                    }
+                }
+            }
+            else
             if (fila == 0)
             {
                 for (int i = fila; i < fila + 1; i++)
                 {
                     for (int j = columna - 1; j < columna + 1; j++)
                     {
-                        if (getSer(i, j) is Planta)
+                        if (getSer(i, j) is Gacela)
                         {
                             return getSer(i, j);
                         }
@@ -295,88 +277,73 @@ namespace Safari
                 }
 
             }
+            else
             if (columna == 0)
             {
                 for (int i = fila - 1; i < fila + 1; i++)
                 {
                     for (int j = columna; j < columna + 1; j++)
                     {
-                        if (getSer(i, j) is Planta)
-                   
+                        if (getSer(i, j) is Gacela)
                         {
                             return getSer(i, j);
                         }
                     }
                 }
             }
+            else
 
-            if ((fila == 0) && (columna == 0))
-            {
-                for (int i = fila; i < fila + 1; i++)
-                {
-                    for (int j = columna; j < columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            return getSer(i, j);
-                        }
-                    }
-                }
-            }
+
             if (fila == getSeres().GetLength(0))
             {
                 for (int i = fila; i < fila; i++)
                 {
                     for (int j = columna; j < columna + 1; j++)
                     {
-                        if (getSer(i, j) is Planta)
+                        if (getSer(i, j) is Gacela)
                         {
                             return getSer(i, j);
                         }
                     }
                 }
             }
+            else
             if (columna == getSeres().GetLength(1))
             {
                 for (int i = fila; i < fila + 1; i++)
                 {
                     for (int j = columna; j < columna; j++)
                     {
-                        if (getSer(i, j) is Planta)
+                        if (getSer(i, j) is Gacela)
                         {
                             return getSer(i, j);
                         }
                     }
                 }
             }
-            if ((fila == getSeres().GetLength(0)) && (columna == getSeres().GetLength(1)))
+            else
             {
-                for (int i = fila; i < fila; i++)
+                for (int i = fila - 1; i < fila + 1; i++)
                 {
-                    for (int j = columna; j < columna; j++)
+                    for (int j = columna - 1; j < columna + 1; j++)
                     {
-                        if (getSer(i, j) is Planta)
+                        if (getSer(i, j) is Gacela)
                         {
                             return getSer(i, j);
                         }
-                    }
-                }
-            }
-
-
-            for (int i = fila - 1; i < fila + 1; i++)
-            {
-                for (int j = columna - 1; j < columna + 1; j++)
-                {
-                    if (getSer(i, j) is Planta)
-                    {
-                        return getSer(i, j);
                     }
                 }
             }
 
             return null;
         }
+
+        internal String getPasos()    {return this.pasos.ToString();        }
+
+        internal string getPlantas() { return this.plantas.ToString(); }
+
+        internal string getGacelas()   {  return this.gacelas.ToString();   }
+        internal string getLeones() { return this.leones.ToString(); }
 
     }
 

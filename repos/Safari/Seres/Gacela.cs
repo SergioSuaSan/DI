@@ -8,7 +8,7 @@ namespace Safari.Seres
 {
     internal class Gacela : Hervivoro
     {
-        public Gacela(int i, int j) : base() { }
+        public Gacela(int i, int j) : base(i, j) { }
 
         public override void alimentarse()
         {

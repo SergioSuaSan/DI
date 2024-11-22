@@ -32,8 +32,22 @@ namespace Safari
         public Ser[,] getSeres() { return miSafari.getSeres(); }
         public Ser getSer(int fila, int columna) { return miSafari.getSer(fila, columna); }
         public String getNombre(Ser ser) { return miSafari.getNombre(ser); }
+        public String getPasos() {  return miSafari.getPasos();}
 
+        internal String getPlantas()
+        {
+            return miSafari.getPlantas();
+        }
 
+        internal string getGacelas()
+        {
+            return miSafari.getGacelas();
+        }
 
+        internal string getLeones()
+        {
+            return miSafari.getLeones();
+        }
+        internal void step() { miSafari.avanzar(); }
     }
 }

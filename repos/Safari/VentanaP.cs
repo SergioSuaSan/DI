@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing;
 
 namespace Safari
@@ -9,8 +10,12 @@ namespace Safari
         public VentanaP(Controlador controlador)
         {
             this.controlador = controlador;
-            InitializeComponent();
+            controlador.iniciarSafari();
 
+            InitializeComponent();
+            this.Location = new Point(0, 0);
+            this.Size = new Size(1100, 800);
+            this.Refresh();
 
         }
 
@@ -62,7 +67,9 @@ namespace Safari
 
         private void buttonStep_Click(object sender, EventArgs e)
         {
-
+            controlador.step();
+            this.
+               Refresh();
         }
 
         private void numeroPlantas_Click(object sender, EventArgs e)
@@ -100,7 +107,11 @@ namespace Safari
 
         private void panelSafari(object sender, PaintEventArgs e)
         {
-            controlador.iniciarSafari();
+
+            numeroLeones.Text = controlador.getLeones();
+            numeroGacelas.Text = controlador.getGacelas();
+            numeroPlantas.Text = controlador.getPlantas();
+            numeroPasos.Text = controlador.getPasos();
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Black, 2);
 
@@ -149,6 +160,22 @@ namespace Safari
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             controlador.resetear();
+            this.Refresh();
+        }
+
+        private void numeroPasos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numeroPlantas_BindingContextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador.step();
             this.Refresh();
         }
     }

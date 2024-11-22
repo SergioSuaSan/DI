@@ -4,8 +4,8 @@
     {
         protected int nacimiento;
         protected int tiempoVida;
-        protected int posicioni;
-        protected int posicionj;
+        protected int posicioni {  get; set; }
+        protected int posicionj {  get; set; }
     
 
         public Ser()
@@ -24,10 +24,24 @@
             this.posicionj= posicionj;
 
         }
-     
+        public Ser( int posicioni, int posicionj)
+        {
+            //this.nacimiento = 0;
+            this.tiempoVida = 0;
+            this.posicioni = posicioni;
+            this.posicionj = posicionj;
+
+        }
+
 
         public abstract void reproduccion();
         public abstract void morir();
+
+        public int getNacimiento() { return nacimiento; }
+        public int getTiempoVida() { return tiempoVida; }
+        public int getPosicioni() { return posicioni; }
+        public int getPosicionj() { return posicionj; }
+
     
 
        

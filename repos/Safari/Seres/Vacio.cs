@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Safari.Seres
 {
-    internal class Planta : Ser
+    class Vacio : Ser
     {
-        public Planta(int i, int j) : base(i, j) { }
-
-
-
-
         public override void morir()
         {
             throw new NotImplementedException();
@@ -20,13 +15,7 @@ namespace Safari.Seres
 
         public override void reproduccion()
         {
-            
-
-        
-
+            throw new NotImplementedException();
         }
-
-
-     
     }
 }
