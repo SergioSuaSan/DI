@@ -123,7 +123,7 @@ namespace Safari
             pasos = 0;
             pausado = true;
             bool Creado = false;
-            this.maxLeones = (filas * columnas)/4;
+            this.maxLeones = (filas * columnas)/9;
             this.maxGacelas = (filas * columnas) * 2 / 9;
             this.maxPlantas = (filas * columnas) / 3;
             this.maxNulos = (filas * columnas)-(maxGacelas+maxLeones+maxPlantas);
@@ -205,7 +205,7 @@ namespace Safari
 
         public String getNombre (Ser ser) {
             if (ser is Vacio)
-                return "";
+                return "Vacío";
             if (ser is Planta)
                 return "Planta";
             if (ser is Gacela)
@@ -218,6 +218,7 @@ namespace Safari
 
         public Ser buscarGacela(int fila, int columna)
         {
+            List<Gacela> listaPosibles = new List<Gacela> ();
             if ((fila == 0) && (columna == 0))
             {
                 for (int i = fila; i <= fila + 1; i++)
@@ -226,10 +227,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add( (Gacela) getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                 int final = rndo.Next(0,listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
             if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
@@ -240,10 +251,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
              if ((fila == getSeres().GetLength(0)-1) && columna == 0)
@@ -254,10 +275,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
             if (fila == 0 && (columna == getSeres().GetLength(1)-1))
@@ -268,10 +299,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
             if (fila == 0)
@@ -282,10 +323,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j)); 
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
 
             }
             else
@@ -297,10 +348,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
 
@@ -313,10 +374,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
             if (columna == getSeres().GetLength(1)-1)
@@ -327,10 +398,20 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
             else
             {
@@ -340,13 +421,23 @@ namespace Safari
                     {
                         if (getSer(i, j) is Gacela)
                         {
-                            return getSer(i, j);
+                            //Guardo el ser en un array
+                            listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
+                //retorno un ser random del array
+                Random rndo = new Random();
+                int final = rndo.Next(0, listaPosibles.Count);
+                if (listaPosibles.Count != 0)
+                {
+                    return listaPosibles[final];
+
+                }
+                else return null;
             }
 
-            return null;
+           
         }
 
         internal String getPasos()    {return this.pasos.ToString();        }

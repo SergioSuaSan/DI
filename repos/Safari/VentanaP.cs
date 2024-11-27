@@ -108,6 +108,35 @@ namespace Safari
         private void panelSafari(object sender, PaintEventArgs e)
         {
 
+
+
+
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador.resetear();
+            this.Refresh();
+        }
+
+        private void numeroPasos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numeroPlantas_BindingContextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador.step();
+            this.Refresh();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
             numeroLeones.Text = controlador.getLeones();
             numeroGacelas.Text = controlador.getGacelas();
             numeroPlantas.Text = controlador.getPlantas();
@@ -118,7 +147,7 @@ namespace Safari
             // Configuraciones de la tabla
             int filas = controlador.getFilas();
             int columnas = controlador.getColumnas();
-            int anchoCelda = 100;
+            int anchoCelda = 50;
             int altoCelda = 50;
             int xInicial = 50;
             int yInicial = 50;
@@ -144,39 +173,19 @@ namespace Safari
             {
                 for (int columna = 0; columna < columnas; columna++)
                 {
+                    var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getNombre(controlador.getSer(fila, columna))}.ico");
+                    var bitmap = new Bitmap(40, 40);
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 40, 40);
 
 
-
-                    string texto = $"{controlador.getNombre(controlador.getSer(fila, columna))}";
-                    int xTexto = xInicial + (columna * anchoCelda) + 10;
-                    int yTexto = yInicial + (fila * altoCelda) + 15;
-                    g.DrawString(texto, fuente, pincel, xTexto, yTexto);
+                    /*
+                                       string texto = $"{controlador.getNombre(controlador.getSer(fila, columna))}";
+                                        int xTexto = xInicial + (columna * anchoCelda) + 10;
+                                        int yTexto = yInicial + (fila * altoCelda) + 15;
+                                        g.DrawString(texto, fuente, pincel, xTexto, yTexto);*/
                 }
             }
-
-
-        }
-
-        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador.resetear();
-            this.Refresh();
-        }
-
-        private void numeroPasos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numeroPlantas_BindingContextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stepToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador.step();
-            this.Refresh();
         }
     }
 }
