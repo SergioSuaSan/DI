@@ -8,10 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Pulsa aquí" Margin="61,217,-211,0" VerticalAlignment="Top" RenderTransformOrigin="10.762,-0.681" Height="60" Background="Red" Grid.Column="1" BorderBrush="Beige"  Foreground="Aqua">
+        <Button Content="Pulsa aquí" Margin="32,157,32,0" VerticalAlignment="Top" RenderTransformOrigin="10.762,-0.681" Height="60" Background="Red" Grid.Column="1" BorderBrush="Beige"  Foreground="Aqua">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

@@ -4,6 +4,7 @@
     {
         protected int nacimiento;
         protected int tiempoVida;
+        protected int tiempoParaReproducirse;
         protected int posicioni {  get; set; }
         protected int posicionj {  get; set; }
     

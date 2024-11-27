@@ -8,6 +8,10 @@ namespace Safari.Seres
 {
     class Vacio : Ser
     {
+        public Vacio(int posicioni, int posicionj) : base(posicioni, posicionj)
+        {
+        }
+
         public override void morir()
         {
             throw new NotImplementedException();

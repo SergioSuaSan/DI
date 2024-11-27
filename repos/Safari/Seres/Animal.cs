@@ -9,6 +9,7 @@ namespace Safari.Seres
 {
     internal abstract class Animal : Ser
     {
+        public bool movido { get; set; }
         public Animal(int fila, int colum) : base(fila, colum)
         {
 

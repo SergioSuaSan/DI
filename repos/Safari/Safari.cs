@@ -71,6 +71,16 @@ namespace Safari
             {
                 for (int j = 0; j < this.columnas; j++)
                 {
+                   if  ( this.seres[i,j] is Animal)
+                    {
+                        ((Animal) this.seres[i,j]).movido=false;
+                    }
+                }
+            }
+                    for (int i = 0; i < this.filas; i++)
+            {
+                for (int j = 0; j < this.columnas; j++)
+                {
                     if (this.seres[i, j] is Leon)
                     {
                         Ser provisional = buscarGacela(i, j);
@@ -80,7 +90,8 @@ namespace Safari
                             
                             seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i,j];
                             Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
-                            seres[i, j] = new Vacio();
+                            ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).movido=true;
+                            seres[i, j] = new Vacio(i,j);
                             gacelas--;
                         }
                         
@@ -98,9 +109,11 @@ namespace Safari
         public void resetear() { iniciarSafari(); }
         public void autoplay() 
         {
+
             while (!pausado)
             {
                 avanzar();
+                
                
             }
         }
@@ -164,7 +177,7 @@ namespace Safari
                                 if (nulos <= maxNulos)
                                 {
                                     nulos++;
-                                this.seres[i, j] = null;
+                                this.seres[i, j] = new Vacio(j,i);
                                     Creado = true;
                                 }
                                 break;
@@ -193,7 +206,7 @@ namespace Safari
         public Ser getSer(int fila, int columna) {return this.seres[fila, columna]; }
 
         public String getNombre (Ser ser) {
-            if (ser == null)
+            if (ser is Vacio)
                 return "";
             if (ser is Planta)
                 return "Planta";
