@@ -77,11 +77,11 @@ namespace Safari
                     }
                 }
             }
-                    for (int i = 0; i < this.filas; i++)
+            for (int i = 0; i < this.filas; i++)
             {
                 for (int j = 0; j < this.columnas; j++)
                 {
-                    if (this.seres[i, j] is Leon)
+                    if (this.seres[i, j] is Leon&& !((Leon)this.seres[i,j]).movido)
                     {
                         Ser provisional = buscarGacela(i, j);
              
@@ -99,8 +99,6 @@ namespace Safari
                    
                 }
             }
-          
-
             
         }
         public void pausar() {
@@ -125,7 +123,7 @@ namespace Safari
             pasos = 0;
             pausado = true;
             bool Creado = false;
-            this.maxLeones = (filas * columnas)/9;
+            this.maxLeones = (filas * columnas)/4;
             this.maxGacelas = (filas * columnas) * 2 / 9;
             this.maxPlantas = (filas * columnas) / 3;
             this.maxNulos = (filas * columnas)-(maxGacelas+maxLeones+maxPlantas);
@@ -222,9 +220,9 @@ namespace Safari
         {
             if ((fila == 0) && (columna == 0))
             {
-                for (int i = fila; i < fila + 1; i++)
+                for (int i = fila; i <= fila + 1; i++)
                 {
-                    for (int j = columna; j < columna + 1; j++)
+                    for (int j = columna; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -234,11 +232,11 @@ namespace Safari
                 }
             }
             else
-            if ((fila == getSeres().GetLength(0)) && (columna == getSeres().GetLength(1)))
+            if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
             {
-                for (int i = fila; i < fila; i++)
+                for (int i = fila; i <= fila; i++)
                 {
-                    for (int j = columna; j < columna; j++)
+                    for (int j = columna; j <= columna; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -248,11 +246,11 @@ namespace Safari
                 }
             }
             else
-             if (fila == getSeres().GetLength(0) && columna == 0)
+             if ((fila == getSeres().GetLength(0)-1) && columna == 0)
             {
-                for (int i = fila - 1; i < fila; i++)
+                for (int i = fila - 1; i <= fila; i++)
                 {
-                    for (int j = columna; j < columna + 1; j++)
+                    for (int j = columna; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -262,11 +260,11 @@ namespace Safari
                 }
             }
             else
-            if (fila == 0 && columna == getSeres().GetLength(1))
+            if (fila == 0 && (columna == getSeres().GetLength(1)-1))
             {
-                for (int i = fila; i < fila + 1; i++)
+                for (int i = fila; i <= fila + 1; i++)
                 {
-                    for (int j = columna - 1; j < columna; j++)
+                    for (int j = columna - 1; j <= columna; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -278,9 +276,9 @@ namespace Safari
             else
             if (fila == 0)
             {
-                for (int i = fila; i < fila + 1; i++)
+                for (int i = fila; i <= fila + 1; i++)
                 {
-                    for (int j = columna - 1; j < columna + 1; j++)
+                    for (int j = columna - 1; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -293,9 +291,9 @@ namespace Safari
             else
             if (columna == 0)
             {
-                for (int i = fila - 1; i < fila + 1; i++)
+                for (int i = fila - 1; i <= fila + 1; i++)
                 {
-                    for (int j = columna; j < columna + 1; j++)
+                    for (int j = columna; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -307,11 +305,11 @@ namespace Safari
             else
 
 
-            if (fila == getSeres().GetLength(0))
+            if (fila == getSeres().GetLength(0)-1)
             {
-                for (int i = fila; i < fila; i++)
+                for (int i = fila; i <= fila; i++)
                 {
-                    for (int j = columna; j < columna + 1; j++)
+                    for (int j = columna; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -321,11 +319,11 @@ namespace Safari
                 }
             }
             else
-            if (columna == getSeres().GetLength(1))
+            if (columna == getSeres().GetLength(1)-1)
             {
-                for (int i = fila; i < fila + 1; i++)
+                for (int i = fila; i <= fila + 1; i++)
                 {
-                    for (int j = columna; j < columna; j++)
+                    for (int j = columna; j <= columna; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
@@ -336,9 +334,9 @@ namespace Safari
             }
             else
             {
-                for (int i = fila - 1; i < fila + 1; i++)
+                for (int i = fila - 1; i <= fila + 1; i++)
                 {
-                    for (int j = columna - 1; j < columna + 1; j++)
+                    for (int j = columna - 1; j <= columna + 1; j++)
                     {
                         if (getSer(i, j) is Gacela)
                         {
