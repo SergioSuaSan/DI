@@ -9,6 +9,7 @@
         protected int posicionj {  get; set; }
     
 
+        //Constructor vacio
         public Ser()
         {
             nacimiento = 0;
@@ -17,6 +18,7 @@
             posicionj = 0;
 
         }
+        //Constructor parametrizado entero. Posiblemente sin uso
         public Ser(int nacimiento, int tiempoVida, int posicioni, int posicionj)
         {
             this.nacimiento = nacimiento;
@@ -25,6 +27,7 @@
             this.posicionj= posicionj;
 
         }
+        //Constructor parametrizado con posición
         public Ser( int posicioni, int posicionj)
         {
             //this.nacimiento = 0;

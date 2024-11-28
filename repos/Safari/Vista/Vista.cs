@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+//Esta vista la verdad es que no recuerdo para qué está aquí!
 public class Vista : Form
 {
     private Label lblDatos;

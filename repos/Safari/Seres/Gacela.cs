@@ -8,6 +8,7 @@ namespace Safari.Seres
 {
     internal class Gacela : Hervivoro
     {
+        //ALEJANDRO //String comida = "Planta";
         public Gacela(int i, int j) : base(i, j) { }
 
         public override void alimentarse()
