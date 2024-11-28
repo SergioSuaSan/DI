@@ -49,6 +49,8 @@ namespace Safari
         //Constructor parametrizado por si quiero poder elegir cuántas filas y columnas pongo
         public Safari(int filas, int columnas)
         {
+            // Nacho: Al iniciar safari inicializas todos estos valores,
+            // como llamas a iniciar safari al principio de la ejecución, podrías quitar casi todo esto
             this.seres = new Ser[filas,columnas];
             this.filas = filas;
             this.columnas = columnas;
@@ -96,7 +98,6 @@ namespace Safari
                         //Buscamos Si hay una gacela cerca. Si la hay nos la comemos y nos movemos a su posición
                         // ALEJANDRO //Leon leon = seres[i,j] as Leon;
                         Ser provisional = buscarGacela(i, j/* //ALEJANDRO ,Leon.comida*/);
-                   
                         if (provisional != null)
                         Console.WriteLine(provisional.GetType().Name);
 
@@ -108,9 +109,11 @@ namespace Safari
                             Console.WriteLine(seres[provisional.getPosicioni(), provisional.getPosicionj()].GetType().Name + "\n");
                             //Ponemos su movido a true para que no se pueda volver a mover en este paso
                             ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
-                            // ACTUALIZAMOS LA NUEVA POSICIÓN DEL LEÓN
+
+                            // Nacho: Te falta actualizar la nueva posición del león
                             seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
                             seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
+
                             //Dejamos el antiguo lugar del León como Vacío
                             seres[i, j] = new Vacio(i,j);
                             gacelas--;
@@ -128,8 +131,11 @@ namespace Safari
                             seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
                             Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
                             ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
+
+                            // Nacho: Te falta actualizar la nueva posición del león
                             seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
                             seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
+
                             seres[i, j] = new Vacio(i, j);
                             plantas--;
                         }
@@ -241,6 +247,7 @@ namespace Safari
         public Ser getSer(int fila, int columna) {return this.seres[fila, columna]; }
 
         //Devolvemos un nombre según el Ser que demos
+        // Nacho: Lo normal es gestionar esto rescribiendo el método ToString en cada una de las clases
         public String getNombre (Ser ser) {
             if (ser is Vacio)
                 return "Vacío";
@@ -276,7 +283,6 @@ namespace Safari
 
             //Creo una lista donde irán todas las gacelas que encuentre de forma adyacente
             List<Gacela> listaPosibles = new List<Gacela> ();
-            
 
             /*
              *Tengo que hacer bucles independientes dependiendo de la posición en la que estoy. Si estoy en una esquina 
@@ -307,7 +313,7 @@ namespace Safari
                 }
                 else return null;
             }
-            else
+            else // Nacho: ¿Por qué usas el método GetSeres? si tienes la matriz en la clase, usa directamente seres.GetLength(0 o 1)
             if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
             {
                 for (int i = fila-1; i <= fila; i++)
@@ -315,6 +321,7 @@ namespace Safari
                     for (int j = columna-1; j <= columna; j++)
                     {
                         //getSer(i,j).getType().Name == comida
+                        // Nacho: El mismo problema aquí, no es necesario que uses getSer, pon directamente seres[i,j] is Gacela
                         if (getSer(i, j) is Gacela)
                         {
                             //Guardo el ser en un array
@@ -383,7 +390,7 @@ namespace Safari
             else
             if (fila == 0)
             {
-                for (int i = fila; i <= fila + 1; i++)
+                for (int i = fila; i <= fila + 1; i++) // Nacho: con esto estás incluyendo las diagonales, no está mal, pero espero que lo sepas
                 {
                     for (int j = columna - 1; j <= columna + 1; j++)
                     {
@@ -497,13 +504,12 @@ namespace Safari
                 int final = rndo.Next(0, listaPosibles.Count);
                 if (listaPosibles.Count != 0)
                 {
-                    listaPosibles.ForEach(it => { Console.WriteLine(it); });
                     return listaPosibles[final];
 
                 }
                 else return null;
             }
-           
+
            
         }
 

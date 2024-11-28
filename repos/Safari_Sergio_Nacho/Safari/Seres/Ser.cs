@@ -1,5 +1,4 @@
-﻿
-namespace Safari.Seres
+﻿namespace Safari.Seres
 {
     public abstract class Ser
     {
@@ -46,9 +45,11 @@ namespace Safari.Seres
         public int getTiempoVida() { return tiempoVida; }
         public int getPosicioni() { return posicioni; }
         public int getPosicionj() { return posicionj; }
+        public void setPosicioni(int nuevai) { this.posicioni=nuevai; }
+        public void setPosicionj(int nuevaj) { posicionj=nuevaj; }
 
 
-        internal void setPosicioni(int v){this.posicioni = v; }
-        internal void setPosicionj(int v){this.posicionj = v; }
+
+
     }
 }

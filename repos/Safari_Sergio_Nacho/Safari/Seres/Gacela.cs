@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Safari.Seres
 {
-    internal class Leon : Carnivoro
+    internal class Gacela : Hervivoro
     {
-        //Constructor parametrizado por posición
-        public Leon(int i, int j) : base(i, j) { }
+        //ALEJANDRO //String comida = "Planta";
+        public Gacela(int i, int j) : base(i, j) { }
 
         public override void alimentarse()
         {
-           
+            throw new NotImplementedException();
         }
 
     
