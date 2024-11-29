@@ -21,5 +21,7 @@ namespace Safari.Seres
         public abstract void alimentarse();
         public abstract void morirDeHambre();
         public abstract void moverse();
+
+        
     }
 }

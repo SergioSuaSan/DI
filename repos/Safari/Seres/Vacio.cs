@@ -22,5 +22,10 @@ namespace Safari.Seres
         public override void morir(){  throw new NotImplementedException(); }
 
         public override void reproduccion() { throw new NotImplementedException();}
+
+        public override string ToString()
+        {
+            return "Vacio";
+        }
     }
 }

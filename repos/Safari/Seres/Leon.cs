@@ -38,5 +38,10 @@ namespace Safari.Seres
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return "León";
+        }
     }
 }

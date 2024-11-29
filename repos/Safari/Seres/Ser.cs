@@ -3,17 +3,18 @@ namespace Safari.Seres
 {
     public abstract class Ser
     {
-        protected int nacimiento;
+       
         protected int tiempoVida;
+        protected int tiempoSinComer;
         protected int tiempoParaReproducirse;
-        protected int posicioni {  get; set; }
-        protected int posicionj {  get; set; }
+        protected int posicioni;
+        protected int posicionj;
     
 
         //Constructor vacio
         public Ser()
         {
-            nacimiento = 0;
+            tiempoSinComer = 0;
             tiempoVida = 0;
             posicioni = 0;
             posicionj = 0;
@@ -22,8 +23,8 @@ namespace Safari.Seres
         //Constructor parametrizado entero. Posiblemente sin uso
         public Ser(int nacimiento, int tiempoVida, int posicioni, int posicionj)
         {
-            this.nacimiento = nacimiento;
-            this.tiempoVida = tiempoVida-nacimiento;
+            this.tiempoSinComer = 0;
+            this.tiempoVida = tiempoVida;
             this.posicioni = posicioni;
             this.posicionj= posicionj;
 
@@ -31,7 +32,7 @@ namespace Safari.Seres
         //Constructor parametrizado con posición
         public Ser( int posicioni, int posicionj)
         {
-            //this.nacimiento = 0;
+            this.tiempoSinComer = 0;
             this.tiempoVida = 0;
             this.posicioni = posicioni;
             this.posicionj = posicionj;
@@ -41,13 +42,14 @@ namespace Safari.Seres
 
         public abstract void reproduccion();
         public abstract void morir();
-
-        public int getNacimiento() { return nacimiento; }
         public int getTiempoVida() { return tiempoVida; }
         public int getPosicioni() { return posicioni; }
         public int getPosicionj() { return posicionj; }
-
-
+        public int getTiempoSinComer() { return tiempoSinComer; }
+        public int getTiempoParaReproducirse() { return  tiempoParaReproducirse;}
+        public void setTiempoParaReproducirse(int v) { this.tiempoParaReproducirse = v; }
+        public void setTiempoSinComer(int v) { this.tiempoSinComer=v; }
+        public void setTiempoDeVida(int v ) { this.tiempoVida= v; }
         internal void setPosicioni(int v){this.posicioni = v; }
         internal void setPosicionj(int v){this.posicionj = v; }
     }
