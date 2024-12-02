@@ -10,10 +10,12 @@ namespace Safari
     public class Controlador
     {
         private Safari miSafari;
+        /*
         public Controlador() { 
             this.miSafari = new Safari();
 
         }
+        */
         //Constructor parametrizado, el que voy a  usar
         public Controlador(Safari misafari) {
             this.miSafari = misafari;
@@ -26,7 +28,7 @@ namespace Safari
         public int getColumnas() { return miSafari.getColumnas();}
         public Ser[,] getSeres() { return miSafari.getSeres(); }
         public Ser getSer(int fila, int columna) { return miSafari.getSer(fila, columna); }
-        public String getNombre(Ser ser) { return miSafari.getNombre(ser); }
+        public String getNombre(Ser ser) { return ser.ToString(); }
         public String getPasos() {  return miSafari.getPasos();}
         internal String getPlantas() { return miSafari.getPlantas(); }
         internal string getGacelas() { return miSafari.getGacelas(); }

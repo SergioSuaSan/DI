@@ -9,7 +9,7 @@ namespace Safari
         static void Main()
         {
             //Creo un Safari
-            Safari miSafari = new Safari(5,5);
+            Safari miSafari = new Safari(15,15);
             //Creo un controlador que tenga dentro mi instancia de Safari
             Controlador controlador = new Controlador(miSafari);
 

@@ -83,12 +83,12 @@ namespace Safari
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { funcionesPrincipalesToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(220, 28);
+            contextMenuStrip1.Size = new Size(189, 26);
             // 
             // funcionesPrincipalesToolStripMenuItem
             // 
             funcionesPrincipalesToolStripMenuItem.Name = "funcionesPrincipalesToolStripMenuItem";
-            funcionesPrincipalesToolStripMenuItem.Size = new Size(219, 24);
+            funcionesPrincipalesToolStripMenuItem.Size = new Size(188, 22);
             funcionesPrincipalesToolStripMenuItem.Text = "Funciones principales";
             // 
             // menuStrip1
@@ -97,8 +97,8 @@ namespace Safari
             menuStrip1.Items.AddRange(new ToolStripItem[] { funcionesPrincipalesToolStripMenuItem1, ayudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(6, 3, 0, 3);
-            menuStrip1.Size = new Size(1254, 30);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1097, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -106,45 +106,45 @@ namespace Safari
             // 
             funcionesPrincipalesToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { stepToolStripMenuItem, resetToolStripMenuItem, playToolStripMenuItem, pauseToolStripMenuItem, stopToolStripMenuItem, exitToolStripMenuItem });
             funcionesPrincipalesToolStripMenuItem1.Name = "funcionesPrincipalesToolStripMenuItem1";
-            funcionesPrincipalesToolStripMenuItem1.Size = new Size(163, 24);
+            funcionesPrincipalesToolStripMenuItem1.Size = new Size(133, 20);
             funcionesPrincipalesToolStripMenuItem1.Text = "Funciones Principales";
             // 
             // stepToolStripMenuItem
             // 
             stepToolStripMenuItem.Name = "stepToolStripMenuItem";
-            stepToolStripMenuItem.Size = new Size(129, 26);
+            stepToolStripMenuItem.Size = new Size(105, 22);
             stepToolStripMenuItem.Text = "Step";
             // 
             // resetToolStripMenuItem
             // 
             resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            resetToolStripMenuItem.Size = new Size(129, 26);
+            resetToolStripMenuItem.Size = new Size(105, 22);
             resetToolStripMenuItem.Text = "Reset";
             resetToolStripMenuItem.Click += resetToolStripMenuItem_Click;
             // 
             // playToolStripMenuItem
             // 
             playToolStripMenuItem.Name = "playToolStripMenuItem";
-            playToolStripMenuItem.Size = new Size(129, 26);
+            playToolStripMenuItem.Size = new Size(105, 22);
             playToolStripMenuItem.Text = "Play";
             playToolStripMenuItem.Click += playToolStripMenuItem_Click;
             // 
             // pauseToolStripMenuItem
             // 
             pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            pauseToolStripMenuItem.Size = new Size(129, 26);
+            pauseToolStripMenuItem.Size = new Size(105, 22);
             pauseToolStripMenuItem.Text = "Pause";
             // 
             // stopToolStripMenuItem
             // 
             stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            stopToolStripMenuItem.Size = new Size(129, 26);
+            stopToolStripMenuItem.Size = new Size(105, 22);
             stopToolStripMenuItem.Text = "Stop";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(129, 26);
+            exitToolStripMenuItem.Size = new Size(105, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -152,19 +152,19 @@ namespace Safari
             // 
             ayudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ayudaToolStripMenuItem1, acercaDeToolStripMenuItem });
             ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            ayudaToolStripMenuItem.Size = new Size(65, 24);
+            ayudaToolStripMenuItem.Size = new Size(53, 20);
             ayudaToolStripMenuItem.Text = "Ayuda";
             // 
             // ayudaToolStripMenuItem1
             // 
             ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
-            ayudaToolStripMenuItem1.Size = new Size(158, 26);
+            ayudaToolStripMenuItem1.Size = new Size(126, 22);
             ayudaToolStripMenuItem1.Text = "Ayuda";
             // 
             // acercaDeToolStripMenuItem
             // 
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            acercaDeToolStripMenuItem.Size = new Size(158, 26);
+            acercaDeToolStripMenuItem.Size = new Size(126, 22);
             acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // groupBox1
@@ -174,17 +174,20 @@ namespace Safari
             groupBox1.Controls.Add(buttonPause);
             groupBox1.Controls.Add(buttonStop);
             groupBox1.Controls.Add(buttonPlay);
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(3, 2);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(504, 76);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(441, 57);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             // 
             // buttonStep
             // 
-            buttonStep.Location = new Point(407, 27);
+            buttonStep.Location = new Point(356, 20);
+            buttonStep.Margin = new Padding(3, 2, 3, 2);
             buttonStep.Name = "buttonStep";
-            buttonStep.Size = new Size(94, 29);
+            buttonStep.Size = new Size(82, 22);
             buttonStep.TabIndex = 4;
             buttonStep.Text = "STEP";
             buttonStep.UseVisualStyleBackColor = true;
@@ -192,9 +195,10 @@ namespace Safari
             // 
             // buttonReset
             // 
-            buttonReset.Location = new Point(307, 27);
+            buttonReset.Location = new Point(269, 20);
+            buttonReset.Margin = new Padding(3, 2, 3, 2);
             buttonReset.Name = "buttonReset";
-            buttonReset.Size = new Size(94, 29);
+            buttonReset.Size = new Size(82, 22);
             buttonReset.TabIndex = 3;
             buttonReset.Text = "RESET";
             buttonReset.UseVisualStyleBackColor = true;
@@ -202,9 +206,10 @@ namespace Safari
             // 
             // buttonPause
             // 
-            buttonPause.Location = new Point(207, 27);
+            buttonPause.Location = new Point(181, 20);
+            buttonPause.Margin = new Padding(3, 2, 3, 2);
             buttonPause.Name = "buttonPause";
-            buttonPause.Size = new Size(94, 29);
+            buttonPause.Size = new Size(82, 22);
             buttonPause.TabIndex = 2;
             buttonPause.Text = "PAUSE";
             buttonPause.UseVisualStyleBackColor = true;
@@ -212,9 +217,10 @@ namespace Safari
             // 
             // buttonStop
             // 
-            buttonStop.Location = new Point(107, 27);
+            buttonStop.Location = new Point(94, 20);
+            buttonStop.Margin = new Padding(3, 2, 3, 2);
             buttonStop.Name = "buttonStop";
-            buttonStop.Size = new Size(94, 29);
+            buttonStop.Size = new Size(82, 22);
             buttonStop.TabIndex = 1;
             buttonStop.Text = "STOP";
             buttonStop.UseVisualStyleBackColor = true;
@@ -222,9 +228,10 @@ namespace Safari
             // 
             // buttonPlay
             // 
-            buttonPlay.Location = new Point(7, 27);
+            buttonPlay.Location = new Point(6, 20);
+            buttonPlay.Margin = new Padding(3, 2, 3, 2);
             buttonPlay.Name = "buttonPlay";
-            buttonPlay.Size = new Size(94, 29);
+            buttonPlay.Size = new Size(82, 22);
             buttonPlay.TabIndex = 0;
             buttonPlay.Text = "PLAY";
             buttonPlay.UseVisualStyleBackColor = true;
@@ -235,29 +242,32 @@ namespace Safari
             panel1.BackColor = SystemColors.ControlLight;
             panel1.Controls.Add(groupBox1);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 30);
+            panel1.Location = new Point(0, 24);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1254, 81);
+            panel1.Size = new Size(1097, 61);
             panel1.TabIndex = 4;
             // 
             // groupBox2
             // 
+            groupBox2.AutoSize = true;
             groupBox2.Controls.Add(numeroPlantas);
             groupBox2.Controls.Add(label1);
+            groupBox2.Dock = DockStyle.Left;
             groupBox2.Location = new Point(0, 0);
             groupBox2.Margin = new Padding(0);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(0);
-            groupBox2.Size = new Size(163, 63);
+            groupBox2.Size = new Size(97, 47);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             // 
             // numeroPlantas
             // 
             numeroPlantas.AutoSize = true;
-            numeroPlantas.Location = new Point(93, 20);
+            numeroPlantas.Location = new Point(81, 15);
             numeroPlantas.Name = "numeroPlantas";
-            numeroPlantas.Size = new Size(17, 20);
+            numeroPlantas.Size = new Size(13, 15);
             numeroPlantas.TabIndex = 1;
             numeroPlantas.Text = "0";
             numeroPlantas.Click += numeroPlantas_Click;
@@ -265,9 +275,9 @@ namespace Safari
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 20);
+            label1.Location = new Point(16, 15);
             label1.Name = "label1";
-            label1.Size = new Size(59, 20);
+            label1.Size = new Size(48, 15);
             label1.TabIndex = 0;
             label1.Text = "Plantas:";
             // 
@@ -279,101 +289,108 @@ namespace Safari
             panel2.Controls.Add(groupBox3);
             panel2.Controls.Add(groupBox2);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 111);
+            panel2.Location = new Point(0, 85);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1254, 63);
+            panel2.Size = new Size(1097, 47);
             panel2.TabIndex = 5;
             panel2.Paint += panel2_Paint;
             // 
             // groupBox5
             // 
+            groupBox5.AutoSize = true;
             groupBox5.Controls.Add(numeroPasos);
             groupBox5.Controls.Add(label3);
-            groupBox5.Location = new Point(578, 3);
+            groupBox5.Dock = DockStyle.Left;
+            groupBox5.Location = new Point(287, 0);
             groupBox5.Margin = new Padding(0);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new Padding(0);
-            groupBox5.Size = new Size(163, 63);
+            groupBox5.Size = new Size(92, 47);
             groupBox5.TabIndex = 7;
             groupBox5.TabStop = false;
             // 
             // numeroPasos
             // 
             numeroPasos.AutoSize = true;
-            numeroPasos.Location = new Point(87, 13);
+            numeroPasos.Location = new Point(76, 10);
             numeroPasos.Name = "numeroPasos";
-            numeroPasos.Size = new Size(17, 20);
+            numeroPasos.Size = new Size(13, 15);
             numeroPasos.TabIndex = 1;
             numeroPasos.Text = "0";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(11, 13);
+            label3.Location = new Point(10, 10);
             label3.Name = "label3";
-            label3.Size = new Size(45, 20);
+            label3.Size = new Size(37, 15);
             label3.TabIndex = 0;
             label3.Text = "Pasos";
             // 
             // groupBox4
             // 
+            groupBox4.AutoSize = true;
             groupBox4.Controls.Add(numeroLeones);
             groupBox4.Controls.Add(label6);
-            groupBox4.Location = new Point(394, 3);
+            groupBox4.Dock = DockStyle.Left;
+            groupBox4.Location = new Point(192, 0);
             groupBox4.Margin = new Padding(0);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(0);
-            groupBox4.Size = new Size(163, 63);
+            groupBox4.Size = new Size(95, 47);
             groupBox4.TabIndex = 6;
             groupBox4.TabStop = false;
             // 
             // numeroLeones
             // 
             numeroLeones.AutoSize = true;
-            numeroLeones.Location = new Point(90, 17);
+            numeroLeones.Location = new Point(79, 13);
             numeroLeones.Name = "numeroLeones";
-            numeroLeones.Size = new Size(17, 20);
+            numeroLeones.Size = new Size(13, 15);
             numeroLeones.TabIndex = 1;
             numeroLeones.Text = "0";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(15, 17);
+            label6.Location = new Point(13, 13);
             label6.Name = "label6";
-            label6.Size = new Size(55, 20);
+            label6.Size = new Size(44, 15);
             label6.TabIndex = 0;
             label6.Text = "Leones";
             label6.Click += label6_Click;
             // 
             // groupBox3
             // 
+            groupBox3.AutoSize = true;
             groupBox3.BackColor = SystemColors.GradientActiveCaption;
             groupBox3.Controls.Add(numeroGacelas);
             groupBox3.Controls.Add(label4);
-            groupBox3.Location = new Point(197, 0);
+            groupBox3.Dock = DockStyle.Left;
+            groupBox3.Location = new Point(97, 0);
             groupBox3.Margin = new Padding(0);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(0);
-            groupBox3.Size = new Size(163, 63);
+            groupBox3.Size = new Size(95, 47);
             groupBox3.TabIndex = 6;
             groupBox3.TabStop = false;
             // 
             // numeroGacelas
             // 
             numeroGacelas.AutoSize = true;
-            numeroGacelas.Location = new Point(90, 17);
+            numeroGacelas.Location = new Point(79, 13);
             numeroGacelas.Name = "numeroGacelas";
-            numeroGacelas.Size = new Size(17, 20);
+            numeroGacelas.Size = new Size(13, 15);
             numeroGacelas.TabIndex = 1;
             numeroGacelas.Text = "0";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(15, 17);
+            label4.Location = new Point(13, 13);
             label4.Name = "label4";
-            label4.Size = new Size(63, 20);
+            label4.Size = new Size(50, 15);
             label4.TabIndex = 0;
             label4.Text = "Gacelas:";
             label4.Click += label4_Click;
@@ -384,9 +401,10 @@ namespace Safari
             panel3.BackColor = SystemColors.AppWorkspace;
             panel3.Controls.Add(tableLayoutPanel1);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 174);
+            panel3.Location = new Point(0, 132);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1254, 881);
+            panel3.Size = new Size(1097, 659);
             panel3.TabIndex = 6;
             panel3.Paint += panelSafari;
             // 
@@ -405,7 +423,6 @@ namespace Safari
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 10;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
@@ -418,16 +435,16 @@ namespace Safari
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Size = new Size(1254, 881);
+            tableLayoutPanel1.Size = new Size(1097, 659);
             tableLayoutPanel1.TabIndex = 0;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // VentanaP
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1254, 1055);
+            ClientSize = new Size(1097, 791);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -436,7 +453,8 @@ namespace Safari
             Icon = (Icon)resources.GetObject("$this.Icon");
             Location = new Point(20, 20);
             MainMenuStrip = menuStrip1;
-            MaximumSize = new Size(2000, 1998);
+            Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(1752, 1508);
             Name = "VentanaP";
             Text = "Safari de Sergio";
             Load += Form1_Load_2;
@@ -448,6 +466,7 @@ namespace Safari
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);

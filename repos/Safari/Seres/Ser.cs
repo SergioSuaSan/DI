@@ -10,7 +10,7 @@ namespace Safari.Seres
         protected int posicioni;
         protected int posicionj;
     
-
+        /*
         //Constructor vacio
         public Ser()
         {
@@ -29,7 +29,10 @@ namespace Safari.Seres
             this.posicionj= posicionj;
 
         }
+        */
+
         //Constructor parametrizado con posición
+
         public Ser( int posicioni, int posicionj)
         {
             this.tiempoSinComer = 0;
@@ -52,5 +55,6 @@ namespace Safari.Seres
         public void setTiempoDeVida(int v ) { this.tiempoVida= v; }
         internal void setPosicioni(int v){this.posicioni = v; }
         internal void setPosicionj(int v){this.posicionj = v; }
+
     }
 }

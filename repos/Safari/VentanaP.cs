@@ -74,9 +74,9 @@ namespace Safari
                 {
                     //Pintamos la imagen que se llama igual que el nombre del Ser que hemos asignado en el Safari
                     var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getNombre(controlador.getSer(fila, columna))}.ico");
-                    var bitmap = new Bitmap(40, 40);
+                    var bitmap = new Bitmap(100,100);
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 40, 40);
+                    g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 50, 50);
 
 
                     /*
