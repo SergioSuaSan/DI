@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Safari.Seres;
 
@@ -126,7 +127,7 @@ namespace Safari
                             {
 
                                 reproducirse(seres[i, j]);
-                                leones++;
+                                
                             }
                             else
                             {
@@ -161,7 +162,7 @@ namespace Safari
                         {
 
                             reproducirse(seres[i, j]);
-                            gacelas++;
+                            
                         }
                         else
                         {
@@ -182,6 +183,7 @@ namespace Safari
                         {
                             this.seres[i, j].setTiempoParaReproducirse(0);
                             reproducirse(seres[i, j]);
+                           
                         }
                         Console.WriteLine("Fin de la planta \n");
 
@@ -199,12 +201,35 @@ namespace Safari
             }
         }
 
+        //Ponemos el pausado a true para que no pueda avanzar
+        public void pausar() { pausado = true; }
+        //Creamos el safari de nuevo
+        public void resetear() { iniciarSafari(); }
+        //EL autoplay.
+        public void autoplay(VentanaP ventanaP)
+        {
+            // Ejecutar en un subproceso separado para no bloquear la UI
+            Task.Run(() =>
+            {
+                while (!pausado) // Condición de pausa
+                {
+                    avanzar();      // Lógica para avanzar (implementa este método según tu lógica)
+
+                    ventanaP.Invoke((MethodInvoker)delegate
+                    {
+                        ventanaP.Refresh();
+                    });
+
+                    Thread.Sleep(500); // Delay de 500ms (ajusta según lo que necesites)
+                }
+            });
+        }
 
 
-                
-            
-           
-        
+
+
+
+
 
         //Metodo moverse parametrizado. Me dan un ser y si es animal, lo muevo a un vacio
         private void moverse(Ser ser)
@@ -215,7 +240,8 @@ namespace Safari
                 int viejai = ser.getPosicioni();
                 int viejaj = ser.getPosicionj();
                 //Buscamos si hay un vacío cerca
-                Ser provisional = buscarVacio(viejai, viejaj);
+                //Ser provisional = buscarVacio(viejai, viejaj);
+                Ser provisional = buscarVacio_cgpt(viejai, viejaj);
                 if (provisional is Vacio)
                 {
                     //Le damos 2/3 de posibilidades de moverse. Es posible que el animal no se mueva.
@@ -257,7 +283,8 @@ namespace Safari
                 int viejai = ser.getPosicioni();
                 int viejaj = ser.getPosicionj();
                 //Buscamos si hay un vacío cerca
-                Ser provisional = buscarVacio(viejai, viejaj);
+               // Ser provisional = buscarVacio(viejai, viejaj);
+                Ser provisional = buscarVacio_cgpt(viejai, viejaj);
                 if (provisional is Vacio)
                 {
                         //Sacamos la posición del vacio
@@ -267,11 +294,20 @@ namespace Safari
                         //Creamos en el nuevo ser el vacío
                        
                     if (seres[viejai, viejaj] is Leon)
+                    {
                        this.seres[nuevai,nuevaj]= new Leon(nuevai,nuevaj);
+                        leones++;
+                    }
                     else if (seres[viejai, viejaj] is Gacela)
+                    {
                         this.seres[nuevai, nuevaj] = new Gacela(nuevai,nuevaj);
+                        gacelas++;
+                    }
                     else if (seres[viejai, viejaj] is Planta)
+                    {
                         this.seres[nuevai, nuevaj] = new Planta(nuevai,nuevaj);
+                        plantas++;
+                    }
                         
                         //Decimos que el animal que se haya movido cambie su estado a "movido"
                         if (this.seres[nuevai,nuevaj] is Animal)
@@ -310,23 +346,7 @@ namespace Safari
 
 
 
-        //Ponemos el pausado a true para que no pueda avanzar
-        public void pausar() { pausado = true;}
-        //Creamos el safari de nuevo
-        public void resetear() { iniciarSafari(); }
-        //EL autoplay aún no debería funcionar. No está hecho con lo de los hilos, en proceso.
-        public void autoplay() 
-        {
-
-            while (!pausado)
-            {
-                avanzar();
-                
-               
-            }
-        }
-
-       
+      
         //Iniciamos el Safari
         public void iniciarSafari()
         {
@@ -429,713 +449,123 @@ namespace Safari
 
 
         //Método que busca una gacela en las 8 casillas adyacentes a la posición del Ser que se indique
-        public Ser buscarGacela(int fila, int columna /*//ALEJANDRO, String comida*/)
+
+        //Optimización realizada por chatgpt. Es increible lo fácil que era optimizarlo y que no era capaz de verlo
+        public Ser buscarGacela(int fila, int columna)
         {
-            /*
-             *ALEJANDRO, método indicado por él que es bastante más eficiente que el mío, pendiente de cambio
-             
-             * int maxderecha =0
-             * int maxizquierda = 0
-             * int maxarriba = 0
-             * int maxabajo = 0
-            //if (mira si esta a la derecha)
-                maxderecha =1
-              if (mira si esta a la izquierda)
-                maxizquiera = 1
-                =1
-              if (mira abajo)
-                =1
-              if (mira arriba)  
-                */
+            // Lista para guardar los vacíos encontrados
+            List<Gacela> listaPosibles = new List<Gacela>();
 
-            //Creo una lista donde irán todas las gacelas que encuentre de forma adyacente
-            List<Gacela> listaPosibles = new List<Gacela> ();
-            
+            // Dimensiones del array
+            int filas = getSeres().GetLength(0);
+            int columnas = getSeres().GetLength(1);
 
-            /*
-             *Tengo que hacer bucles independientes dependiendo de la posición en la que estoy. Si estoy en una esquina 
-             *solo puedo mirar 3 espacios determinados, en vez de los 8. Lo mismo pasa si estoy en el borde de una fila o
-             *columna, solo puedo mirar 5 espacios. Así que me veo obligado a hacer bucles para cada posible posición
-             *distinta, por si está en una de las cuatro esquinas, uno de los cuatro bordes o por el medio.
-             */
-            if ((fila == 0) && (columna == 0))
+            // Iterar por las celdas vecinas (incluye la actual)
+            for (int i = fila - 1; i <= fila + 1; i++)
             {
-                for (int i = fila; i <= fila + 1; i++)
+                for (int j = columna - 1; j <= columna + 1; j++)
                 {
-                    for (int j = columna; j <= columna + 1; j++)
+                    // Validar si la posición está dentro de los límites del array
+                    if (i >= 0 && i < filas && j >= 0 && j < columnas)
                     {
+                        // Comprobar si el ser es "Vacio"
                         if (getSer(i, j) is Gacela)
                         {
-                            //Guardo el ser en un array
-                            listaPosibles.Add( (Gacela) getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                 int final = rndo.Next(0,listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
-            {
-                for (int i = fila-1; i <= fila; i++)
-                {
-                    for (int j = columna-1; j <= columna; j++)
-                    {
-                        //getSer(i,j).getType().Name == comida
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
                             listaPosibles.Add((Gacela)getSer(i, j));
                         }
                     }
                 }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
             }
-            else
-             if ((fila == getSeres().GetLength(0)-1) && columna == 0)
+
+            // Si hay vacíos disponibles, seleccionar uno al azar
+            if (listaPosibles.Count > 0)
             {
-                for (int i = fila - 1; i <= fila; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
+                int final = random.Next(0, listaPosibles.Count);
+                return listaPosibles[final];
             }
-            else
-            if (fila == 0 && (columna == getSeres().GetLength(1)-1))
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
 
-                }
-                else return null;
-            }
-            else
-            if (fila == 0)
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j)); 
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-
-            }
-            else
-            if (columna == 0)
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-
-
-            if (fila == getSeres().GetLength(0)-1)
-            {
-                for (int i = fila - 1; i <= fila; i++)
-                {
-                    for (int j = columna-1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if (columna == getSeres().GetLength(1)-1)
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna -1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Gacela)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Gacela)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    listaPosibles.ForEach(it => { Console.WriteLine(it); });
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-           
-           
+            // Si no hay vacíos, retornar null
+            return null;
         }
 
-
-        //Copia del método buscarGacelas adaptado a Plantas
+        //Optimización realizada por chatgpt. Es increible lo fácil que era optimizarlo y que no era capaz de verlo
         public Ser buscarPlanta(int fila, int columna)
         {
+            // Lista para guardar los vacíos encontrados
             List<Planta> listaPosibles = new List<Planta>();
-            if ((fila == 0) && (columna == 0))
+
+            // Dimensiones del array
+            int filas = getSeres().GetLength(0);
+            int columnas = getSeres().GetLength(1);
+
+            // Iterar por las celdas vecinas (incluye la actual)
+            for (int i = fila - 1; i <= fila + 1; i++)
             {
-                for (int i = fila; i <= fila + 1; i++)
+                for (int j = columna - 1; j <= columna + 1; j++)
                 {
-                    for (int j = columna; j <= columna + 1; j++)
+                    // Validar si la posición está dentro de los límites del array
+                    if (i >= 0 && i < filas && j >= 0 && j < columnas)
                     {
+                        // Comprobar si el ser es "Vacio"
                         if (getSer(i, j) is Planta)
                         {
-                            //Guardo el ser en un array
                             listaPosibles.Add((Planta)getSer(i, j));
                         }
                     }
                 }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
             }
-            else
-            if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
+
+            // Si hay vacíos disponibles, seleccionar uno al azar
+            if (listaPosibles.Count > 0)
             {
-                for (int i = fila-1; i <= fila; i++)
-                {
-                    for (int j = columna-1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-             if ((fila == getSeres().GetLength(0) - 1) && columna == 0)
-            {
-                for (int i = fila - 1; i <= fila; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if (fila == 0 && (columna == getSeres().GetLength(1) - 1))  
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if (fila == 0)
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-
-            }
-            else
-            if (columna == 0)
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-
-
-            if (fila == getSeres().GetLength(0) - 1)
-            {
-                for (int i = fila-1; i <= fila; i++)
-                {
-                    for (int j = columna-1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if (columna == getSeres().GetLength(1) - 1)
-            {
-                for (int i = fila-1; i <= fila + 1; i++)
-                {
-                    for (int j = columna-1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Planta)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Planta)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
+                int final = random.Next(0, listaPosibles.Count);
+                return listaPosibles[final];
             }
 
-
+            // Si no hay vacíos, retornar null
+            return null;
         }
 
-        //Copia del método buscarGacelas adaptado a Vacío
-        public Ser buscarVacio(int fila, int columna)
+        //Optimización realizada por chatgpt. Es increible lo fácil que era optimizarlo y que no era capaz de verlo
+        public Ser buscarVacio_cgpt(int fila, int columna)
         {
+            // Lista para guardar los vacíos encontrados
             List<Vacio> listaPosibles = new List<Vacio>();
-            if ((fila == 0) && (columna == 0))
+
+            // Dimensiones del array
+            int filas = getSeres().GetLength(0);
+            int columnas = getSeres().GetLength(1);
+
+            // Iterar por las celdas vecinas (incluye la actual)
+            for (int i = fila - 1; i <= fila + 1; i++)
             {
-                for (int i = fila; i <= fila + 1; i++)
+                for (int j = columna - 1; j <= columna + 1; j++)
                 {
-                    for (int j = columna; j <= columna + 1; j++)
+                    // Validar si la posición está dentro de los límites del array
+                    if (i >= 0 && i < filas && j >= 0 && j < columnas)
                     {
+                        // Comprobar si el ser es "Vacio"
                         if (getSer(i, j) is Vacio)
                         {
-                            //Guardo el ser en un array
                             listaPosibles.Add((Vacio)getSer(i, j));
                         }
                     }
                 }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
             }
-            
-            else
-            if ((fila == getSeres().GetLength(0) - 1) && (columna == getSeres().GetLength(1) - 1))
+
+            // Si hay vacíos disponibles, seleccionar uno al azar
+            if (listaPosibles.Count > 0)
             {
-                for (int i = fila-1; i <= fila; i++)
-                {
-                    for (int j = columna-1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            
-            else
-             if ((fila == getSeres().GetLength(0) - 1) && columna == 0)
-            {
-                for (int i = fila - 1; i <= fila; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
+                int final = random.Next(0, listaPosibles.Count);
+                return listaPosibles[final];
             }
 
-            else
-            if (fila == 0 && (columna == getSeres().GetLength(1) - 1))
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            
-            else
-            if (fila == 0)
-            {
-                for (int i = fila; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-
-            }
-            else
-            if (columna == 0)
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-
-
-            if (fila == getSeres().GetLength(0) - 1)
-            {
-                for (int i = fila - 1; i <= fila; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            if (columna == getSeres().GetLength(1) - 1)
-            {
-                for (int i = fila-1; i <= fila + 1; i++)
-                {
-                    for (int j = columna-1; j <= columna; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-                else return null;
-            }
-            else
-            {
-                for (int i = fila - 1; i <= fila + 1; i++)
-                {
-                    for (int j = columna - 1; j <= columna + 1; j++)
-                    {
-                        if (getSer(i, j) is Vacio)
-                        {
-                            //Guardo el ser en un array
-                            listaPosibles.Add((Vacio)getSer(i, j));
-                        }
-                    }
-                }
-                //retorno un ser random del array
-                Random rndo = new Random();
-                int final = rndo.Next(0, listaPosibles.Count);
-                if (listaPosibles.Count != 0)
-                {
-                    return listaPosibles[final];
-
-                }
-            
-                else return null;
-            }
-           
-
+            // Si no hay vacíos, retornar null
+            return null;
         }
+
+        // Instancia de Random estática para evitar reinicio de la semilla
+        private static Random random = new Random();
 
         internal String getPasos()    {return this.pasos.ToString();        }
 
@@ -1144,6 +574,10 @@ namespace Safari
         internal string getGacelas()   {  return this.gacelas.ToString();   }
         internal string getLeones() { return this.leones.ToString(); }
 
+        internal void despausar()
+        {
+            pausado = false;
+        }
     }
 
 }

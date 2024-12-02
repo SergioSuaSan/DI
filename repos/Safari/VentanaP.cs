@@ -29,10 +29,62 @@ namespace Safari
          * porque se vuelve loco.
          * ¿Cómo debería hacerlo para poder quitarlos y que esta página sea más legible?
          */
-        private void Form1_Load(object sender, EventArgs e)
+        //Método autoplay
+        private void autoplay()
         {
-
+            controlador.despausar();
+            controlador.autoplay(this);
+            buttonPause.Enabled = true;
+            buttonPlay.Enabled = false;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            buttonStep.Enabled = false;
+            
         }
+
+        //Método salir
+        private void salir()
+        {
+            this.Close();
+        }
+
+        //Método step
+        private void step()
+        {
+            controlador.step();
+            buttonPause.Enabled = false;
+            buttonPlay.Enabled = true;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            buttonStep.Enabled = true;
+            this.Refresh();
+        }
+
+        //Método pausar
+        private void pausar()
+        {
+            controlador.pausar();
+            buttonPause.Enabled = false;
+            buttonPlay.Enabled = true;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            buttonStep.Enabled = true;
+        }
+        //Metodo resetear
+        private void reset()
+        {
+            controlador.resetear();
+            buttonPause.Enabled = false;
+            buttonPlay.Enabled = true;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            buttonStep.Enabled = true;
+            this.Refresh();
+        }
+
+
+
+ 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
             //Muestro en las labels los Seres que tengo y el paso en el que estoy
@@ -74,7 +126,7 @@ namespace Safari
                 {
                     //Pintamos la imagen que se llama igual que el nombre del Ser que hemos asignado en el Safari
                     var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getNombre(controlador.getSer(fila, columna))}.ico");
-                    var bitmap = new Bitmap(100,100);
+                    var bitmap = new Bitmap(100, 100);
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 50, 50);
 
@@ -88,85 +140,69 @@ namespace Safari
             }
         }
 
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            autoplay();
 
         }
+
 
         private void Form1_Load_2(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            salir();
+
         }
+
 
         private void buttonStep_Click(object sender, EventArgs e)
         {
-            controlador.step();
-            this.Refresh();
-        }
-
-        private void numeroPlantas_Click(object sender, EventArgs e)
-        {
+            step();
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
 
-        }
+
 
 
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-
+            autoplay();
         }
 
         private void buttonStop_click(object sender, EventArgs e)
         {
-
+            salir();
         }
+
+
 
         private void buttonPause_click(object sender, EventArgs e)
         {
-
+            pausar();
         }
+
 
         private void buttonReset_click(object sender, EventArgs e)
         {
-            controlador.resetear();
-            this.Refresh();
+            reset();
         }
+
 
         private void panelSafari(object sender, PaintEventArgs e)
         {
@@ -178,26 +214,19 @@ namespace Safari
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador.resetear();
-            this.Refresh();
+            reset();
         }
 
-        private void numeroPasos_Click(object sender, EventArgs e)
+ 
+
+        private void stepToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-
+            step();
         }
 
-        private void numeroPlantas_BindingContextChanged(object sender, EventArgs e)
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            pausar();
         }
-
-        private void stepToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            controlador.step();
-            this.Refresh();
-        }
-
-       
     }
 }

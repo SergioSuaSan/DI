@@ -112,39 +112,41 @@ namespace Safari
             // stepToolStripMenuItem
             // 
             stepToolStripMenuItem.Name = "stepToolStripMenuItem";
-            stepToolStripMenuItem.Size = new Size(105, 22);
+            stepToolStripMenuItem.Size = new Size(180, 22);
             stepToolStripMenuItem.Text = "Step";
+            stepToolStripMenuItem.Click += stepToolStripMenuItem_Click_1;
             // 
             // resetToolStripMenuItem
             // 
             resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            resetToolStripMenuItem.Size = new Size(105, 22);
+            resetToolStripMenuItem.Size = new Size(180, 22);
             resetToolStripMenuItem.Text = "Reset";
             resetToolStripMenuItem.Click += resetToolStripMenuItem_Click;
             // 
             // playToolStripMenuItem
             // 
             playToolStripMenuItem.Name = "playToolStripMenuItem";
-            playToolStripMenuItem.Size = new Size(105, 22);
+            playToolStripMenuItem.Size = new Size(180, 22);
             playToolStripMenuItem.Text = "Play";
             playToolStripMenuItem.Click += playToolStripMenuItem_Click;
             // 
             // pauseToolStripMenuItem
             // 
             pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            pauseToolStripMenuItem.Size = new Size(105, 22);
+            pauseToolStripMenuItem.Size = new Size(180, 22);
             pauseToolStripMenuItem.Text = "Pause";
+            pauseToolStripMenuItem.Click += pauseToolStripMenuItem_Click;
             // 
             // stopToolStripMenuItem
             // 
             stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            stopToolStripMenuItem.Size = new Size(105, 22);
+            stopToolStripMenuItem.Size = new Size(180, 22);
             stopToolStripMenuItem.Text = "Stop";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(105, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -270,7 +272,6 @@ namespace Safari
             numeroPlantas.Size = new Size(13, 15);
             numeroPlantas.TabIndex = 1;
             numeroPlantas.Text = "0";
-            numeroPlantas.Click += numeroPlantas_Click;
             // 
             // label1
             // 
@@ -359,7 +360,6 @@ namespace Safari
             label6.Size = new Size(44, 15);
             label6.TabIndex = 0;
             label6.Text = "Leones";
-            label6.Click += label6_Click;
             // 
             // groupBox3
             // 
@@ -393,7 +393,6 @@ namespace Safari
             label4.Size = new Size(50, 15);
             label4.TabIndex = 0;
             label4.Text = "Gacelas:";
-            label4.Click += label4_Click;
             // 
             // panel3
             // 

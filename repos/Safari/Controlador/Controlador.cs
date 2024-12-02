@@ -34,5 +34,20 @@ namespace Safari
         internal string getGacelas() { return miSafari.getGacelas(); }
         internal string getLeones(){ return miSafari.getLeones();  }
         internal void step() { miSafari.avanzar(); }
+
+        internal void autoplay(VentanaP ventanaP)
+        {
+            miSafari.autoplay(ventanaP);
+        }
+
+        internal void pausar()
+        {
+            miSafari.pausar(); 
+        }
+
+        internal void despausar()
+        {
+            miSafari.despausar();
+        }
     }
 }
