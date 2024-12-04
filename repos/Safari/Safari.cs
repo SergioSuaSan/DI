@@ -60,9 +60,9 @@ namespace Safari
             this.plantas = 0;
             this.nulos = 0;
             this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
-            this.maxLeones = (filas * columnas) * 2 / 9;
+            this.maxLeones =  (filas * columnas) * 2 / 9;
             this.maxGacelas = (filas * columnas) * 4 / 9;
-            this.maxPlantas = (filas * columnas) / 3;
+            this.maxPlantas =  (filas * columnas) / 3;
             this.pasos = 0;
             this.pausado = false;
 
@@ -99,14 +99,20 @@ namespace Safari
                     //Si el Ser en esa posición es un León y no se ha movido entra en el if
                     if (this.seres[i, j] is Leon && !((Leon)this.seres[i, j]).getMovido())
                         {
+                            
                             morirseDeHambre(seres[i, j]);
                             //Buscamos Si hay una gacela cerca. Si la hay nos la comemos y nos movemos a su posición
                             Ser provisional = buscarGacela(i, j/* //ALEJANDRO ,Leon.comida*/);
 
                             if (provisional != null)
                                 Console.WriteLine(provisional.GetType().Name);
+                         if (seres[i, j].getTiempoParaReproducirse() >= 6)
+                        {
 
-                            if (provisional is Gacela)
+                            reproducirse(seres[i, j]);
+
+                        }
+                        else if (provisional is Gacela)
                             {
                                 // Console.WriteLine("Leon en: " + i + ", " + j+"\n Se come a "+provisional.GetType().Name+" en: " + provisional.getPosicioni() + ", " + provisional.getPosicionj());
                                 //Transformamos la Gacela en el León
@@ -123,12 +129,7 @@ namespace Safari
                                 seres[i, j] = new Vacio(i, j);
                                 gacelas--;
                             }
-                            else if (seres[i, j].getTiempoParaReproducirse() >= 6)
-                            {
-
-                                reproducirse(seres[i, j]);
-                                
-                            }
+                           
                             else
                             {
                                 moverse(seres[i, j]);
@@ -144,7 +145,15 @@ namespace Safari
                         morirseDeHambre(seres[i, j]);
                         Ser provisional = buscarPlanta(i, j);
 
-                        if (provisional is Planta)
+                        Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  lleva {seres[i, j].getTiempoParaReproducirse()} días para reproducirse");
+                        if (seres[i, j].getTiempoParaReproducirse() >= 4)
+                        {
+                            Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  ha empezado la reproducción");
+                            reproducirse(seres[i, j]);
+
+
+                        }
+                         else if (provisional is Planta)
                         {
 
                             seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
@@ -157,13 +166,7 @@ namespace Safari
                             seres[i, j] = new Vacio(i, j);
                             plantas--;
                         }
-
-                        else if (seres[i, j].getTiempoParaReproducirse() >= 4)
-                        {
-
-                            reproducirse(seres[i, j]);
-                            
-                        }
+                       
                         else
                         {
 
@@ -204,7 +207,23 @@ namespace Safari
         //Ponemos el pausado a true para que no pueda avanzar
         public void pausar() { pausado = true; }
         //Creamos el safari de nuevo
-        public void resetear() { iniciarSafari(); }
+        public void resetear() {
+            //Inicializamos todos los parámetros del safari
+
+            pasos = 0;
+            pausado = true;
+           
+
+            this.maxLeones = (filas * columnas) / 9;
+            this.maxGacelas = (filas * columnas) * 2 / 9;
+            this.maxPlantas = (filas * columnas) / 3;
+            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
+            this.nulos = 0;
+            this.leones = 0;
+            this.gacelas = 0;
+            this.plantas = 0;
+            this.seres = new Ser[filas, columnas];
+            iniciarSafari(); }
         //EL autoplay.
         public void autoplay(VentanaP ventanaP)
         {
@@ -290,7 +309,7 @@ namespace Safari
                         //Sacamos la posición del vacio
                         int nuevai = provisional.getPosicioni();
                         int nuevaj = provisional.getPosicionj();
-                        Console.WriteLine($"Se va a reproducir en {provisional.GetType().Name}  en:  {nuevai} ,  {nuevaj}");
+                        Console.WriteLine($"El ser {ser.GetType().Name} Se va a reproducir en {provisional.GetType().Name}  en:  {nuevai} ,  {nuevaj}");
                         //Creamos en el nuevo ser el vacío
                        
                     if (seres[viejai, viejaj] is Leon)
@@ -345,26 +364,19 @@ namespace Safari
         }
 
 
+       
+           
+            
 
-      
+        
+
+
         //Iniciamos el Safari
         public void iniciarSafari()
         {
-            //Inicializamos todos los parámetros del safari
-            pasos = 0;
-            pausado = true;
-            bool Creado = false;
-            this.maxLeones = (filas * columnas)/9;
-            this.maxGacelas = (filas * columnas) * 2 / 9;
-            this.maxPlantas = (filas * columnas) / 3;
-            this.maxNulos = (filas * columnas)-(maxGacelas+maxLeones+maxPlantas);
-            this.nulos = 0;
-            this.leones = 0;
-            this.gacelas = 0;
-            this.plantas = 0;
-            this.seres = new Ser[filas , columnas];
 
-            
+           
+            bool Creado = false;
 
             //Creamos un Ser en cada posición del array
             for (int i = 0; i < filas; i++)
@@ -409,7 +421,7 @@ namespace Safari
                                 if (nulos <= maxNulos)
                                 {
                                     nulos++;
-                                this.seres[i, j] = new Vacio(j,i);
+                                this.seres[i, j] = new Vacio(i,j);
                                     Creado = true;
                                 }
                                 break;
@@ -532,17 +544,13 @@ namespace Safari
             // Lista para guardar los vacíos encontrados
             List<Vacio> listaPosibles = new List<Vacio>();
 
-            // Dimensiones del array
-            int filas = getSeres().GetLength(0);
-            int columnas = getSeres().GetLength(1);
-
             // Iterar por las celdas vecinas (incluye la actual)
             for (int i = fila - 1; i <= fila + 1; i++)
             {
                 for (int j = columna - 1; j <= columna + 1; j++)
                 {
                     // Validar si la posición está dentro de los límites del array
-                    if (i >= 0 && i < filas && j >= 0 && j < columnas)
+                    if (i >= 0 && i < this.filas && j >= 0 && j < this.columnas)
                     {
                         // Comprobar si el ser es "Vacio"
                         if (getSer(i, j) is Vacio)

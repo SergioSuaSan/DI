@@ -11,6 +11,10 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="Aqua">
+            <TextBox HorizontalAlignment="Left" Margin="113,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="182" Height="60"/>
+            <Label>Adios a TodOs</Label>
+        </StackPanel>
         <Button Content="Pulsa aquí" Margin="32,157,32,0" VerticalAlignment="Top" RenderTransformOrigin="10.762,-0.681" Height="60" Background="Red" Grid.Column="1" BorderBrush="Beige"  Foreground="Aqua">
             <Button.RenderTransform>
                 <TransformGroup>
