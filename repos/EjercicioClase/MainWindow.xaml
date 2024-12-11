@@ -1,0 +1,53 @@
+﻿<Window x:Class="EjercicioClase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EjercicioClase"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="VentanaP">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="TextoValor" Width="100" FontSize="16" TextAlignment="Center" Text="{Binding ElementName=SliderValor, Path=Value, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" ButtonBase.Click="Panel_Click" >
+            <Label HorizontalAlignment="Center" Margin="0,20,0,0"  Content="HOLA A TODOS, ESTAMOS MEDIO APRENDIENDO ALGO" VerticalAlignment="Center" Background="Beige"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Enviar" Margin="10" VerticalAlignment="Center"  Height="60" Width="150" Background="Aqua" BorderBrush="Black"  Foreground="Black" Click="Enviar_Click"/>
+                <Button Content="No Enviar" Margin="10" VerticalAlignment="Center"  Height="60" Width="150" Background="Aqua" BorderBrush="Black"  Foreground="Black" Click="NoEnviar_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel x:Name="Panel_Check" Grid.Row="2" Grid.Column="1" Background="Azure" HorizontalAlignment="Center" Width="340">
+            <Label FontSize="16" FontWeight="Bold">Opciones</Label>
+            <CheckBox Name="MarcarTodas" IsThreeState="False" Checked="MarcarTodas_Checked" Unchecked="MarcarTodas_Unchecked">Agregar todas</CheckBox>
+
+            <StackPanel Margin="15">
+                <CheckBox x:Name="Op1" Checked="Op_Checked" Unchecked="Op_Unchecked">Opcion 1</CheckBox>
+                <CheckBox x:Name="Op2" Checked="Op_Checked" Unchecked="Op_Unchecked">Opcion 2</CheckBox>
+                <CheckBox x:Name="Op3" Checked="Op_Checked" Unchecked="Op_Unchecked">Opcion 3</CheckBox>
+                <CheckBox x:Name="Op4" Checked="Op_Checked" Unchecked="Op_Unchecked">Opcion 4</CheckBox>
+
+            </StackPanel>
+
+        </StackPanel>
+        
+        <Slider Width="350" Name="SliderValor" Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+
+
+
+    </Grid>
+</Window>
