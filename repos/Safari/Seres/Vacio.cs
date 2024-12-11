@@ -27,7 +27,7 @@ namespace Safari.Seres
 
         public override string ToString()
         {
-            return "Vacío";
+            return "Vacio";
         }
     }
 }
