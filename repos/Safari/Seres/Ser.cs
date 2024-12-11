@@ -43,8 +43,7 @@ namespace Safari.Seres
         }
 
 
-        public abstract void reproduccion();
-        public abstract void morir();
+        //Métodos necesarios
         public int getTiempoVida() { return tiempoVida; }
         public int getPosicioni() { return posicioni; }
         public int getPosicionj() { return posicionj; }

@@ -21,13 +21,9 @@ namespace Safari.Seres
             this.posicionj = posicionj;
         }
 
-        public override void morir(){  throw new NotImplementedException(); }
+  
 
-        public override void reproduccion() { throw new NotImplementedException();}
-
-        public override string ToString()
-        {
-            return "Vacio";
-        }
+        //Método necesario
+        public override string ToString() {return "Vacio"; }
     }
 }

@@ -70,6 +70,7 @@ namespace Safari
             buttonReset.Enabled = true;
             buttonStep.Enabled = true;
         }
+        
         //Metodo resetear
         private void reset()
         {
@@ -81,10 +82,8 @@ namespace Safari
             buttonStep.Enabled = true;
             this.Refresh();
         }
-
-
-
- 
+        
+        //Método que pinta toda la tabla
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
             //Muestro en las labels los Seres que tengo y el paso en el que estoy
@@ -125,7 +124,7 @@ namespace Safari
                 for (int columna = 0; columna < columnas; columna++)
                 {
                     //Pintamos la imagen que se llama igual que el nombre del Ser que hemos asignado en el Safari
-                    var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getNombre(controlador.getSer(fila, columna))}.ico");
+                    var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getTipoSer(fila, columna)}.ico");
                     var bitmap = new Bitmap(100, 100);
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 50, 50);
@@ -139,71 +138,45 @@ namespace Safari
                 }
             }
         }
-
-
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
             autoplay();
 
         }
-
-
         private void Form1_Load_2(object sender, EventArgs e)
         {
 
         }
-
-
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             salir();
 
         }
-
-
         private void buttonStep_Click(object sender, EventArgs e)
         {
             step();
 
         }
-
-
-
-
-
-
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             autoplay();
         }
-
         private void buttonStop_click(object sender, EventArgs e)
         {
             salir();
         }
-
-
-
         private void buttonPause_click(object sender, EventArgs e)
         {
             pausar();
         }
-
-
         private void buttonReset_click(object sender, EventArgs e)
         {
             reset();
         }
-
-
         private void panelSafari(object sender, PaintEventArgs e)
         {
 
@@ -211,19 +184,14 @@ namespace Safari
 
 
         }
-
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             reset();
         }
-
- 
-
         private void stepToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             step();
         }
-
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pausar();

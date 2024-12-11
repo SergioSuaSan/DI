@@ -17,37 +17,23 @@ namespace Safari
         }
         */
         //Constructor parametrizado, el que voy a  usar
-        public Controlador(Safari misafari) {
-            this.miSafari = misafari;
-        }
+        public Controlador(Safari misafari) {this.miSafari = misafari; }
 
         //Todas las llamadas al Safari para llevarlo a la ventana
         public void iniciarSafari() { miSafari.iniciarSafari(); }
         public int getFilas() { return miSafari.getFilas(); }
         public void resetear() { miSafari.resetear(); }
         public int getColumnas() { return miSafari.getColumnas();}
-        public Ser[,] getSeres() { return miSafari.getSeres(); }
-        public Ser getSer(int fila, int columna) { return miSafari.getSer(fila, columna); }
-        public String getNombre(Ser ser) { return ser.ToString(); }
-        public String getPasos() {  return miSafari.getPasos();}
-        internal String getPlantas() { return miSafari.getPlantas(); }
+
+        //Devuelve el nombre del Ser que está en esa posición
+        public string getTipoSer(int fila, int columna) { return miSafari.getTipoSer(fila, columna); }
+        public string getPasos() {  return miSafari.getPasos();}
+        internal string getPlantas() { return miSafari.getPlantas(); }
         internal string getGacelas() { return miSafari.getGacelas(); }
         internal string getLeones(){ return miSafari.getLeones();  }
         internal void step() { miSafari.avanzar(); }
-
-        internal void autoplay(VentanaP ventanaP)
-        {
-            miSafari.autoplay(ventanaP);
-        }
-
-        internal void pausar()
-        {
-            miSafari.pausar(); 
-        }
-
-        internal void despausar()
-        {
-            miSafari.despausar();
-        }
+        internal void autoplay(VentanaP ventanaP){ miSafari.autoplay(ventanaP); }
+        internal void pausar() { miSafari.pausar(); }
+        internal void despausar() {miSafari.despausar();}
     }
 }

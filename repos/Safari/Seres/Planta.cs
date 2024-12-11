@@ -8,22 +8,11 @@ namespace Safari.Seres
 {
     internal class Planta : Ser
     {
-        public Planta(int i, int j) : base(i, j) { 
-            
-        }
+        public Planta(int i, int j) : base(i, j) {   }
 
 
 
-
-        public override void morir()
-        {
-            
-        }
-
-        public override void reproduccion()
-        {
-   
-        }
+        //Métodos necesarios, no borrar
         public int getTiempoVida() { return tiempoVida; }
         public int getPosicioni() { return posicioni; }
         public int getPosicionj() { return posicionj; }

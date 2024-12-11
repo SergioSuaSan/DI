@@ -257,11 +257,6 @@ namespace Safari
         }
 
 
-
-
-
-
-
         //Metodo moverse parametrizado. Me dan un ser y si es animal, lo muevo a un vacio
         private void moverse(Ser ser)
         {
@@ -305,6 +300,7 @@ namespace Safari
             }
 
         }
+        //Método reproducirse parametrizado. Me dan un ser y si es el momento de reproducirse, crea una nueva instancia de ese ser en un vacío adjacente
         private void reproducirse(Ser ser)
         {
             if (!(ser is Vacio))
@@ -354,6 +350,7 @@ namespace Safari
 
         }
 
+        //Comprueba si el ser lleva muchos días sin comer, y si es así, lo transforma a vacío
         private void morirseDeHambre(Ser ser)
         {
             Console.WriteLine($"El ser {ser.GetType().Name} \n en la posición ({ser.getPosicioni()}, {ser.getPosicionj()}) \n lleva {ser.getTiempoSinComer()} dias sin comer");
@@ -374,12 +371,6 @@ namespace Safari
 
         }
 
-
-       
-           
-            
-
-        
 
 
         //Iniciamos el Safari
@@ -451,7 +442,9 @@ namespace Safari
         //Obtiene TODOS los seres
         internal Ser[,] getSeres(){return this.seres;}
         //Obtiene UN ser de  una determinada posición
-        public Ser getSer(int fila, int columna) {return this.seres[fila, columna]; }
+        public Ser getSer(int fila, int columna) { return this.seres[fila, columna]; }
+
+        public string getTipoSer(int fila, int columna) { return this.seres[fila, columna].ToString(); }
 
 
         /*
@@ -472,7 +465,6 @@ namespace Safari
 
 
         //Método que busca una gacela en las 8 casillas adyacentes a la posición del Ser que se indique
-
         //Optimización realizada por chatgpt. Es increible lo fácil que era optimizarlo y que no era capaz de verlo
         public Ser buscarGacela(int fila, int columna)
         {
@@ -586,17 +578,14 @@ namespace Safari
         // Instancia de Random estática para evitar reinicio de la semilla
         private static Random random = new Random();
 
-        internal String getPasos()    {return this.pasos.ToString();        }
+        internal string getPasos()    {return this.pasos.ToString();        }
 
         internal string getPlantas() { return this.plantas.ToString(); }
 
         internal string getGacelas()   {  return this.gacelas.ToString();   }
         internal string getLeones() { return this.leones.ToString(); }
 
-        internal void despausar()
-        {
-            pausado = false;
-        }
+        internal void despausar(){ pausado = false; }
     }
 
 }
