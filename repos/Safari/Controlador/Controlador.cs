@@ -35,5 +35,24 @@ namespace Safari
         internal void autoplay(VentanaP ventanaP){ miSafari.autoplay(ventanaP); }
         internal void pausar() { miSafari.pausar(); }
         internal void despausar() {miSafari.despausar();}
+
+        //Examen 1
+        internal string getElefantes()
+        {
+            return miSafari.getElefantes();
+        }
+
+        //Examen 2
+
+        internal void steps10()
+        {
+            miSafari.avanzar10pasos();
+        }
+
+        //Examen 3
+        internal int getTurnos()
+        {
+            return miSafari.getTurnos();
+        }
     }
 }

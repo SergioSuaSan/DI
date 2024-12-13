@@ -39,7 +39,9 @@ namespace Safari
             buttonStop.Enabled = true;
             buttonReset.Enabled = true;
             buttonStep.Enabled = false;
-            
+            //Examen 1
+            button10Steps.Enabled = false;
+
         }
 
         //Método salir
@@ -57,8 +59,24 @@ namespace Safari
             buttonStop.Enabled = true;
             buttonReset.Enabled = true;
             buttonStep.Enabled = true;
+            //Examen 1
+            button10Steps.Enabled = true;
             this.Refresh();
         }
+        //Examen 2 Generado método 10 steps
+        private void steps10()
+        {
+            controlador.steps10();
+            buttonPause.Enabled = false;
+            buttonPlay.Enabled = true;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            buttonStep.Enabled = true;
+            //Examen 1
+            button10Steps.Enabled = true;
+            this.Refresh();
+        }
+
 
         //Método pausar
         private void pausar()
@@ -69,8 +87,10 @@ namespace Safari
             buttonStop.Enabled = true;
             buttonReset.Enabled = true;
             buttonStep.Enabled = true;
+            //Examen 1
+            button10Steps.Enabled = true;
         }
-        
+
         //Metodo resetear
         private void reset()
         {
@@ -80,9 +100,12 @@ namespace Safari
             buttonStop.Enabled = true;
             buttonReset.Enabled = true;
             buttonStep.Enabled = true;
+
+            //Examen 1
+            button10Steps.Enabled = true;
             this.Refresh();
         }
-        
+
         //Método que pinta toda la tabla
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -91,6 +114,8 @@ namespace Safari
             numeroGacelas.Text = controlador.getGacelas();
             numeroPlantas.Text = controlador.getPlantas();
             numeroPasos.Text = controlador.getPasos();
+            //Examen 1 Colocar el texto de la cantidad de Elefantes que hay
+            numeroElefantes.Text = controlador.getElefantes();
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Black, 2);
 
@@ -101,6 +126,8 @@ namespace Safari
             int altoCelda = 50;
             int xInicial = 50;
             int yInicial = 50;
+
+
 
 
             // Dibujar las líneas de la tabla
@@ -147,6 +174,7 @@ namespace Safari
         {
 
         }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -195,6 +223,60 @@ namespace Safari
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pausar();
+        }
+
+        //Examen 2, Creado botón que haga 10 pasos
+        private void steps10_Click(object sender, EventArgs e)
+        {
+            steps10();
+
+        }
+
+
+        //Examen 2 Generado boton en el menu
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            steps10();
+        }
+
+        private void PintarBotones(object sender, PaintEventArgs e)
+        {
+
+
+        }
+
+        private void PintarPanel(object sender, PaintEventArgs e)
+        {
+           
+
+        }
+
+        
+        private void PintarDia(object sender, PaintEventArgs e)
+        {
+            //Examen 3 VOy a intentar dibujar un sol y una luna para que sea más visiblw
+            Graphics g = e.Graphics;
+           
+                //Examen 3, No lo he conseguido, pero la idea era que si el turno era
+                //distinto de 2 (la noche) me dibujara un sol, y en el otro caso, la luna
+            if ((controlador.getTurnos()+1) % 3 == 0)
+            {
+
+                var image = Image.FromFile($"..\\..\\..\\img\\moon.ico");
+                var bitmap = new Bitmap(100, 100);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(image, 5, 5, 50, 50);
+
+            }
+            else
+            {
+                var image = Image.FromFile($"..\\..\\..\\img\\Sol.ico");
+                var bitmap = new Bitmap(100, 100);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(image, 5, 5, 50, 50);
+
+            }
+
         }
     }
 }

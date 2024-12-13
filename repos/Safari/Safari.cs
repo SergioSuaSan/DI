@@ -27,6 +27,13 @@ namespace Safari
         private int pasos;
         private bool pausado;
 
+        //Examen 1
+        private int elefantes;
+        private int maxElefantes;
+
+        //Examen 3
+        private int turno;
+
         /*
         //Constructor vacío
         public Safari()
@@ -59,159 +66,255 @@ namespace Safari
             this.gacelas = 0;
             this.plantas = 0;
             this.nulos = 0;
-            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
-            this.maxLeones =  (filas * columnas) * 2 / 9;
-            this.maxGacelas = (filas * columnas) * 4 / 9;
+            //Examen 1
+            this.elefantes = 0;
+            this.maxElefantes = (filas * columnas) / 20;
+            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas + maxElefantes); //Examen 1 añadido maxelefantes
+
+            this.maxLeones =  (filas * columnas) / 10;
+            this.maxGacelas = (filas * columnas) * 2 / 9;
             this.maxPlantas =  (filas * columnas) / 3;
             this.pasos = 0;
             this.pausado = false;
 
+            //Examen 3
+            this.turno = 0;
 
 
+
+        }
+        //Examen 2 creación de metodo avanzar 10 pasos
+        public void avanzar10pasos()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                avanzar();
+            }
         }
 
         //Avanzar un paso, o STEP
         public void avanzar()
         {
-            //Si está pausado, lo despauso
-            pausado = false;
-            //Aumento el número de pasos
-            pasos++;
-            //Recorro una vez el array poniendo el movido como false para que todos los animales se puedan mover
-            for (int i = 0; i < this.filas; i++)
+            //Examen 4 Creación de los messagebox
+            if (plantas == filas * columnas)
             {
-                for (int j = 0; j < this.columnas; j++)
-                {
-                    if (this.seres[i, j] is Animal)
-                    {
-                        ((Animal)this.seres[i, j]).setMovido(false);
-                    }
-                }
+
+                MessageBox.Show("Solo las plantas pueden dominar el mundo");
+                pausado = true;
             }
-            //Recorro el array por segunda vez haciendo ya todo el trabajo
-            for (int i = 0; i < this.filas; i++)
+            else if (plantas + gacelas + leones + elefantes == 0)
+            {
+                MessageBox.Show("Es el Fin del Mundo");
+                pausado = true;
+            }
+            else
             {
 
-                for (int j = 0; j < this.columnas; j++)
+
+
+
+                //Si está pausado, lo despauso
+                pausado = false;
+
+
+                //Examen 4
+                //Aumento el numero de turnos, y si llego a 3, me aumento los pasos (que simulan un día)
+                //Aumento el número de pasos
+                turno++;
+                if (turno == 3)
                 {
-                    #region TurnoAnimales ;
-
-                    //Si el Ser en esa posición es un León y no se ha movido entra en el if
-                    if (this.seres[i, j] is Leon && !((Leon)this.seres[i, j]).getMovido())
-                        {
-                            
-                            morirseDeHambre(seres[i, j]);
-                        if (this.seres[i, j] is Leon)
-                        {
-                            ((Animal)this.seres[i, j]).setTiempoDeVida(((Animal)this.seres[i, j]).getTiempoVida() + 1);
-                            ((Animal)this.seres[i, j]).setTiempoSinComer(((Animal)this.seres[i, j]).getTiempoSinComer() + 1);
-                            //Buscamos Si hay una gacela cerca. Si la hay nos la comemos y nos movemos a su posición
-                            Ser provisional = buscarGacela(i, j);
-
-                            if (provisional != null)
-                                Console.WriteLine(provisional.GetType().Name);
-                            if (seres[i, j].getTiempoParaReproducirse() >= 6)
-                            {
-
-                                reproducirse(seres[i, j]);
-
-                            }
-                            else if (provisional is Gacela)
-                            {
-                                // Console.WriteLine("Leon en: " + i + ", " + j+"\n Se come a "+provisional.GetType().Name+" en: " + provisional.getPosicioni() + ", " + provisional.getPosicionj());
-                                //Transformamos la Gacela en el León
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
-                                Console.WriteLine(seres[provisional.getPosicioni(), provisional.getPosicionj()].GetType().Name + "\n");
-                                //Ponemos su movido a true para que no se pueda volver a mover en este paso
-                                ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
-                                ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setTiempoSinComer(0);                              
-                                // ACTUALIZAMOS LA NUEVA POSICIÓN DEL LEÓN
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
-                                //Dejamos el antiguo lugar del León como Vacío
-                                seres[i, j] = new Vacio(i, j);
-                                gacelas--;
-                            }
-
-                            else
-                            {
-                                moverse(seres[i, j]);
-                            }
-                           
-
-                            Console.WriteLine("Fin del Leon \n");
-                        }
-
-                        }
-
-                    //Copia de lo de León pero con Gacela
-                    if (this.seres[i, j] is Gacela && !((Gacela)this.seres[i, j]).getMovido())
-                    {
-                        morirseDeHambre(seres[i, j]);
-                        if (this.seres[i, j] is Gacela)
-                        {
-                            ((Animal)this.seres[i, j]).setTiempoDeVida(((Animal)this.seres[i, j]).getTiempoVida() + 1);
-                            ((Animal)this.seres[i, j]).setTiempoSinComer(((Animal)this.seres[i, j]).getTiempoSinComer() + 1);
-                            Ser provisional = buscarPlanta(i, j);
-
-                            Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  lleva {seres[i, j].getTiempoParaReproducirse()} días para reproducirse");
-                            if (seres[i, j].getTiempoParaReproducirse() >= 4)
-                            {
-                                Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  ha empezado la reproducción");
-                                reproducirse(seres[i, j]);
-
-
-                            }
-                            else if (provisional is Planta)
-                            {
-
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
-                                Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
-                                ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
-                                ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setTiempoSinComer(0);
-                             
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
-                                seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
-                                seres[i, j] = new Vacio(i, j);
-                                plantas--;
-                            }
-
-                            else
-                            {
-
-                                moverse(seres[i, j]);
-
-                            }
-                           
-                           
-                        }
-                        Console.WriteLine("Fin de la gacela \n");
-                    }
-
-                    #endregion
-                    //Copia de lo de León pero con Gacela
-
-                    if (this.seres[i, j] is Planta)
-                    {
-                        this.seres[i, j].setTiempoParaReproducirse(this.seres[i, j].getTiempoParaReproducirse() + 1);
-                        if (seres[i, j].getTiempoParaReproducirse() >= 2)
-                        {
-                            this.seres[i, j].setTiempoParaReproducirse(0);
-                            reproducirse(seres[i, j]);
-                           
-                        }
-                        Console.WriteLine("Fin de la planta \n");
-
-
-                    }
-
-                    
+                    pasos++;
+                    turno = 0;
                 }
+                //Recorro una vez el array poniendo el movido como false para que todos los animales se puedan mover
+                for (int i = 0; i < this.filas; i++)
+                {
+                    for (int j = 0; j < this.columnas; j++)
+                    {
+                        if (this.seres[i, j] is Animal)
+                        {
+                            ((Animal)this.seres[i, j]).setMovido(false);
+                        }
+                    }
+                }
+                //Recorro el array por segunda vez haciendo ya todo el trabajo
+                for (int i = 0; i < this.filas; i++)
+                {
+
+                    for (int j = 0; j < this.columnas; j++)
+                    {
+                        #region TurnoAnimales ;
+
+                        //Si el Ser en esa posición es un León y no se ha movido entra en el if
+                        if (this.seres[i, j] is Leon && !((Leon)this.seres[i, j]).getMovido())
+                        {
+
+                            morirseDeHambre(seres[i, j]);
+                            if (this.seres[i, j] is Leon)
+                            {
+                                ((Animal)this.seres[i, j]).setTiempoDeVida(((Animal)this.seres[i, j]).getTiempoVida() + 1);
+                                ((Animal)this.seres[i, j]).setTiempoSinComer(((Animal)this.seres[i, j]).getTiempoSinComer() + 1);
+                                //Buscamos Si hay una gacela cerca. Si la hay nos la comemos y nos movemos a su posición
+                                Ser provisional = buscarGacela(i, j);
+
+                                if (provisional != null)
+                                    Console.WriteLine(provisional.GetType().Name);
+                                if (seres[i, j].getTiempoParaReproducirse() >= 6)
+                                {
+
+                                    reproducirse(seres[i, j]);
+
+                                }
+                               //Examen 4, indicamos que si es el turno 2 (la noche), se salte la comida
+                                else if (provisional is Gacela&&turno !=2)
+                                {
+                                    
+                                        // Console.WriteLine("Leon en: " + i + ", " + j+"\n Se come a "+provisional.GetType().Name+" en: " + provisional.getPosicioni() + ", " + provisional.getPosicionj());
+                                        //Transformamos la Gacela en el León
+                                        seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
+                                        Console.WriteLine(seres[provisional.getPosicioni(), provisional.getPosicionj()].GetType().Name + "\n");
+                                        //Ponemos su movido a true para que no se pueda volver a mover en este paso
+                                        ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
+                                        ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setTiempoSinComer(0);
+                                        // ACTUALIZAMOS LA NUEVA POSICIÓN DEL LEÓN
+                                        seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
+                                        seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
+                                        //Dejamos el antiguo lugar del León como Vacío
+                                        seres[i, j] = new Vacio(i, j);
+                                        gacelas--;
+                                    
+                                }
+
+                                else
+                                {
+                                    //Examen 4, indicamos que si es de noche no se mueva
+                                    if (turno != 2)
+                                    {
+                                        moverse(seres[i, j]);
+                                    }
+                                }
+
+
+                                Console.WriteLine("Fin del Leon \n");
+                            }
+
+                        }
+
+                        //Copia de lo de León pero con Gacela
+                        if (this.seres[i, j] is Gacela && !((Gacela)this.seres[i, j]).getMovido())
+                        {
+                            morirseDeHambre(seres[i, j]);
+                            if (this.seres[i, j] is Gacela)
+                            {
+                                ((Animal)this.seres[i, j]).setTiempoDeVida(((Animal)this.seres[i, j]).getTiempoVida() + 1);
+                                ((Animal)this.seres[i, j]).setTiempoSinComer(((Animal)this.seres[i, j]).getTiempoSinComer() + 1);
+                                Ser provisional = buscarPlanta(i, j);
+
+                                Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  lleva {seres[i, j].getTiempoParaReproducirse()} días para reproducirse");
+                                if (seres[i, j].getTiempoParaReproducirse() >= 4)
+                                {
+                                    Console.WriteLine($"La Gacela en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  ha empezado la reproducción");
+                                    reproducirse(seres[i, j]);
+
+
+                                }
+                                else if (provisional is Planta)
+                                {
+
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
+                                    Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
+                                    ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
+                                    ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setTiempoSinComer(0);
+
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
+                                    seres[i, j] = new Vacio(i, j);
+                                    plantas--;
+                                }
+
+                                else
+                                {
+
+                                    moverse(seres[i, j]);
+
+                                }
+
+
+                            }
+                            Console.WriteLine("Fin de la gacela \n");
+                        }
+
+                        //Examen 1, comportamiento del elefante
+                        //Copia de lo de León pero con Elefante
+                        if (this.seres[i, j] is Elefante && !((Elefante)this.seres[i, j]).getMovido())
+                        {
+                            morirseDeHambre(seres[i, j]);
+                            if (this.seres[i, j] is Elefante)
+                            {
+                                ((Animal)this.seres[i, j]).setTiempoDeVida(((Animal)this.seres[i, j]).getTiempoVida() + 1);
+                                ((Animal)this.seres[i, j]).setTiempoSinComer(((Animal)this.seres[i, j]).getTiempoSinComer() + 1);
+                                Ser provisional = buscarPlanta(i, j);
+
+                                Console.WriteLine($"El elefante en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  lleva {seres[i, j].getTiempoParaReproducirse()} días para reproducirse");
+                                if (seres[i, j].getTiempoParaReproducirse() >= 4)
+                                {
+                                    Console.WriteLine($"El Elefante en la posición  ({seres[i, j].getPosicioni()}, {seres[i, j].getPosicionj()})  ha empezado la reproducción");
+                                    reproducirse(seres[i, j]);
+
+
+                                }
+                                else if (provisional is Planta)
+                                {
+
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
+                                    Debug.WriteLine(provisional.getPosicioni() + " " + provisional.getPosicionj());
+                                    ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setMovido(true);
+                                    ((Animal)this.seres[provisional.getPosicioni(), provisional.getPosicionj()]).setTiempoSinComer(0);
+
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicioni(provisional.getPosicioni());
+                                    seres[provisional.getPosicioni(), provisional.getPosicionj()].setPosicionj(provisional.getPosicionj());
+                                    seres[i, j] = new Vacio(i, j);
+                                    plantas--;
+                                }
+
+                                else
+                                {
+
+                                    moverse(seres[i, j]);
+
+                                }
+
+
+                            }
+                            Console.WriteLine("Fin del Elefante \n");
+                        }
+
+                        #endregion
+                        //Copia de lo de León pero con Gacela
+
+                        if (this.seres[i, j] is Planta)
+                        {
+                            this.seres[i, j].setTiempoParaReproducirse(this.seres[i, j].getTiempoParaReproducirse() + 1);
+                            if (seres[i, j].getTiempoParaReproducirse() >= 3)
+                            {
+                                this.seres[i, j].setTiempoParaReproducirse(0);
+                                reproducirse(seres[i, j]);
+
+                            }
+                            Console.WriteLine("Fin de la planta \n");
+
+
+                        }
+
+
+                    }
 
 
 
 
 
+
+                }
 
             }
         }
@@ -226,10 +329,14 @@ namespace Safari
             pausado = true;
            
 
-            this.maxLeones = (filas * columnas) / 9;
+            this.maxLeones = (filas * columnas) / 10;
             this.maxGacelas = (filas * columnas) * 2 / 9;
             this.maxPlantas = (filas * columnas) / 3;
-            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas);
+            //Examen 1
+            this.elefantes = 0;
+            this.maxElefantes = (filas * columnas) / 20;
+            this.maxNulos = (filas * columnas) - (maxGacelas + maxLeones + maxPlantas + maxElefantes); //Examen 1 añadido maxelefantes
+
             this.nulos = 0;
             this.leones = 0;
             this.gacelas = 0;
@@ -334,6 +441,13 @@ namespace Safari
                         this.seres[nuevai, nuevaj] = new Planta(nuevai,nuevaj);
                         plantas++;
                     }
+
+                    //Examen 1, programación de la reproducción del Elefante
+                    else if (seres[viejai, viejai] is Elefante)
+                    {
+                        this.seres[nuevai,nuevaj] = new Elefante(nuevai, nuevaj);
+                        elefantes++;
+                    }
                         
                         //Decimos que el animal que se haya movido cambie su estado a "movido"
                         if (this.seres[nuevai,nuevaj] is Animal)
@@ -354,7 +468,7 @@ namespace Safari
         private void morirseDeHambre(Ser ser)
         {
             Console.WriteLine($"El ser {ser.GetType().Name} \n en la posición ({ser.getPosicioni()}, {ser.getPosicionj()}) \n lleva {ser.getTiempoSinComer()} dias sin comer");
-            if (ser.getTiempoSinComer() >= 3)
+            if (ser.getTiempoSinComer() >= 5)
             {
             seres[ser.getPosicioni(), ser.getPosicionj()] = new Vacio(ser.getPosicioni(), ser.getPosicionj());
                 if (ser is Leon)
@@ -365,6 +479,13 @@ namespace Safari
                 {
                     gacelas--;
                 }
+                //Examen 1, metodo morirse en Elefante
+                if (ser is Elefante) {
+                    elefantes--;
+                }
+
+
+
                 Console.WriteLine($"El ser {ser.GetType().Name} \n en la posición ({ser.getPosicioni()}, {ser.getPosicionj()})ha muerto por hambre");
 
             }
@@ -392,7 +513,7 @@ namespace Safari
                     while (!Creado)
                     {
                         //Elegimos qué Ser se creará de manera randomizada y aumentamos su número
-                        int rnd = new Random().Next(0, 4);
+                        int rnd = new Random().Next(0, 5);
                         switch (rnd)
                         {
                             case 0:
@@ -425,6 +546,16 @@ namespace Safari
                                     nulos++;
                                 this.seres[i, j] = new Vacio(i,j);
                                     Creado = true;
+                                }
+                                break;
+
+                                //Examen 1, creación de los elefantes al iniciar el Safari
+                            case 4:
+                                if (elefantes < maxElefantes)
+                                {
+                                    elefantes++;
+                                    this.seres[i, j] = new Elefante(i, j);
+                                    Creado=true;
                                 }
                                 break;
                         }
@@ -586,6 +717,19 @@ namespace Safari
         internal string getLeones() { return this.leones.ToString(); }
 
         internal void despausar(){ pausado = false; }
+
+        //Examen 1, obtención de la cantidad de elefantes
+        internal string getElefantes()
+        {
+            return this.elefantes.ToString();
+        }
+
+
+        //Examen 3
+        internal int getTurnos()
+        {
+            return this.turno;
+        }
     }
 
 }
