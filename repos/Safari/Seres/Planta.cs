@@ -16,10 +16,6 @@ namespace Safari.Seres
         public int getTiempoVida() { return tiempoVida; }
         public int getPosicioni() { return posicioni; }
         public int getPosicionj() { return posicionj; }
-        public int getTiempoSinComer() { return tiempoSinComer; }
-        public int getTiempoParaReproducirse() { return tiempoParaReproducirse; }
-        public void setTiempoParaReproducirse(int v) { this.tiempoParaReproducirse = v; }
-        public void setTiempoSinComer(int v) { this.tiempoSinComer = v; }
         public void setTiempoDeVida(int v) { this.tiempoVida = v; }
         internal void setPosicioni(int v) { this.posicioni = v; }
         internal void setPosicionj(int v) { this.posicionj = v; }

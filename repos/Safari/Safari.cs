@@ -189,9 +189,9 @@ namespace Safari
                                 {
                                     //Examen 4, indicamos que si es de noche no se mueva
                                     if (turno != 2)
-                                    {
+                                    
                                         moverse(seres[i, j]);
-                                    }
+                                    
                                 }
 
 
@@ -218,7 +218,7 @@ namespace Safari
 
 
                                 }
-                                else if (provisional is Planta)
+                                else if (provisional is Planta && turno != 2)
                                 {
 
                                     seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
@@ -234,8 +234,8 @@ namespace Safari
 
                                 else
                                 {
-
-                                    moverse(seres[i, j]);
+                                    if (turno != 2)
+                                        moverse(seres[i, j]);
 
                                 }
 
@@ -263,7 +263,7 @@ namespace Safari
 
 
                                 }
-                                else if (provisional is Planta)
+                                else if (provisional is Planta && turno != 2)
                                 {
 
                                     seres[provisional.getPosicioni(), provisional.getPosicionj()] = seres[i, j];
@@ -279,8 +279,8 @@ namespace Safari
 
                                 else
                                 {
-
-                                    moverse(seres[i, j]);
+                                    if (turno != 2)
+                                        moverse(seres[i, j]);
 
                                 }
 
@@ -297,8 +297,11 @@ namespace Safari
                             this.seres[i, j].setTiempoParaReproducirse(this.seres[i, j].getTiempoParaReproducirse() + 1);
                             if (seres[i, j].getTiempoParaReproducirse() >= 3)
                             {
-                                this.seres[i, j].setTiempoParaReproducirse(0);
-                                reproducirse(seres[i, j]);
+                                if (turno != 2)
+                                {
+                                    this.seres[i, j].setTiempoParaReproducirse(0);
+                                    reproducirse(seres[i, j]);
+                                }
 
                             }
                             Console.WriteLine("Fin de la planta \n");
