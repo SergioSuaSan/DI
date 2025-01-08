@@ -1,0 +1,3 @@
+
+Cadena de conexión:
+PruebasWPFConnectionString
