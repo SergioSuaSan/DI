@@ -1013,7 +1013,7 @@ namespace SQLyWPF {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PedidoDataTable : global::System.Data.TypedTableBase<PedidoRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnIdPedido;
             
             private global::System.Data.DataColumn columnCodCliente;
             
@@ -1056,9 +1056,9 @@ namespace SQLyWPF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn IdPedidoColumn {
                 get {
-                    return this.columnId;
+                    return this.columnIdPedido;
                 }
             }
             
@@ -1123,10 +1123,10 @@ namespace SQLyWPF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PedidoRow AddPedidoRow(int Id, ClienteRow parentClienteRowByFk_Pedido_ToTable, System.DateTime FechaPedido, string FormaPago) {
+            public PedidoRow AddPedidoRow(int IdPedido, ClienteRow parentClienteRowByFk_Pedido_ToTable, System.DateTime FechaPedido, string FormaPago) {
                 PedidoRow rowPedidoRow = ((PedidoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        IdPedido,
                         null,
                         FechaPedido,
                         FormaPago};
@@ -1140,9 +1140,9 @@ namespace SQLyWPF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PedidoRow FindById(int Id) {
+            public PedidoRow FindByIdPedido(int IdPedido) {
                 return ((PedidoRow)(this.Rows.Find(new object[] {
-                            Id})));
+                            IdPedido})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1162,7 +1162,7 @@ namespace SQLyWPF {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnIdPedido = base.Columns["IdPedido"];
                 this.columnCodCliente = base.Columns["CodCliente"];
                 this.columnFechaPedido = base.Columns["FechaPedido"];
                 this.columnFormaPago = base.Columns["FormaPago"];
@@ -1171,8 +1171,8 @@ namespace SQLyWPF {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnIdPedido = new global::System.Data.DataColumn("IdPedido", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdPedido);
                 this.columnCodCliente = new global::System.Data.DataColumn("CodCliente", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCodCliente);
                 this.columnFechaPedido = new global::System.Data.DataColumn("FechaPedido", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1180,9 +1180,9 @@ namespace SQLyWPF {
                 this.columnFormaPago = new global::System.Data.DataColumn("FormaPago", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFormaPago);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
-                this.columnId.AllowDBNull = false;
-                this.columnId.Unique = true;
+                                this.columnIdPedido}, true));
+                this.columnIdPedido.AllowDBNull = false;
+                this.columnIdPedido.Unique = true;
                 this.columnFormaPago.MaxLength = 50;
             }
             
@@ -1641,12 +1641,12 @@ namespace SQLyWPF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Id {
+            public int IdPedido {
                 get {
-                    return ((int)(this[this.tablePedido.IdColumn]));
+                    return ((int)(this[this.tablePedido.IdPedidoColumn]));
                 }
                 set {
-                    this[this.tablePedido.IdColumn] = value;
+                    this[this.tablePedido.IdPedidoColumn] = value;
                 }
             }
             
@@ -2864,7 +2864,7 @@ SELECT IdCliente, nombre, direccion, poblacion, telefono FROM Cliente WHERE (IdC
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Pedido";
-            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("Id", "IdPedido");
             tableMapping.ColumnMappings.Add("CodCliente", "CodCliente");
             tableMapping.ColumnMappings.Add("FechaPedido", "FechaPedido");
             tableMapping.ColumnMappings.Add("FormaPago", "FormaPago");
@@ -3127,14 +3127,6 @@ SELECT Id, CodCliente, FechaPedido, FormaPago FROM Pedido WHERE (Id = @Id)";
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> CodCliente, global::System.Nullable<global::System.DateTime> FechaPedido, string FormaPago, int Original_Id, global::System.Nullable<int> Original_CodCliente, global::System.Nullable<global::System.DateTime> Original_FechaPedido, string Original_FormaPago) {
-            return this.Update(Original_Id, CodCliente, FechaPedido, FormaPago, Original_Id, Original_CodCliente, Original_FechaPedido, Original_FormaPago);
         }
     }
     

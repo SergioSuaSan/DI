@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SQLyWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MiProyectoWPF" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Label Name="lPedidos" Content="Lista de Pedidos" Foreground="DarkBlue" FontSize="30" FontFamily="Arial" FontWeight="DemiBold"  VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="1"/>
+        <ListBox Name="lbPedidos" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Width="150" Height="200" SelectionChanged="lbClientes_SelectionChanged"/>
+        <Label Name="lCliente" Content="Lista de Cliente" Foreground="DarkBlue" FontSize="30" FontFamily="Arial" FontWeight="DemiBold"  VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="2"/>
+        <ListBox Name="lbClientes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Width="150" Height="200" SelectionChanged="lbClientes_SelectionChanged"/>
+        <Label Name="lPedidoPorCLiente" Content="Pedidos por Cliente" Foreground="DarkBlue" FontSize="30" FontFamily="Arial" FontWeight="DemiBold"  VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="3"/>
+        <ListBox Name="lbPedidoPorCliente" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="200"/>
+        <Button x:Name="bBorrarPedidos" Content="Eliminar pedido" Background="Aquamarine" Foreground="Black" Padding="10" FontSize="20" Click="bBorrarPedidos_Click" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+
     </Grid>
 </Window>
