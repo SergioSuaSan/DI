@@ -52,42 +52,66 @@ namespace SQLyWPF
             string consulta = "select * from Cliente";
 
             //Hará de puente para dejar los datos en un contenedor
-            SqlDataAdapter adaptador = new SqlDataAdapter(consulta, myConexionSQL); 
+            SqlDataAdapter adaptador = new SqlDataAdapter(consulta, myConexionSQL);
 
-            //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
-            using (adaptador)
+            try
             {
-                //Contenedor
-                DataTable clientesTabla = new DataTable();
-                adaptador.Fill(clientesTabla); 
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
 
-                lbClientes.ItemsSource = clientesTabla.DefaultView;
-                lbClientes.SelectedValuePath = "IdCliente";
-                lbClientes.DisplayMemberPath = "nombre";
+                    lbClientes.ItemsSource = clientesTabla.DefaultView;
+                    lbClientes.SelectedValuePath = "IdCliente";
+                    lbClientes.DisplayMemberPath = "nombre";
 
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+            }
+        }
+
+        private void lbClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbClientes.SelectedValue != null)
+            {
+                muestraPedidosPorCliente();
             }
         }
 
         private void muestraPedidos()
         {
 
-            string consulta = "select concat (CodCliente, ' | ', FechaPedido, ' | ' , FormaPago) as InfoPedido from Pedido";
+            string consulta = "select IdPedido, concat (CodCliente, ' | ', FechaPedido, ' | ' , FormaPago) as InfoPedido from Pedido";
 
             
             //Hará de puente para dejar los datos en un contenedor
             SqlDataAdapter adaptador = new SqlDataAdapter(consulta, myConexionSQL);
 
-            //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
-            using (adaptador)
+            try
             {
-                //Contenedor
-                DataTable clientesTabla = new DataTable();
-                adaptador.Fill(clientesTabla);
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
 
-                lbPedidos.ItemsSource = clientesTabla.DefaultView;
-                lbPedidos.SelectedValuePath = "IdPedido";
-                lbPedidos.DisplayMemberPath = "InfoPedido";
+                    lbPedidos.ItemsSource = clientesTabla.DefaultView;
+                    lbPedidos.SelectedValuePath = "IdPedido";
+                    lbPedidos.DisplayMemberPath = "InfoPedido";
 
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de Pedido");
             }
         }
 
@@ -105,43 +129,126 @@ namespace SQLyWPF
             //Hará de puente para dejar los datos en un contenedor
             SqlDataAdapter adaptador = new SqlDataAdapter(comando);
 
-            //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
-            using (adaptador)
+            try
             {
-                comando.Parameters.AddWithValue("@ClienteID", lbClientes.SelectedValue);
-                //Contenedor
-                DataTable pedidosTabla = new DataTable();
-                adaptador.Fill(pedidosTabla);
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    comando.Parameters.AddWithValue("@ClienteID", lbClientes.SelectedValue);
+                    //Contenedor
+                    DataTable pedidosTabla = new DataTable();
+                    adaptador.Fill(pedidosTabla);
 
-                lbPedidoPorCliente.ItemsSource = pedidosTabla.DefaultView;
-                lbPedidoPorCliente.SelectedValuePath = "IdPedido";
-                lbPedidoPorCliente.DisplayMemberPath = "FechaPedido";
+                    lbPedidoPorCliente.ItemsSource = pedidosTabla.DefaultView;
+                    lbPedidoPorCliente.SelectedValuePath = "IdPedido";
+                    lbPedidoPorCliente.DisplayMemberPath = "FechaPedido";
 
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ha sucedido un error en la carga de Pedidos por Cliente");
             }
         }
 
-        private void bEliminarPedido()
+        private void eliminarPedido()
         {
             MessageBox.Show("Vas a eliminar un Pedido");
             string consulta = "Delete from Pedido where idPedido = @PedidoID";
 
 
 
-            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
 
 
             //Hará de puente para dejar los datos en un contenedor
             SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("@PedidoID", lbPedidos.SelectedValue); //Configuro el parámetro
 
+            try
+            {
+                myConexionSQL.Open(); //Abrimos la conexión para poder acceder a la base de Datos
+                comando.ExecuteNonQuery(); //Ejecutamos la sentencia de borrado
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+            }
+
+
+            this.muestraPedidos(); //Volvemos a mostrar la lista de pedidos
         
         }
 
-
-
-        private void lbClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void eliminarCliente()
         {
-            muestraPedidosPorCliente();
+            MessageBox.Show("Vas a eliminar un Cliente");
+            string consulta = "Delete from Cliente where idCliente = @ClienteID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("@ClienteID", lbClientes.SelectedValue); //Configuro el parámetro
+
+            try
+            {
+                myConexionSQL.Open(); //Abrimos la conexión para poder acceder a la base de Datos
+                comando.ExecuteNonQuery(); //Ejecutamos la sentencia de borrado
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+            }
+
+
+            this.muestraClientes(); //Volvemos a mostrar la lista de Clientes
         }
+
+        private void insertaCliente()
+        {
+            MessageBox.Show("Vas a insertar un Cliente");
+            string consulta = "Insert into Cliente (Nombre) Values (@nombreCliente)";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("@nombreCliente", tbCliente.Text); //Configuro el parámetro
+
+            try
+            {
+                myConexionSQL.Open(); //Abrimos la conexión para poder acceder a la base de Datos
+                comando.ExecuteNonQuery(); //Ejecutamos la sentencia de Insertado
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+            }
+
+
+            this.muestraClientes(); //Volvemos a mostrar la lista de Clientes
+        }
+
 
         private void bBorrarPedidos_Click(object sender, RoutedEventArgs e)
         {
@@ -151,8 +258,41 @@ namespace SQLyWPF
 
             } else
             {
-                this.bEliminarPedido();
+                this.eliminarPedido();
             }
         }
+
+    
+
+        private void bInsertaCliente_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbCliente is null)
+            {
+                MessageBox.Show("Debes escribir un cliente");
+
+            }
+            else
+            {
+                this.insertaCliente();
+            }
+        }
+
+  
+
+        private void bEliminaCliente_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbClientes.SelectedValue is null)
+            {
+                MessageBox.Show("Debes seleccionar un cliente");
+
+            }
+            else
+            {
+                lbPedidoPorCliente.SelectedValue = null;
+                this.eliminarCliente();
+            }
+
+        }
+
     }
 }
