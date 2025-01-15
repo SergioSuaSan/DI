@@ -249,6 +249,54 @@ namespace SQLyWPF
             this.muestraClientes(); //Volvemos a mostrar la lista de Clientes
         }
 
+        private void actualizarCliente()
+        {
+            UClienteWindow uClienteWindow = new UClienteWindow( myConexionSQL);
+
+
+
+            string consulta = "select * from Cliente where IdCliente = @ClienteID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("ClienteID", lbClientes.SelectedValue); //Configuro el parámetro
+
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
+
+                    uClienteWindow.tbIdCliente.Text = clientesTabla.Rows[0]["IdCliente"].ToString();   
+                    uClienteWindow.tbNombre.Text = clientesTabla.Rows[0]["Nombre"].ToString();   
+                    uClienteWindow.tbDireccion.Text = clientesTabla.Rows[0]["DIreccion"].ToString();   
+                    uClienteWindow.tbPoblacion.Text = clientesTabla.Rows[0]["Poblacion"].ToString();   
+                    uClienteWindow.tbTelefono.Text = clientesTabla.Rows[0]["Telefono"].ToString();   
+
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+
+            }
+            uClienteWindow.ShowDialog();
+            this.muestraClientes();
+        }
+            
+
+        
+
 
         private void bBorrarPedidos_Click(object sender, RoutedEventArgs e)
         {
@@ -294,5 +342,23 @@ namespace SQLyWPF
 
         }
 
+        private void bActualizaCliente_Click(object sender, RoutedEventArgs e)
+
+        {
+            if (lbClientes.SelectedValue is null)
+            {
+                MessageBox.Show("Debes seleccionar un cliente");
+
+            }
+            else
+            {
+
+                lbPedidoPorCliente.SelectedValue = null;
+                this.actualizarCliente();
+            }
+
+        }
+
+        
     }
 }
