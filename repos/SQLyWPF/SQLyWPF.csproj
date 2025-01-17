@@ -56,6 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controlador\Controlador.cs" />
+    <Compile Include="modelo\Modelo.cs" />
     <Compile Include="PruebasWPFDataSet.cs">
       <DependentUpon>PruebasWPFDataSet.xsd</DependentUpon>
     </Compile>
@@ -64,10 +66,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PruebasWPFDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="UClienteWindow.xaml.cs">
+    <Compile Include="vista\UClienteWindow.xaml.cs">
       <DependentUpon>UClienteWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="vista\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -75,11 +77,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="vista\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UClienteWindow.xaml">
+    <Page Include="vista\UClienteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,5 +123,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

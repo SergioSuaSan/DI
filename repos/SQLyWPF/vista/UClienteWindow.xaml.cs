@@ -20,10 +20,10 @@ namespace SQLyWPF
     /// </summary>
     public partial class UClienteWindow : Window
     {
-            SqlConnection myConexionSQL;
-        public UClienteWindow(SqlConnection con)
+        Controlador controlador;
+        public UClienteWindow()
         {
-            myConexionSQL = con;
+            controlador = new Controlador();
             InitializeComponent();
         }
 
@@ -36,7 +36,7 @@ namespace SQLyWPF
         private void bActualizarCliente_Click(object sender, RoutedEventArgs e)
         {
                 MessageBox.Show("Vas a actualizar un Cliente");
-
+            /*
             try
             {
                 string consulta = $"Update Cliente SET nombre = '{tbNombre.Text}', direccion = '{tbDireccion.Text}', " +
@@ -58,8 +58,9 @@ namespace SQLyWPF
                 MessageBox.Show("Ha sucedido un error y no se puede actualizar  \n" + ex.Message);
                 
             }
-
+            */
             this.Close();
+
 
         }
 
