@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using SQLyWPF.vista;
 
 namespace SQLyWPF
 {
@@ -174,52 +175,59 @@ namespace SQLyWPF
 
 
         }
-        /*
+
+
+
         private void actualizarCliente()
         {
-            UClienteWindow uClienteWindow = new UClienteWindow( myConexionSQL);
+
+            MessageBox.Show("Vas a actualizar un Cliente");
 
 
 
-            string consulta = "select * from Cliente where IdCliente = @ClienteID";
-
-
-
-            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
-
-
-            //Hará de puente para dejar los datos en un contenedor
-            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-            comando.Parameters.AddWithValue("ClienteID", lbClientes.SelectedValue); //Configuro el parámetro
-
-
-            try
+            if (lbClientes.SelectedValue is null)
             {
-                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
-                using (adaptador)
-                {
-                    //Contenedor
-                    DataTable clientesTabla = new DataTable();
-                    adaptador.Fill(clientesTabla);
+                MessageBox.Show("Debes seleccionar un cliente");
+            }
+            else
+            {
 
-                    uClienteWindow.tbIdCliente.Text = clientesTabla.Rows[0]["IdCliente"].ToString();   
-                    uClienteWindow.tbNombre.Text = clientesTabla.Rows[0]["Nombre"].ToString();   
-                    uClienteWindow.tbDireccion.Text = clientesTabla.Rows[0]["DIreccion"].ToString();   
-                    uClienteWindow.tbPoblacion.Text = clientesTabla.Rows[0]["Poblacion"].ToString();   
-                    uClienteWindow.tbTelefono.Text = clientesTabla.Rows[0]["Telefono"].ToString();   
+                DataTable cliente = controlador.getCliente(lbClientes.SelectedValue.ToString());
+                UClienteWindow uClienteWindow = new UClienteWindow(controlador, cliente);
+
+                if (cliente != null)
+                {
+                    try
+                    {
+
+                        //Contenedor
+                        DataColumnCollection columnas = cliente.Columns;
+
+                        uClienteWindow.tbIdCliente.Text = cliente.Rows[0][columnas[0].ColumnName].ToString();
+                        uClienteWindow.tbNombre.Text = cliente.Rows[0][columnas[1].ColumnName].ToString();
+                        uClienteWindow.tbDireccion.Text = cliente.Rows[0][columnas[2].ColumnName].ToString();
+                        uClienteWindow.tbPoblacion.Text = cliente.Rows[0][columnas[3].ColumnName].ToString();
+                        uClienteWindow.tbTelefono.Text = cliente.Rows[0][columnas[4].ColumnName].ToString();
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+
+                    }
+                    uClienteWindow.ShowDialog();
 
                 }
             }
-            catch (Exception)
-            {
 
-                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
-
-            }
-            uClienteWindow.ShowDialog();
-            this.muestraClientes();
         }
-        */
+
+
+
+
+        
             
 
         
@@ -241,15 +249,17 @@ namespace SQLyWPF
 
         private void bInsertaCliente_Click(object sender, RoutedEventArgs e)
         {
-            if (tbCliente is null)
-            {
-                MessageBox.Show("Debes escribir un cliente");
+           
+               
+                 DataTable cliente = new DataTable();
 
-            }
-            else
-            {
-                this.insertaCliente();
-            }
+                    UNuevoClienteWind uNuevoClienteWindow = new UNuevoClienteWind(controlador, cliente);
+
+                    uNuevoClienteWindow.ShowDialog();
+                    this.muestraClientes();
+                
+                //this.insertaCliente();
+            
         }
 
   
@@ -274,14 +284,24 @@ namespace SQLyWPF
         {
             if (lbClientes.SelectedValue is null)
             {
-                MessageBox.Show("Debes seleccionar un cliente");
-
+                MessageBox.Show("Debes seleccionar el cliente a actualizar antes de pulsar el botón.");
             }
             else
             {
+                DataTable cliente = controlador.getCliente(lbClientes.SelectedValue.ToString());
 
-                lbPedidoPorCliente.SelectedValue = null;
-                //this.actualizarCliente();
+                if (cliente != null)
+                {
+                    UClienteWindow uClienteWindow = new UClienteWindow(controlador, cliente);
+
+                    uClienteWindow.ShowDialog();
+                    this.muestraClientes();
+                }
+                else
+                {
+                    MessageBox.Show("Ha sucedido un error en la carga del Cliente.");
+                }
+
             }
 
         }

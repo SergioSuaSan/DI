@@ -29,6 +29,36 @@ namespace SQLyWPF
 
         }
 
+        internal string actualizarCliente(string[] cliente)
+        {
+
+            try
+            {
+                string consulta = "UPDATE Cliente SET Nombre='" + cliente[1] + "', " +
+                    "Direccion='" + cliente[2] + "', " +
+                    "Poblacion='" + cliente[3] + "', " +
+                    "Telefono='" + cliente[4] + "' " +
+                    "WHERE IdCliente=" + cliente[0];
+
+                SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+
+                myConexionSQL.Open();
+                comando.ExecuteNonQuery();
+                myConexionSQL.Close();
+
+                return null;
+            }
+            
+            catch (Exception ex)
+            {
+                myConexionSQL.Close();
+                return ex.ToString();
+            }
+
+        }
+
+
+
         internal string eliminarCliente(string idCliente)
         {
 
@@ -99,6 +129,43 @@ namespace SQLyWPF
         internal string getCampoPedido()
         {
             return "InfoPedido";
+        }
+
+        internal DataTable getCliente(string idCliente)
+        {
+            string consulta = "select * from Cliente where IdCliente = @ClienteID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("ClienteID", idCliente); //Configuro el parámetro
+
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
+
+
+                    return clientesTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+
         }
 
         internal string getPKCliente()

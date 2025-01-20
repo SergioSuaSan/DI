@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,18 @@ namespace SQLyWPF
     public partial class UClienteWindow : Window
     {
         Controlador controlador;
-        public UClienteWindow()
+        public UClienteWindow(Controlador controlador, DataTable cliente)
         {
-            controlador = new Controlador();
+            this.controlador = controlador;
+            DataColumnCollection columnas = cliente.Columns;
+
             InitializeComponent();
+
+            this.tbIdCliente.Text = cliente.Rows[0][columnas[0].ColumnName].ToString();
+            this.tbNombre.Text = cliente.Rows[0][columnas[1].ColumnName].ToString();
+            this.tbDireccion.Text = cliente.Rows[0][columnas[2].ColumnName].ToString();
+            this.tbPoblacion.Text = cliente.Rows[0][columnas[3].ColumnName].ToString();
+            this.tbTelefono.Text = cliente.Rows[0][columnas[4].ColumnName].ToString();
         }
 
         private void bCancelar_Click(object sender, RoutedEventArgs e)
@@ -36,30 +45,30 @@ namespace SQLyWPF
         private void bActualizarCliente_Click(object sender, RoutedEventArgs e)
         {
                 MessageBox.Show("Vas a actualizar un Cliente");
-            /*
-            try
+
+
+            string[] cliente = new string[5];
+            cliente[0] = tbIdCliente.Text;
+            cliente[1] = tbNombre.Text;
+            cliente[2] = tbDireccion.Text;
+            cliente[3] = tbPoblacion.Text;
+            cliente[4] = tbTelefono.Text;
+            string error = controlador.actualizarCliente(cliente);
+
+            if (error != null)
             {
-                string consulta = $"Update Cliente SET nombre = '{tbNombre.Text}', direccion = '{tbDireccion.Text}', " +
-                    $"poblacion = '{tbPoblacion.Text}', telefono = '{tbTelefono.Text}' " +
-                    $"WHERE IdCliente = '{tbIdCliente.Text}' ";
-
-                SqlCommand cmd = new SqlCommand(consulta, myConexionSQL);
-                
-                myConexionSQL.Open();
-
-                cmd.ExecuteNonQuery();
-
-                myConexionSQL.Close();
-
+                MessageBox.Show("Ha sucedido un error y no se puede actualizar  \n" + error);
+                this.Close();
+            }
+            else
+            {
                 MessageBox.Show("Ha sido actualizado con exito");
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ha sucedido un error y no se puede actualizar  \n" + ex.Message);
-                
-            }
-            */
-            this.Close();
+            
+
+          
+            
 
 
         }

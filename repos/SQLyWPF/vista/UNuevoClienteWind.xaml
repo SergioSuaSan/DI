@@ -1,0 +1,64 @@
+﻿<Window x:Class="SQLyWPF.vista.UNuevoClienteWind"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SQLyWPF.vista"
+        mc:Ignorable="d"
+        Title="UNuevoClienteWind" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Label Name="lPedidos" Content="Gestión de Clientes" Foreground="DarkBlue" FontSize="30" FontFamily="Arial" FontWeight="DemiBold"  VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="1"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--  Colocamos un contenedor Horizontal en el que poner los 2 botones  -->
+
+                <Label Content="Id de Cliente" Grid.Row="0" Grid.Column="0" />
+                <TextBlock x:Name="tbIdCliente" Text="" Grid.Row="0" Grid.Column="1" Width="300" Margin="2" ></TextBlock>
+
+
+                <Label Content="Nombre:" Grid.Row="1" Grid.Column="0" />
+                <TextBox x:Name="tbNombre" Text="" Grid.Row="1" Grid.Column="1" Width="300" Margin="2" ></TextBox>
+
+                <Label Content="Dirección:" Grid.Row="2" Grid.Column="0" />
+                <TextBox x:Name="tbDireccion" Text="" Grid.Row="2" Grid.Column="1" Width="300" Margin="2"></TextBox>
+
+                <Label Content="Población:" Grid.Row="3" Grid.Column="0" />
+                <TextBox x:Name="tbPoblacion" Text="" Grid.Row="3" Grid.Column="1" Width="300" Margin="2"></TextBox>
+
+                <Label Content="Teléfono:" Grid.Row="4" Grid.Column="0" />
+                <TextBox x:Name="tbTelefono" Text="" Grid.Row="4" Grid.Column="1" Width="300" Margin="2"></TextBox>
+
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button x:Name="bInsertarCliente" Content="Insertar"  Margin="5" Background="Lime" Foreground="Black" Padding="10" FontSize="20" Click="bInsertarCliente_Click"/>
+            <Button x:Name="bCancelar" Content="Cancelar"  Margin="5" Background="Red" Foreground="Black" Padding="10" FontSize="20"  Click="bCancelar_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

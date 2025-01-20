@@ -18,6 +18,11 @@ namespace SQLyWPF
 
         }
 
+        internal string actualizarCliente(string[] v)
+        {
+            return modelo.actualizarCliente(v);
+        }
+
         internal string eliminarCliente(string IdCliente)
         {
             return modelo.eliminarCliente(IdCliente);
@@ -36,6 +41,11 @@ namespace SQLyWPF
         internal string getCampoPedido()
         {
             return modelo.getCampoPedido();
+        }
+
+        internal DataTable getCliente(string v)
+        {
+            return modelo.getCliente(v);
         }
 
         internal string getPKCliente()
