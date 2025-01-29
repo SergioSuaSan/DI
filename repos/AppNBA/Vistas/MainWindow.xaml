@@ -60,10 +60,9 @@
                     <Label Grid.Row="0" Grid.Column="1" Content="Equipos de la NBA" FontSize="40" FontWeight="DemiBold"/>
 
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                        <ListBox Name="LBEquipos" Width="200" Height="250">
-                            
-                            
-                        </ListBox>
+                        <ListBox Name="LBEquipos" Width="200" Height="250" SelectionChanged="LBEquipos_SelectionChanged"/>
+
+
                         <Separator Margin="10"/>
 
                         <Image Name="ImagenEquipo" Width="100" Height="100" Stretch="UniformToFill"/>

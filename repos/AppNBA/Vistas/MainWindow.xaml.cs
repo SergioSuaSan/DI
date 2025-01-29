@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,46 @@ namespace AppNBA
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        Controlador control;
+        public MainWindow( )
         {
+            control = new Controlador();
             InitializeComponent();
+            this.muestraEquipos();
+            
         }
+
+        private void LBEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LBEquipos.SelectedValue != null)
+            {
+                //muestraDatosEquipo();
+            }
+
+        }
+
+        private void muestraEquipos()
+        {
+            DataTable equiposTabla = control.muestraEquipos();
+
+            if (equiposTabla is null)
+            {
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+            }
+            else
+            {
+                LBEquipos.ItemsSource = equiposTabla.DefaultView;
+                LBEquipos.SelectedValuePath = control.getPKEquipo();
+                LBEquipos.DisplayMemberPath = control.getNombreEquipo();
+                //ImagenEquipo.
+            }
+
+
+
+        }
+
+
+
+
     }
 }
