@@ -14,6 +14,7 @@
         <!--    -->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
            
         </Grid.RowDefinitions>
@@ -41,7 +42,30 @@
 
         </StackPanel>
 
-        <TabControl Grid.Column="1" Grid.Row="1">
+        <StackPanel Name="panelSecundario" Grid.Row="1" >
+            <ToolBarTray DockPanel.Dock ="Top">
+                <ToolBar Band="1" BandIndex="1">
+                    <Button>
+                        <Image Source="..\\..\\img\Nuevo.ico" Width="20" Height="20"/>
+                    </Button> 
+                    <Button>
+                        <Image Source="..\\..\\img\Cortar.ico" Width="20" Height="20"/>
+                    </Button> 
+                    <Button>
+                        <Image Source="..\\..\\img\Copiar.ico" Width="20" Height="20"/>
+                    </Button>
+                    
+                </ToolBar>
+                
+            </ToolBarTray>
+
+
+        </StackPanel>
+
+
+
+
+        <TabControl Grid.Column="1" Grid.Row="2">
             <TabItem Name="TIEquipo" Header="Equipo">
 
                 <Grid>

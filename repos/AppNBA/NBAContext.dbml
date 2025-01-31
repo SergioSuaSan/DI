@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="nbadb" Class="NBAContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-52HQ6BA;Initial Catalog=nbadb;Integrated Security=True;Encrypt=False;Trust Server Certificate=True" SettingsObjectName="AppNBA.Properties.Settings" SettingsPropertyName="nbadbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.player" Member="Jugador">
+    <Type Name="Jugador">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="firstName" Member="nombre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="lastName" Member="apellidos" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="team" Member="equipo" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="position" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dateOfBirth" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="height" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="weight" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="jerseyNumber" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="age" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="careerPoints" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerBlocks" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="carrerAssists" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerRebounds" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerTurnovers" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerPercentageThree" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerPercentageFreethrow" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="careerPercentageFieldGoal" Type="System.Decimal" DbType="Decimal(4,1)" CanBeNull="true" />
+      <Column Name="headShotUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dateLastUpdated" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team" Member="Equipo">
+    <Type Name="Equipo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="conference" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="record" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="teamLogoUrl" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dateLastUpdated" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

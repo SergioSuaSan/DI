@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="NBAContext">
+  <DataContextMoniker Name="/NBAContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c20f0466-338d-460f-aec1-2b524cd4dfbf" absoluteBounds="0.5, 0.875, 2, 4.6554182942708326">
+      <DataClassMoniker Name="/NBAContextDataContext/Jugador" />
+      <nestedChildShapes>
+        <elementListCompartment Id="270350c0-8ba5-4e9d-8c73-b4b130934e7e" absoluteBounds="0.51500000000000012, 1.335, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b5e7fbfc-8a10-46fa-9e9c-8ed3451e45e2" absoluteBounds="3.75, 1.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NBAContextDataContext/Equipo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86bce092-3049-457d-9276-a5ba3d85990c" absoluteBounds="3.7649999999999997, 1.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

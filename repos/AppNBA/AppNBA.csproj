@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,6 +67,11 @@
     </Compile>
     <Compile Include="Controlador\Controlador.cs" />
     <Compile Include="Modelo\Modelo.cs" />
+    <Compile Include="NBAContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NBAContext.dbml</DependentUpon>
+    </Compile>
     <Compile Include="nbadbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +100,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="NBAContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>NBAContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NBAContext.dbml.layout">
+      <DependentUpon>NBAContext.dbml</DependentUpon>
+    </None>
     <None Include="nbadbDataSet.xsc">
       <DependentUpon>nbadbDataSet.xsd</DependentUpon>
     </None>
@@ -113,6 +127,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Copiar.ico" />
+    <Resource Include="img\Cortar.ico" />
+    <Resource Include="img\Nuevo.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

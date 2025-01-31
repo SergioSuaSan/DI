@@ -52,7 +52,7 @@ namespace AppNBA
                 LBEquipos.ItemsSource = equiposTabla.DefaultView;
                 LBEquipos.SelectedValuePath = control.getPKEquipo();
                 LBEquipos.DisplayMemberPath = control.getNombreEquipo();
-                //ImagenEquipo.
+               
             }
 
 
