@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AppNBA
 {
@@ -21,7 +22,13 @@ namespace AppNBA
         public Modelo() { 
 
             //Creamos la conexión usando la clave que nos da la bbdd
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+
+            //CLAVE DE CLASE
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+
+
+            //CLAVE DE CASA
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
@@ -110,7 +117,8 @@ namespace AppNBA
         {
 
 
-            string consulta = "select * from player where team in (select name from team where id = @idEquipo)";
+            string consulta = "select id, concat (position  ,  ' -> '  ,  lastName  ,    ', '   ,   firstName) as " +
+                "Info from player where team in (select name from team where id = @idEquipo)";
 
 
             SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
@@ -162,19 +170,67 @@ namespace AppNBA
             }
         }
 
-        internal void insertaJugador(List<string> datosJugador)
+        internal string insertaJugador(string[] jugador)
+
+
         {
-            Jugador newJugador = new Jugador();
-            newJugador.id = 1 + dataNBA.Jugador.Max(j => Convert.ToInt32(j.id));
-            newJugador.jerseyNumber = datosJugador[0];
-            newJugador.nombre = datosJugador[1];
-            newJugador.apellidos = datosJugador[2];
-            newJugador.position = datosJugador[3];
-            newJugador.age = datosJugador[4];
 
-            dataNBA.Jugador.InsertOnSubmit(newJugador);
-            dataNBA.SubmitChanges();
+            string maxId = this.sacarMaxIdJugadores();
+            string nombreEquipo = this.sacarNombreEquipo(jugador[4]);
+            string consulta = $"Insert into player (id, firstName, lastName, position, jerseyNumber, team) Values ( {maxId}, '{jugador[0]}', '{jugador[1]}', '{jugador[2]}', '#{jugador[3]}', '{nombreEquipo}')";
 
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+           
+
+            try
+            {
+                myConexionSQL.Open(); //Abrimos la conexión para poder acceder a la base de Datos
+                comando.ExecuteNonQuery(); //Ejecutamos la sentencia de Insertado
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+            }
+            catch (Exception ex)
+            {
+
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+                return ex.Message;
+            }
+            return null;
+
+        }
+
+        private string sacarMaxIdJugadores()
+        {
+            string consulta = "select max(id)+1 as Maximo from player";
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
+
+        }  private string sacarNombreEquipo(string id)
+        {
+            string consulta = "select name from team where id = @id";
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("id", id); //Configuro el parámetro
+
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
 
         }
 
@@ -183,9 +239,70 @@ namespace AppNBA
             return "id";
         }
 
-        internal string getNombreJugador()
+
+        internal DataTable getEquipo(string equipoID)
         {
-            return "firstName";
+            string consulta = "select * from team where id = @EquipoID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("equipoID", equipoID); //Configuro el parámetro
+
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
+
+
+                    return clientesTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        internal string actualizarEquipo(string[] equipo)
+        {
+            try
+            {
+                string consulta = "UPDATE team SET name ='" + equipo[1] + "', " +
+                    "conference='" + equipo[2] + "', " +
+                    "record='" + equipo[3] + "' " +
+                    "WHERE id = " + equipo[0];
+
+                SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+
+                myConexionSQL.Open();
+                comando.ExecuteNonQuery();
+                myConexionSQL.Close();
+
+                return null;
+            }
+
+            catch (Exception ex)
+            {
+                myConexionSQL.Close();
+                return ex.ToString();
+            }
+        }
+
+        internal string getDatosJugador()
+        {
+            return "Info";
         }
     }
 }

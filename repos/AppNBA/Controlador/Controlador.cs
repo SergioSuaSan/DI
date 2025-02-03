@@ -14,15 +14,27 @@ namespace AppNBA
             modelo = new Modelo();
         }
 
+        internal string actualizarEquipo(string[] equipo)
+        {
+           return modelo.actualizarEquipo(equipo);
+        }
+
+        internal string getDatosJugador()
+        {
+            return modelo.getDatosJugador();
+        }
+
+        internal DataTable getEquipo(string v)
+        {
+            return modelo.getEquipo(v);
+        }
+
         internal string getNombreEquipo()
         {
             return modelo.getNombreEquipo();
         }
 
-        internal string getNombreJugador()
-        {
-            return modelo.getNombreJugador();
-        }
+     
 
         internal string getPKEquipo()
         {
@@ -32,6 +44,11 @@ namespace AppNBA
         internal string getPKJugador()
         {
             return modelo.getPKJugador();
+        }
+
+        internal string insertarJugador(string[] jugador)
+        {
+            return modelo.insertaJugador(jugador);
         }
 
         internal DataTable muestraEquipos()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppNBA.Vistas;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace AppNBA
             
         }
 
+
+
+        /// <summary>
+        /// MOSTRAR LOS DATOS
+        /// </summary>
         private void muestraEquipos()
         {
             DataTable equiposTabla = control.muestraEquipos();
@@ -47,6 +53,10 @@ namespace AppNBA
             }
 
 
+            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
+            LBEquipos.SelectedIndex = 0;
+
+
 
         }
         private void muestraPlantilla()
@@ -55,13 +65,13 @@ namespace AppNBA
 
             if (plantillaTabla is null)
             {
-                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
             }
             else
             {
                 LBPlantilla.ItemsSource = plantillaTabla.DefaultView;
                 LBPlantilla.SelectedValuePath = control.getPKJugador();
-                LBPlantilla.DisplayMemberPath = control.getNombreJugador();
+                LBPlantilla.DisplayMemberPath = control.getDatosJugador();
 
             }
         }
@@ -71,6 +81,12 @@ namespace AppNBA
 
         }
 
+
+
+
+        /// <summary>
+        /// NOTIFICAR EL CAMBIO DE VALOR DE LAS LIST BOX
+        /// </summary>
 
         private void LBEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -85,6 +101,43 @@ namespace AppNBA
         private void LBPlantilla_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+
+
+        /// <summary>
+        /// CLICK DE LOS BOTONES
+        /// </summary>
+        private void bActualizaEquipo_Click(object sender, RoutedEventArgs e)
+        {
+            if (LBEquipos.SelectedValue != null)
+            {
+                DataTable equipo = control.getEquipo(LBEquipos.SelectedValue.ToString());
+
+                if (equipo != null)
+                {
+                    UEquipoWindow equipoWindow = new UEquipoWindow(control, equipo);
+
+                    equipoWindow.ShowDialog();
+                    this.muestraEquipos();
+                }
+                else
+                {
+                    MessageBox.Show("Ha sucedido un error en la carga del Equipo.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar un equipo");
+            }
+        }
+
+        private void bInsertaJugador_Click(object sender, RoutedEventArgs e)
+        {
+            NJugadorWindow nJugadorWindow = new NJugadorWindow(control, LBEquipos.SelectedValue.ToString());
+
+            nJugadorWindow.ShowDialog();
+            this.muestraPlantilla();
         }
     }
 }

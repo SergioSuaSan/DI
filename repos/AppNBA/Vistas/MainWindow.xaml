@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
 
 
@@ -84,7 +84,7 @@
                     <Label Grid.Row="0" Grid.Column="1" Content="Equipos de la NBA" FontSize="40" FontWeight="DemiBold"/>
 
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                        <ListBox Name="LBEquipos" Width="200" Height="250" SelectionChanged="LBEquipos_SelectionChanged"/>
+                        <ListBox Name="LBEquipos" Width="200" Height="250" SelectionChanged="LBEquipos_SelectionChanged" />
 
 
                         <Separator Margin="10"/>
@@ -94,9 +94,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Button x:Name="bInsertaCliente" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
-                        <Button x:Name="bActualizaCliente" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
-                        <Button x:Name="bEliminaCliente" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20"/>
+                        <Button x:Name="bActualizaEquipo" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaEquipo_Click" />
                     </StackPanel>
 
                 </Grid>
@@ -121,7 +119,7 @@
                     <Label Grid.Row="0" Grid.Column="1" Content="Plantilla" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
 
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                        <ListBox Name="LBPlantilla" Width="200" Height="250" SelectionChanged="LBPlantilla_SelectionChanged"/>
+                        <ListBox Name="LBPlantilla" Width="300" Height="250" SelectionChanged="LBPlantilla_SelectionChanged"/>
 
 
                         <Separator Margin="10"/>
@@ -132,7 +130,7 @@
 
 
                     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Button x:Name="bInsertaJugador" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
+                        <Button x:Name="bInsertaJugador" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
                         <Button x:Name="bActualizaJugador" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
                         <Button x:Name="bEliminaJugador" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20"/>
                     </StackPanel>

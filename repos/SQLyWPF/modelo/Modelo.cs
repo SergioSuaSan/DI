@@ -21,7 +21,7 @@ namespace SQLyWPF
         public Modelo()
         {
             //Creamos la conexión usando la clave que nos da la bbdd
-            string miConexion = ConfigurationManager.ConnectionStrings["SQLyWPF.Properties.Settings.PruebasWPFConnectionString"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["SQLyWPF.Properties.Settings.PruebasWPFConnectionString"].ConnectionString;        
 
             //Se crea una conexion SQL como propiedad de clase
              myConexionSQL = new SqlConnection(miConexion);
