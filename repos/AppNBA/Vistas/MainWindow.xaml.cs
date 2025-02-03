@@ -30,15 +30,6 @@ namespace AppNBA
             
         }
 
-        private void LBEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (LBEquipos.SelectedValue != null)
-            {
-                //muestraDatosEquipo();
-            }
-
-        }
-
         private void muestraEquipos()
         {
             DataTable equiposTabla = control.muestraEquipos();
@@ -58,9 +49,42 @@ namespace AppNBA
 
 
         }
+        private void muestraPlantilla()
+        {
+            DataTable plantillaTabla = control.muestraPlantilla(LBEquipos.SelectedValue.ToString());
+
+            if (plantillaTabla is null)
+            {
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
+            }
+            else
+            {
+                LBPlantilla.ItemsSource = plantillaTabla.DefaultView;
+                LBPlantilla.SelectedValuePath = control.getPKJugador();
+                LBPlantilla.DisplayMemberPath = control.getNombreJugador();
+
+            }
+        }
+        private string getURLLogo(int idEquipo)
+        {
+            return null;
+
+        }
 
 
+        private void LBEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LBEquipos.SelectedValue != null)
+            {
+                muestraPlantilla();
+            }
+
+        }
 
 
+        private void LBPlantilla_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

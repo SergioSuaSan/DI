@@ -106,6 +106,41 @@ namespace AppNBA
             }
         }
 
+        internal DataTable muestraPlantillaDeEquipo(String idEquipo)
+        {
+
+
+            string consulta = "select * from player where team in (select name from team where id = @idEquipo)";
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("@idEquipo", idEquipo); //Configuro el parámetro
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable plantillaTabla = new DataTable();
+                    adaptador.Fill(plantillaTabla);
+
+
+                    return plantillaTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
 
         internal DataTable getDatosJugador(string idJugador)
         {
@@ -143,5 +178,14 @@ namespace AppNBA
 
         }
 
+        internal string getPKJugador()
+        {
+            return "id";
+        }
+
+        internal string getNombreJugador()
+        {
+            return "firstName";
+        }
     }
 }

@@ -19,14 +19,29 @@ namespace AppNBA
             return modelo.getNombreEquipo();
         }
 
+        internal string getNombreJugador()
+        {
+            return modelo.getNombreJugador();
+        }
+
         internal string getPKEquipo()
         {
             return modelo.getPKEquipo();
         }
 
+        internal string getPKJugador()
+        {
+            return modelo.getPKJugador();
+        }
+
         internal DataTable muestraEquipos()
         {
            return  modelo.muestraEquipos();
+        }
+
+        internal DataTable muestraPlantilla(string getPKEquipo)
+        {
+            return modelo.muestraPlantillaDeEquipo( getPKEquipo);
         }
     }
 }

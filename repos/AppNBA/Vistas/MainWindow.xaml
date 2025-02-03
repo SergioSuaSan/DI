@@ -105,8 +105,71 @@
             
             <TabItem Name="TIPlantilla" Header="Plantilla">
 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="1" Content="Plantilla" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <ListBox Name="LBPlantilla" Width="200" Height="250" SelectionChanged="LBPlantilla_SelectionChanged"/>
+
+
+                        <Separator Margin="10"/>
+
+                        <Image Name="ImagenPlantillaJugador" Width="100" Height="100" Stretch="UniformToFill"/>
+
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button x:Name="bInsertaJugador" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
+                        <Button x:Name="bActualizaJugador" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
+                        <Button x:Name="bEliminaJugador" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20"/>
+                    </StackPanel>
+
+                </Grid>
+
+
             </TabItem>
             <TabItem Name="TIJugadores" Header="Jugadores">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="1" Content="Datos del Jugador" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                       
+                        
+
+                        <Image Name="ImagenJugador" Width="100" Height="100" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+
+                    
+
+                </Grid>
 
             </TabItem> 
             
