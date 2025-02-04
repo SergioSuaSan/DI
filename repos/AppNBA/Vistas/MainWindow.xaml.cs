@@ -34,7 +34,7 @@ namespace AppNBA
 
 
         /// <summary>
-        /// MOSTRAR LOS DATOS
+        /// MOSTRAR LOS DATOS EN LA VENTANA
         /// </summary>
         private void muestraEquipos()
         {
@@ -50,14 +50,48 @@ namespace AppNBA
                 LBEquipos.SelectedValuePath = control.getPKEquipo();
                 LBEquipos.DisplayMemberPath = control.getNombreEquipo();
                
+
             }
 
 
-            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
-            LBEquipos.SelectedIndex = 0;
+                //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
+                LBEquipos.SelectedIndex = 0;
+      
+                cargarImagenEquipo(control.getURLEquipo(LBEquipos.SelectedValue.ToString()));
+
+
+        }
+        private void cargarImagenEquipo(string url)
+        {
+            BitmapImage imagen = new BitmapImage();
+            imagen.BeginInit();
+            imagen.UriSource = new Uri(url);
+            imagen.EndInit();
+            ImagenEquipo.Source = imagen;
+        }
+        private void cargarImagenPlantilla(string url)
+        {
+            if (url != "")
+            {
+                BitmapImage imagen = new BitmapImage();
+                imagen.BeginInit();
+                imagen.UriSource = new Uri(url);
+                imagen.EndInit();
+                ImagenPlantillaJugador.Source = imagen;
+                ImagenJugador.Source = imagen;
+            } else
+            {
+
+                BitmapImage imagen = new BitmapImage();
+                imagen.BeginInit();
+                imagen.UriSource = new Uri("../img/ImagenNotFound.ico", UriKind.Relative);
+                imagen.EndInit();
+                ImagenPlantillaJugador.Source = imagen;
+                ImagenJugador.Source = imagen;
 
 
 
+            }
         }
         private void muestraPlantilla()
         {
@@ -74,12 +108,16 @@ namespace AppNBA
                 LBPlantilla.DisplayMemberPath = control.getDatosJugador();
 
             }
-        }
-        private string getURLLogo(int idEquipo)
-        {
-            return null;
+
+
+
+            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
+            LBPlantilla.SelectedIndex = 0;
+
+            cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
 
         }
+
 
 
 
@@ -92,6 +130,7 @@ namespace AppNBA
         {
             if (LBEquipos.SelectedValue != null)
             {
+                cargarImagenEquipo(control.getURLEquipo(LBEquipos.SelectedValue.ToString()));
                 muestraPlantilla();
             }
 
@@ -100,7 +139,11 @@ namespace AppNBA
 
         private void LBPlantilla_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (LBPlantilla.SelectedValue != null)
+            {
+                cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
 
+            }
         }
 
 
@@ -138,6 +181,62 @@ namespace AppNBA
 
             nJugadorWindow.ShowDialog();
             this.muestraPlantilla();
+        }
+
+        private void bActualizaJugador_Click(object sender, RoutedEventArgs e)
+        {
+            if (LBEquipos.SelectedValue != null)
+            {
+                DataTable jugador = control.getJugador(LBPlantilla.SelectedValue.ToString());
+
+                if (jugador != null)
+                {
+                    UJugadorWindow uJugador  = new UJugadorWindow(control, LBPlantilla.SelectedValue.ToString(),jugador);
+
+                    uJugador.ShowDialog();
+                    this.muestraEquipos();
+                }
+                else
+                {
+                    MessageBox.Show("Ha sucedido un error en la carga del Equipo.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar un equipo");
+            }
+        }
+
+        private void bEliminaJugador_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (LBPlantilla.SelectedValue is null)
+            {
+                MessageBox.Show("Debes seleccionar un Jugador");
+
+            }
+            else
+            {
+                string error = control.eliminarJugador(LBPlantilla.SelectedValue.ToString());
+
+                if (error != null)
+                {
+                    MessageBox.Show("Ha habído un error: \n" + error);
+                }
+                else
+                {
+                    MessageBox.Show("Jugador eliminado con éxito");
+                    this.muestraPlantilla(); //Volvemos a mostrar la lista de pedidos
+                }
+            }
+
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda ayuda = new Ayuda();
+            ayuda.ShowDialog();
         }
     }
 }

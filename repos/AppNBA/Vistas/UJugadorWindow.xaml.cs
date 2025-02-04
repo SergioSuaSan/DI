@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +20,36 @@ namespace AppNBA.Vistas
     /// </summary>
     public partial class UJugadorWindow : Window
     {
-        public UJugadorWindow()
+        Controlador control;
+        string idJugador;
+        public UJugadorWindow(Controlador control, string idJugador, DataTable jugador)
         {
+            this.control = control;
+            this.idJugador = idJugador;
+            DataColumnCollection columnas = jugador.Columns;
             InitializeComponent();
+
+            this.tbNombre.Text = jugador.Rows[0][columnas[1].ColumnName].ToString();
+            this.tbApellido.Text = jugador.Rows[0][columnas[2].ColumnName].ToString();
+            this.tbPosicion.Text = jugador.Rows[0][columnas[3].ColumnName].ToString();
+            this.tbCamiseta.Text = jugador.Rows[0][columnas[4].ColumnName].ToString();
+            this.tbEquipo.Text = jugador.Rows[0][columnas[5].ColumnName].ToString();
         }
 
         private void bActualizarJugador_Click(object sender, RoutedEventArgs e)
         {
 
-            string[] equipo = new string[4];
-            equipo[0] = this.tbIdEquipo.Text;
-            equipo[1] = this.tbNombre.Text;
-            equipo[2] = this.tbConferencia.Text;
-            equipo[3] = this.tbRecord.Text;
+            string[] jugador = new string[6];
+            jugador[0] = this.tbNombre.Text;
+            jugador[1] = this.tbApellido.Text;
+            jugador[2] = this.tbPosicion.Text;
+            jugador[3] = this.tbCamiseta.Text;
+            jugador[4] = this.tbEquipo.Text;
+            jugador[5] = this.idJugador;
 
-            string error = control.actualizarEquipo(equipo);
+
+
+            string error = control.actualizarJugador(jugador);
 
             if (error is null)
             {

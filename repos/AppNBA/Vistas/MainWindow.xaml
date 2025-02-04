@@ -27,10 +27,13 @@
             <DockPanel x:Name="dockPrincipal" LastChildFill="False">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="Archivo" >
-                        <MenuItem Header="Salir" />
+                        <MenuItem Header="Editar Escudo" Click="bActualizaEquipo_Click"/>
+                        <MenuItem Header="Añadir Jugador" Click="bInsertaJugador_Click"/>
+                        <MenuItem Header="Editar Jugador" Click="bActualizaJugador_Click"/>
+                        <MenuItem Header="Eliminar Jugador" Click="bEliminaJugador_Click"/>
                     </MenuItem>
                     <MenuItem Header="Ayuda">
-                        <MenuItem Header="Ayuda" />
+                        <MenuItem Header="Ayuda" Click="MenuItem_Click" />
                         <MenuItem Header="Acerca de" />
                     </MenuItem>
 
@@ -45,14 +48,17 @@
         <StackPanel Name="panelSecundario" Grid.Row="1" >
             <ToolBarTray DockPanel.Dock ="Top">
                 <ToolBar Band="1" BandIndex="1">
-                    <Button>
-                        <Image Source="..\\..\\img\Nuevo.ico" Width="20" Height="20"/>
+                    <Button Click="bActualizaEquipo_Click">
+                        <Image Source="..\\img\EditarEscudo.ico" Width="20" Height="20"/>
                     </Button> 
-                    <Button>
-                        <Image Source="..\\..\\img\Cortar.ico" Width="20" Height="20"/>
+                    <Button Click="bInsertaJugador_Click">
+                        <Image Source="..\\img\AddUser.ico" Width="20" Height="20"/>
                     </Button> 
-                    <Button>
-                        <Image Source="..\\..\\img\Copiar.ico" Width="20" Height="20"/>
+                    <Button Click="bActualizaJugador_Click">
+                        <Image Source="..\\img\EditUser.ico" Width="20" Height="20"/>
+                    </Button>  
+                    <Button Click="bEliminaJugador_Click">
+                        <Image Source="..\\img\RemoveUser.ico" Width="20" Height="20"/>
                     </Button>
                     
                 </ToolBar>
@@ -131,8 +137,8 @@
 
                     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Button x:Name="bInsertaJugador" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
-                        <Button x:Name="bActualizaJugador" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" />
-                        <Button x:Name="bEliminaJugador" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20"/>
+                        <Button x:Name="bActualizaJugador" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaJugador_Click" />
+                        <Button x:Name="bEliminaJugador" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bEliminaJugador_Click"/>
                     </StackPanel>
 
                 </Grid>
@@ -156,11 +162,16 @@
 
                     <Label Grid.Row="0" Grid.Column="1" Content="Datos del Jugador" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <StackPanel Grid.Row="1" Grid.Column="1" >
                        
                         
 
                         <Image Name="ImagenJugador" Width="100" Height="100" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                        <DataGrid>
+                            
+                            
+                        </DataGrid>
 
                     </StackPanel>
 

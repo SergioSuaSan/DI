@@ -15,7 +15,6 @@ namespace AppNBA
 
     {
         SqlConnection myConexionSQL;
-        NBAContextDataContext dataNBA;
         DataTable dtJugador;
         DataTable dtEquipo;
 
@@ -24,15 +23,14 @@ namespace AppNBA
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
-            dataNBA = new NBAContextDataContext(miConexion);
             this.iniciaDataTables();
 
         }
@@ -54,6 +52,14 @@ namespace AppNBA
           
         }
 
+
+
+        /// <summary>
+        /// GETTERS
+        /// PETICIONES DE DATOS DESDE LA VISTA
+        /// </summary>
+        /// <returns>LOS DATOS PEDIDOS</returns>
+
         internal string getNombreEquipo()
         {
             return "name";
@@ -64,10 +70,81 @@ namespace AppNBA
             return "id";
         }
 
-        internal void getURLLogo(string idEquipo)
+        private string sacarMaxIdJugadores()
         {
+            string consulta = "select max(id)+1 as Maximo from player";
 
-            string consulta = "select teamLogoURL from team where id = @idEquipo";
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
+
+        }
+        private string sacarNombreEquipo(string id)
+        {
+            string consulta = "select name from team where id = @id";
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("id", id); //Configuro el parámetro
+
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
+
+        }
+
+        internal string getPKJugador()
+        {
+            return "id";
+        }
+        internal string getDatosJugador()
+        {
+            return "Info";
+        }
+
+        internal string getURLEquipo(string id)
+        {
+            string consulta = "select teamLogoUrl from team where id = @id";
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("id", id); //Configuro el parámetro
+
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
+        }
+
+        internal string getURLJugador(string idJugador)
+        {
+            string consulta = "select headShotUrl from player where id = @id";
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("id", idJugador); //Configuro el parámetro
+
+
+            myConexionSQL.Open();
+            string resultado = comando.ExecuteScalar().ToString();
+            myConexionSQL.Close();
+
+            return resultado;
+        }
+
+        internal DataTable getEquipo(string equipoID)
+        {
+            string consulta = "select * from team where id = @EquipoID";
 
 
 
@@ -76,11 +153,77 @@ namespace AppNBA
 
             //Hará de puente para dejar los datos en un contenedor
             SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-            comando.Parameters.AddWithValue("idEquipo", idEquipo); //Configuro el parámetro
+            comando.Parameters.AddWithValue("equipoID", equipoID); //Configuro el parámetro
 
 
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable clientesTabla = new DataTable();
+                    adaptador.Fill(clientesTabla);
 
+
+                    return clientesTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
+
+      
+        internal DataTable getJugador(string id)
+        {
+            string consulta = "select id, firstName, lastName, position, jerseyNumber, team from player where id = @JugadorID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("JugadorID", id); //Configuro el parámetro
+
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable jugadorTabla = new DataTable();
+                    adaptador.Fill(jugadorTabla);
+
+
+                    return jugadorTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+
+
+
+
+
+
+        /// <summary>
+        /// MUESTRA
+        /// LENA LAS TABLAS Y SE LAS DA A LAS VISTAS PARA QUE LAS PINTE
+        /// </summary>
+        /// <returns>LAS TABLAS PINTADAS</returns>
 
         internal DataTable muestraEquipos()
         {
@@ -150,25 +293,13 @@ namespace AppNBA
         }
 
 
-        internal DataTable getDatosJugador(string idJugador)
-        {
-            try
-            {
-                Jugador player = dataNBA.Jugador.First(j => j.id == Convert.ToInt32(idJugador));
+     
 
-                dtJugador.Rows.Clear();
-                dtJugador.Rows.Add(player.jerseyNumber, player.nombre, player.apellidos, player.position, player.age );
-
-
-
-           
-
-                return dtJugador;
-            }
-            catch {
-                return null;
-            }
-        }
+        /// <summary>
+        /// MODIFICACIONES CRUD
+        /// MODIFICA LOS DATOS DE LA BBDD
+        /// </summary>
+        /// <returns>LA MODIFICACIÓN REALIZADA EN LA BBDD</returns>
 
         internal string insertaJugador(string[] jugador)
 
@@ -204,76 +335,6 @@ namespace AppNBA
 
         }
 
-        private string sacarMaxIdJugadores()
-        {
-            string consulta = "select max(id)+1 as Maximo from player";
-
-            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
-            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-
-            myConexionSQL.Open();
-            string resultado = comando.ExecuteScalar().ToString();
-            myConexionSQL.Close();
-
-            return resultado;
-
-        }  private string sacarNombreEquipo(string id)
-        {
-            string consulta = "select name from team where id = @id";
-
-            SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
-            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-            comando.Parameters.AddWithValue("id", id); //Configuro el parámetro
-
-
-            myConexionSQL.Open();
-            string resultado = comando.ExecuteScalar().ToString();
-            myConexionSQL.Close();
-
-            return resultado;
-
-        }
-
-        internal string getPKJugador()
-        {
-            return "id";
-        }
-
-
-        internal DataTable getEquipo(string equipoID)
-        {
-            string consulta = "select * from team where id = @EquipoID";
-
-
-
-            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
-
-
-            //Hará de puente para dejar los datos en un contenedor
-            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-            comando.Parameters.AddWithValue("equipoID", equipoID); //Configuro el parámetro
-
-
-            try
-            {
-                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
-                using (adaptador)
-                {
-                    //Contenedor
-                    DataTable clientesTabla = new DataTable();
-                    adaptador.Fill(clientesTabla);
-
-
-                    return clientesTabla;
-
-                }
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
-        }
 
         internal string actualizarEquipo(string[] equipo)
         {
@@ -300,9 +361,59 @@ namespace AppNBA
             }
         }
 
-        internal string getDatosJugador()
+      
+
+        internal string actualizarJugador(string[] jugador)
         {
-            return "Info";
+            try
+            {
+                string consulta = $"UPDATE player SET firstName ='{jugador[0]}', lastName ='{jugador[1]}', position='{jugador[2]}', jerseyNumber = '{jugador[3]}', team = '{jugador[4]}' WHERE id = {jugador[5]}";
+
+                SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+
+                myConexionSQL.Open();
+                comando.ExecuteNonQuery();
+                myConexionSQL.Close();
+
+                return null;
+            }
+
+            catch (Exception ex)
+            {
+                myConexionSQL.Close();
+                return ex.ToString();
+            }
         }
+
+        internal string eliminarJugador(string idJugador)
+        {
+            string consulta = "Delete from player where id = @JugadorID";
+
+
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("JugadorID", idJugador ); //Configuro el parámetro
+
+            try
+            {
+                myConexionSQL.Open(); //Abrimos la conexión para poder acceder a la base de Datos
+                comando.ExecuteNonQuery(); //Ejecutamos la sentencia de borrado
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+
+            }
+            catch (Exception ex)
+            {
+
+                myConexionSQL.Close(); //Tenemos que cerrar la conexión despueés de usarlo
+                return ex.Message;
+            }
+            return null;
+        }
+
+      
     }
 }
