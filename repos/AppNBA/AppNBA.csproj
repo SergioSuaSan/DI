@@ -63,6 +63,9 @@
     <Compile Include="Vistas\UEquipoWindow.xaml.cs">
       <DependentUpon>UEquipoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\UJugadorWindow.xaml.cs">
+      <DependentUpon>UJugadorWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Vistas\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\UEquipoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\UJugadorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
