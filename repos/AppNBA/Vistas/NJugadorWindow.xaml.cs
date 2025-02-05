@@ -19,6 +19,7 @@ namespace AppNBA.Vistas
     /// </summary>
     public partial class NJugadorWindow : Window
     {
+        //Propiedades de clase necesarias
         Controlador control;
         string equipo;
         public NJugadorWindow(Controlador control, string equipo)
@@ -28,9 +29,13 @@ namespace AppNBA.Vistas
             InitializeComponent();
         }
 
+        /// <summary>
+        /// CLICKS DE LOS BOTONES DE LA VENTANA
+        /// </summary>
 
         private void bInsertarJugador_Click(object sender, RoutedEventArgs e)
         {
+            //Creamos un string con los datos que vamos a insertar
             string[] jugador = new string[5];
             jugador[0] = this.tbNombre.Text;
             jugador[1] = this.tbApellido.Text;
@@ -38,6 +43,7 @@ namespace AppNBA.Vistas
             jugador[3] = this.tbCamiseta.Text;
             jugador[4] = equipo;
 
+            //Hacemos la inserción y notificamos si habido un error
             string error = control.insertarJugador(jugador);
 
             if (error is null)
@@ -50,8 +56,6 @@ namespace AppNBA.Vistas
                 MessageBox.Show("Ha habido un error al actualizar el equipo: \n" + error);
                 this.Close();
             }
-
-            this.Close();
         }
 
         private void bCancelar_Click(object sender, RoutedEventArgs e)

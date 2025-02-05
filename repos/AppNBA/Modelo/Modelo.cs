@@ -23,36 +23,17 @@ namespace AppNBA
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
-            this.iniciaDataTables();
+         
 
         }
-
-        private void iniciaDataTables()
-        {
-            dtEquipo = new DataTable();
-            Equipo e = new Equipo();
-            foreach (var prop in e.GetType().GetProperties())
-            {
-                dtEquipo.Columns.Add(prop.Name);
-            }
-            dtJugador = new DataTable();
-            Jugador j = new Jugador();
-            foreach (var prop in j.GetType().GetProperties())
-            {
-                dtJugador.Columns.Add(prop.Name);
-            }
-          
-        }
-
-
 
         /// <summary>
         /// GETTERS
@@ -70,12 +51,12 @@ namespace AppNBA
             return "id";
         }
 
+        //Para insertar un jugador necesitamos saber el idMáximo de jugadores y añadirle 1
         private string sacarMaxIdJugadores()
         {
             string consulta = "select max(id)+1 as Maximo from player";
 
             SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
-            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
 
             myConexionSQL.Open();
             string resultado = comando.ExecuteScalar().ToString();
@@ -84,6 +65,9 @@ namespace AppNBA
             return resultado;
 
         }
+        
+        //Como las tablas no están relacionadas, el jugador no tiene el nombre del equipo, sino un código. 
+        //Por tanto, este método permite sacar el nombre del equipo a partir del código.
         private string sacarNombreEquipo(string id)
         {
             string consulta = "select name from team where id = @id";
@@ -110,6 +94,7 @@ namespace AppNBA
             return "Info";
         }
 
+        //Para sacar las imágenes necesitamos las url, que están como string en la BBDD. Métodos para sacarlas.
         internal string getURLEquipo(string id)
         {
             string consulta = "select teamLogoUrl from team where id = @id";
@@ -142,6 +127,8 @@ namespace AppNBA
             return resultado;
         }
 
+
+        //Método que se usa para obtener los datos del equipo que vamos a actualizar
         internal DataTable getEquipo(string equipoID)
         {
             string consulta = "select * from team where id = @EquipoID";
@@ -177,7 +164,7 @@ namespace AppNBA
             }
         }
 
-      
+        //Método que se usa para obtener los datos del jugador que vamos a actualizar
         internal DataTable getJugador(string id)
         {
             string consulta = "select id, firstName, lastName, position, jerseyNumber, team from player where id = @JugadorID";
@@ -291,9 +278,42 @@ namespace AppNBA
                 return null;
             }
         }
+        internal DataTable muestraJugador(string id)
+        {
+            string consulta = "select id as Código, firstName as Nombre,lastname as Apellido, team as Equipo " +
+                ", position as Posición, jerseyNumber as 'Nº Camiseta' from player where id = @id";
 
 
-     
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+            comando.Parameters.AddWithValue("@id", id); //Configuro el parámetro
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable plantillaTabla = new DataTable();
+                    adaptador.Fill(plantillaTabla);
+
+
+                    return plantillaTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+
+
 
         /// <summary>
         /// MODIFICACIONES CRUD
@@ -334,8 +354,6 @@ namespace AppNBA
             return null;
 
         }
-
-
         internal string actualizarEquipo(string[] equipo)
         {
             try
@@ -360,9 +378,6 @@ namespace AppNBA
                 return ex.ToString();
             }
         }
-
-      
-
         internal string actualizarJugador(string[] jugador)
         {
             try
@@ -384,7 +399,6 @@ namespace AppNBA
                 return ex.ToString();
             }
         }
-
         internal string eliminarJugador(string idJugador)
         {
             string consulta = "Delete from player where id = @JugadorID";
@@ -414,6 +428,6 @@ namespace AppNBA
             return null;
         }
 
-      
+     
     }
 }

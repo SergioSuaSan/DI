@@ -14,20 +14,28 @@ namespace AppNBA
             modelo = new Modelo();
         }
 
-        internal string actualizarEquipo(string[] equipo)
+
+        /// <summary>
+        /// MÉTODOS PARA ENSEÑAR LOS DATOS DEL MODELO EN LA VENTANA
+        /// </summary>
+        internal DataTable muestraEquipos()
         {
-           return modelo.actualizarEquipo(equipo);
+            return modelo.muestraEquipos();
         }
-        internal string actualizarJugador(string[] jugador)
+        internal DataTable muestraJugador(string id)
         {
-            return modelo.actualizarJugador(jugador);   
+            return modelo.muestraJugador(id);
+        }
+        internal DataTable muestraPlantilla(string getPKEquipo)
+        {
+            return modelo.muestraPlantillaDeEquipo(getPKEquipo);
         }
 
-        internal string eliminarJugador(string idJugador)
-        {
-            return modelo.eliminarJugador(idJugador);
-        }
 
+        /// <summary>
+        /// GETTERS
+        /// METODOS PARA OBTENER DATOS EN EL MODELO Y DEVOLVERLOS EN LA VENTANA
+        /// </summary>
         internal string getDatosJugador()
         {
             return modelo.getDatosJugador();
@@ -56,23 +64,33 @@ namespace AppNBA
         {
             return modelo.getURLEquipo(id);
         }
-
         internal string getURLJugador(string idJugador)
         {
             return modelo.getURLJugador(idJugador);
         }
 
+
+        /// <summary>
+        /// OPERACIONES CRUD
+        /// METODOS PARA INSERTAR, ACTUALIZAR Y ELIMINAR REGISTROS
+        /// </summary>
+        internal string actualizarEquipo(string[] equipo)
+        {
+           return modelo.actualizarEquipo(equipo);
+        }
+        internal string actualizarJugador(string[] jugador)
+        {
+            return modelo.actualizarJugador(jugador);   
+        }
+        internal string eliminarJugador(string idJugador)
+        {
+            return modelo.eliminarJugador(idJugador);
+        }
         internal string insertarJugador(string[] jugador)
         {
             return modelo.insertaJugador(jugador);
         }
-        internal DataTable muestraEquipos()
-        {
-           return  modelo.muestraEquipos();
-        }
-        internal DataTable muestraPlantilla(string getPKEquipo)
-        {
-            return modelo.muestraPlantillaDeEquipo( getPKEquipo);
-        }
+
+    
     }
 }

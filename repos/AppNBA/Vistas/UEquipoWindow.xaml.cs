@@ -20,6 +20,7 @@ namespace AppNBA.Vistas
     /// </summary>
     public partial class UEquipoWindow : Window
     {
+        //Propiedades de clase necesarias
         Controlador control;
         public UEquipoWindow(Controlador control, DataTable equipo)
         {
@@ -27,6 +28,7 @@ namespace AppNBA.Vistas
             DataColumnCollection columnas = equipo.Columns;
             InitializeComponent();
 
+            //De esta forma podemos escribir los datos del equipo en la nueva ventana
             this.tbIdEquipo.Text = equipo.Rows[0][columnas[0].ColumnName].ToString();
             this.tbNombre.Text = equipo.Rows[0][columnas[1].ColumnName].ToString();
             this.tbConferencia.Text = equipo.Rows[0][columnas[2].ColumnName].ToString();
@@ -34,15 +36,20 @@ namespace AppNBA.Vistas
         }
 
 
+        /// <summary>
+        /// CLICKS DE LOS BOTONES DE LA VENTANA
+        /// </summary>
+        
         private void bActualizarEquipo_Click(object sender, RoutedEventArgs e)
         {
-
+            //Creamos un string con los datos que vamos a insertar
             string[] equipo = new string[4];
             equipo[0] = this.tbIdEquipo.Text;
             equipo[1] = this.tbNombre.Text;
             equipo[2] = this.tbConferencia.Text;
             equipo[3] = this.tbRecord.Text;
 
+            //Hacemos la inserción y notificamos si habido un error
             string error = control.actualizarEquipo(equipo);
 
             if (error is null)
@@ -56,7 +63,6 @@ namespace AppNBA.Vistas
                 this.Close();
             }
         }
-
         private void bCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

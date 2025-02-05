@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA.Vistas"
         mc:Ignorable="d"
-        Title="Ayuda" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Ayuda" Height="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,12 +25,15 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Width="500">
             <TextBlock TextWrapping="Wrap">
                 Esta aplicación te permite consultar una base de datos de los equipos de la NBA con sus respectivas plantillas, así como modificar los equipos; y añadir, editar y eliminar jugadores.
-                Aquí descubrirás todas las características de la aplicación
+                Aquí descubrirás todas las características de la aplicación.
+                
              
             </TextBlock>
 
-            <TextBlock TextWrapping ="Wrap" Margin="20">
-                Ideas
+            <TextBlock TextWrapping ="Wrap" Margin="0,20,0,20">
+                TODAS las opciones que tiene la aplicación están disponibles tanto en el menú, en el apartado ARCHIVO, como en la Toolbar, mediante las
+                imágenes
+                A continuación explicaré esas opciones indicando en la pestaña en la que están.
             </TextBlock>
 
                 <Grid>
@@ -45,8 +48,33 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                
-                
+
+                <Label Content="EQUIPO" Grid.Row="0" Grid.Column="0" Width="150" />
+                <TextBlock TextWrapping="Wrap" Grid.Row="0" Grid.Column="1" Width="350" Margin="0,0,0,10" ><Run Language="es-es" Text="C"/><Run Text="ontiene "/><Run Language="es-es" Text="el"/><Run Text=" botón: ACTUALIZAR. Te permite modificar los datos del equipo que tengas seleccionado. Pero no puedes añadir ni eliminar equipos."/></TextBlock>
+                <Label Content="PLANTILLA" Grid.Row="1" Grid.Column="0" Width="150"  />
+
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" >
+                    
+                <TextBlock TextWrapping="Wrap"  Width="350">
+                    Contiene tres botones: INSERTAR, ACTUALIZAR y ELIMINAR.
+                </TextBlock>
+                    <TextBlock TextWrapping="Wrap"  Width="350" Text="INSERTAR te permite añadir un nuevo jugador a la plantilla del equipo seleccionado. Solo hay que añadir los datos pertinentes."/>
+                    <TextBlock TextWrapping="Wrap"  Width="350">
+                        ACTUALIZAR te permite modificar los datos de un jugador seleccionado, pudiendo incluso cambiarlo de equipo.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap"  Width="350">
+    ELIMINAR te permite borrar de la base de datos el jugador seleccionado, recuerda que siempre hay un jugador seleccionado y que los datos se perderán para siempre, 
+                        no borres por equivocación.
+                    </TextBlock>
+
+
+
+                </StackPanel>
+
+                <Label Content="JUGADOR" Grid.Row="2" Grid.Column="0" Width="150" />
+                <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.Column="1" Width="350" Margin="0,0,0,10" ><Run Language="es-es" Text="C"/><Run Text="ontiene un botón: ACTUALIZAR. Te permite modificar los datos del jugador. Pero no puedes añadir ni eliminar jugadores."/></TextBlock>
+
             </Grid>
         </StackPanel>
     </Grid>

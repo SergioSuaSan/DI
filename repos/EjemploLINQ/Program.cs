@@ -2,6 +2,9 @@
 using static System.Net.Mime.MediaTypeNames;
 using System.Drawing;
 using System.Drawing.Printing;
+using Font = System.Drawing.Font;
+
+
 
 namespace EjemploLINQ
 {
@@ -9,7 +12,7 @@ namespace EjemploLINQ
     {
         static void Main(string[] args)
         {
-            /*
+            
             int[] numeros = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             Console.WriteLine("Estos son los números pares: ");
             IEnumerable<int> nPares = from n in numeros where n % 2 == 0 select n;
@@ -49,10 +52,11 @@ namespace EjemploLINQ
             }
             Console.WriteLine("Este es el número de números pares múltiplos de 3: ");
             Console.WriteLine(multi3.Count());
-            */
-
-            Console.ww
             
+
+           
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.Print
         }
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -68,10 +72,13 @@ namespace EjemploLINQ
             e.MarginBounds.Width, e.MarginBounds.Height);
             // Escribimos el contenido del fichero txt en el área definida de impresión usando la
             //fuente seleccionada y un pincel que podemos crear antes o usar el de por defecto
-            e.Graphics.DrawString(line, font, Brushes.Black, area);
+            e.Graphics.DrawString(linea, font, Brushes.Black, area);
             // Marcamos el parámetro HasMorePages a false para indicar que no hay más
             //páginas para imprimir
             e.HasMorePages = false;
+
+
+            
         }
     }
 }

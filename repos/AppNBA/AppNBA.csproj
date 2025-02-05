@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Vistas\AcercaDe.xaml.cs">
+      <DependentUpon>AcercaDe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ayuda.xaml.cs">
       <DependentUpon>Ayuda.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,10 @@
     <Compile Include="Vistas\UJugadorWindow.xaml.cs">
       <DependentUpon>UJugadorWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Vistas\AcercaDe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\Ayuda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

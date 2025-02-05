@@ -28,6 +28,7 @@ namespace AppNBA
             control = new Controlador();
             InitializeComponent();
             this.muestraEquipos();
+
             
         }
 
@@ -61,6 +62,47 @@ namespace AppNBA
 
 
         }
+        private void muestraPlantilla()
+        {
+            DataTable plantillaTabla = control.muestraPlantilla(LBEquipos.SelectedValue.ToString());
+
+            if (plantillaTabla is null)
+            {
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
+            }
+            else
+            {
+                LBPlantilla.ItemsSource = plantillaTabla.DefaultView;
+                LBPlantilla.SelectedValuePath = control.getPKJugador();
+                LBPlantilla.DisplayMemberPath = control.getDatosJugador();
+
+
+
+            }
+
+
+
+            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
+            LBPlantilla.SelectedIndex = 0;
+
+            cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
+
+        }
+        private void muestraJugador()
+        {
+            DataTable jugadorTabla = control.muestraJugador(LBPlantilla.SelectedValue.ToString());
+
+            if (jugadorTabla is null)
+            {
+                MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
+            }
+            else
+            {
+                dataGridJugador.ItemsSource = jugadorTabla.DefaultView;
+            }
+        }
+
+        //Métodos para cargar las imágenes con las url que hemos sacado previamente
         private void cargarImagenEquipo(string url)
         {
             BitmapImage imagen = new BitmapImage();
@@ -93,30 +135,7 @@ namespace AppNBA
 
             }
         }
-        private void muestraPlantilla()
-        {
-            DataTable plantillaTabla = control.muestraPlantilla(LBEquipos.SelectedValue.ToString());
 
-            if (plantillaTabla is null)
-            {
-                MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
-            }
-            else
-            {
-                LBPlantilla.ItemsSource = plantillaTabla.DefaultView;
-                LBPlantilla.SelectedValuePath = control.getPKJugador();
-                LBPlantilla.DisplayMemberPath = control.getDatosJugador();
-
-            }
-
-
-
-            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
-            LBPlantilla.SelectedIndex = 0;
-
-            cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
-
-        }
 
 
 
@@ -125,7 +144,6 @@ namespace AppNBA
         /// <summary>
         /// NOTIFICAR EL CAMBIO DE VALOR DE LAS LIST BOX
         /// </summary>
-
         private void LBEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (LBEquipos.SelectedValue != null)
@@ -135,14 +153,13 @@ namespace AppNBA
             }
 
         }
-
-
         private void LBPlantilla_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (LBPlantilla.SelectedValue != null)
             {
+                
                 cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
-
+                muestraJugador();
             }
         }
 
@@ -195,6 +212,8 @@ namespace AppNBA
 
                     uJugador.ShowDialog();
                     this.muestraEquipos();
+                    this.muestraPlantilla();
+                    this.muestraJugador();
                 }
                 else
                 {
@@ -233,10 +252,23 @@ namespace AppNBA
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        //Clicks de los menús
+        private void ayuda_Click(object sender, RoutedEventArgs e)
         {
             Ayuda ayuda = new Ayuda();
             ayuda.ShowDialog();
+        }
+
+        private void Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AcercaDe_Click(object sender, RoutedEventArgs e)
+        {
+            AcercaDe acercaDe = new AcercaDe();
+            acercaDe.ShowDialog();
+
         }
     }
 }
