@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA.Vistas"
         mc:Ignorable="d"
-        Title="UEquipoWindow" Height="250" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Gestión de Equipo" Height="250" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
