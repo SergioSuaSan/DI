@@ -183,5 +183,11 @@
   <ItemGroup>
     <Resource Include="img\RemoveUser.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\IcoVentana.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Info.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

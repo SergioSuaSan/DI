@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA.Vistas"
         mc:Ignorable="d"
-        Title="AcercaDe" Height="250" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AcercaDe" Height="250" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/img/Info.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,12 +27,12 @@
 
         <Label Content="Acerca de" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Foreground="DarkBlue" FontSize="30" FontFamily="Arial"  FontWeight="DemiBold"   VerticalAlignment="Center"/>
         <Label Content="Creador" Grid.Row="2" Grid.Column="1"  Margin="0,0,0,10"/>
-        <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.Column="2" Margin="0,0,0,10" >
+        <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.Column="2" Margin="0,0,0,10" VerticalAlignment="Center" >
                 Sergio Suárez Sánchez
         </TextBlock>
         
         <Label Content="Versión" Grid.Row="3" Grid.Column="1"  Margin="0,0,0,10"/>
-        <TextBlock TextWrapping="Wrap" Grid.Row="3" Grid.Column="2" Margin="0,0,0,10" >
+        <TextBlock TextWrapping="Wrap" Grid.Row="3" Grid.Column="2" Margin="0,0,0,10" VerticalAlignment="Center" >
                 v_1.0
         </TextBlock>
 

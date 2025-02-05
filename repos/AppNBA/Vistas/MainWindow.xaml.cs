@@ -55,10 +55,10 @@ namespace AppNBA
             }
 
 
-                //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
-                LBEquipos.SelectedIndex = 0;
+            //Dejamos seleccionado el primer equipo por defecto
+            LBEquipos.SelectedIndex = 0;
       
-                cargarImagenEquipo(control.getURLEquipo(LBEquipos.SelectedValue.ToString()));
+            cargarImagenEquipo(control.getURLEquipo(LBEquipos.SelectedValue.ToString()));
 
 
         }
@@ -82,7 +82,7 @@ namespace AppNBA
 
 
 
-            //MUY PROVISIONAL PORQUE NO SÉ CÓMO SE HACE
+            //Dejamos seleccionado el primer jugador por defecto
             LBPlantilla.SelectedIndex = 0;
 
             cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
@@ -110,6 +110,7 @@ namespace AppNBA
             imagen.UriSource = new Uri(url);
             imagen.EndInit();
             ImagenEquipo.Source = imagen;
+            TabPlantilla.Source = imagen;
         }
         private void cargarImagenPlantilla(string url)
         {
@@ -121,6 +122,8 @@ namespace AppNBA
                 imagen.EndInit();
                 ImagenPlantillaJugador.Source = imagen;
                 ImagenJugador.Source = imagen;
+                TabJugador.Source = imagen;
+                  
             } else
             {
 
@@ -130,6 +133,7 @@ namespace AppNBA
                 imagen.EndInit();
                 ImagenPlantillaJugador.Source = imagen;
                 ImagenJugador.Source = imagen;
+                TabJugador.Source = imagen;
 
 
 

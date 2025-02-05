@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA"
         mc:Ignorable="d"
-        Title="Equipos de la NBA" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Equipos de la NBA" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/img/IcoVentana.ico">
 
 
 
@@ -73,8 +73,14 @@
 
 
         <TabControl Grid.Column="1" Grid.Row="2">
-            <TabItem Name="TIEquipo" Header="Equipo">
-
+            <TabItem Name="TIEquipo" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabEquipo" Height="20" Width="20"/>
+                        <Label Content="EQUIPO"/>
+                    </StackPanel>
+                </TabItem.Header>
+                
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -108,7 +114,13 @@
 
             </TabItem> 
             
-            <TabItem Name="TIPlantilla" Header="Plantilla">
+            <TabItem Name="TIPlantilla">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabPlantilla" Height="20" Width="20"/>
+                        <Label Content="PLANTILLA"/>
+                    </StackPanel>
+                </TabItem.Header>
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -131,7 +143,7 @@
 
                         <Separator Margin="10"/>
 
-                        <Image Name="ImagenPlantillaJugador" Width="100" Height="100" Stretch="UniformToFill"/>
+                        <Image Name="ImagenPlantillaJugador" Width="200" Height="150" Stretch="UniformToFill"/>
 
                     </StackPanel>
 
@@ -146,7 +158,13 @@
 
 
             </TabItem>
-            <TabItem Name="TIJugadores" Header="Jugadores">
+            <TabItem Name="TIJugadores" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabJugador" Height="20" Width="20"/>
+                        <Label Content="JUGADOR"/>
+                    </StackPanel>
+                </TabItem.Header>
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -167,9 +185,9 @@
                        
                         
 
-                        <Image Name="ImagenJugador" Width="100" Height="100" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <Image Name="ImagenJugador" Width="200" Height="150" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
-                        <DataGrid Name="dataGridJugador" Margin="0,10,0,0"/>
+                        <DataGrid Name="dataGridJugador" Margin="0,10,0,0" IsReadOnly="True"/>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Button x:Name="bActualizaJugador2" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaJugador_Click" />

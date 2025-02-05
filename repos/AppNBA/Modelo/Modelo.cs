@@ -23,11 +23,11 @@ namespace AppNBA
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
@@ -358,6 +358,9 @@ namespace AppNBA
         {
             try
             {
+                //Vamos a guardar el antiguo nombre del equipo que vamos a actualizar
+                //Esto servirá para actualizar el nombre del equipo de todos los jugadores también
+                string nombreEquipo = sacarNombreEquipo(equipo[0]);
                 string consulta = "UPDATE team SET name ='" + equipo[1] + "', " +
                     "conference='" + equipo[2] + "', " +
                     "record='" + equipo[3] + "' " +
@@ -369,6 +372,8 @@ namespace AppNBA
                 comando.ExecuteNonQuery();
                 myConexionSQL.Close();
 
+                this.actualizarEquipoJugador(nombreEquipo, equipo[1]);
+
                 return null;
             }
 
@@ -378,6 +383,32 @@ namespace AppNBA
                 return ex.ToString();
             }
         }
+
+
+        //Método dedicado a cambiar el nombre del equipo de todos los jugadores pertenecientes a ese equipo para que no crashee
+        private void actualizarEquipoJugador(string nombreEquipo, string nuevoNombre)
+        {
+            try
+            {
+                string consulta = $"UPDATE player SET  team = '{nuevoNombre}' WHERE team = '{nombreEquipo}'";
+
+                SqlCommand comando = new SqlCommand(consulta, myConexionSQL);
+
+                myConexionSQL.Open();
+                comando.ExecuteNonQuery();
+                myConexionSQL.Close();
+
+               
+            }
+
+            catch (Exception ex)
+            {
+                myConexionSQL.Close();
+               
+            }
+
+        }
+
         internal string actualizarJugador(string[] jugador)
         {
             try
