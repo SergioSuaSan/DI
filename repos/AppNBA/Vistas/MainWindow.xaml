@@ -26,16 +26,40 @@
         <StackPanel Name="panelPrincipal" >
             <DockPanel x:Name="dockPrincipal" LastChildFill="False">
                 <Menu DockPanel.Dock="Top">
-                    <MenuItem Header="Archivo" >
-                        <MenuItem Header="Editar Escudo" Click="bActualizaEquipo_Click"/>
-                        <MenuItem Header="Añadir Jugador" Click="bInsertaJugador_Click"/>
-                        <MenuItem Header="Editar Jugador" Click="bActualizaJugador_Click"/>
-                        <MenuItem Header="Eliminar Jugador" Click="bEliminaJugador_Click"/>
+                    <MenuItem Header="_Archivo">
+                        <MenuItem Header="Editar Equipo" Click="bActualizaEquipo_Click">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\EditarEscudo.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Añadir Jugador" Click="bInsertaJugador_Click" ToolTip="Alt+N">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\AddUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Editar Jugador" Click="bActualizaJugador_Click">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\EditUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Eliminar Jugador" Click="bEliminaJugador_Click">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\RemoveUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                         <MenuItem Header="Salir" Click="Salir_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Ayuda">
-                        <MenuItem Header="Ayuda" Click="ayuda_Click" />
-                        <MenuItem Header="Acerca de" Click="AcercaDe_Click" />
+                    <MenuItem Header="_Ayuda">
+                        <MenuItem Header="Ayuda" Click="ayuda_Click" >
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\info.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Acerca de" Click="AcercaDe_Click" >
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Info.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
 
                 </Menu>
@@ -49,17 +73,17 @@
         <StackPanel Name="panelSecundario" Grid.Row="1" >
             <ToolBarTray DockPanel.Dock ="Top">
                 <ToolBar Band="1" BandIndex="1">
-                    <Button Click="bActualizaEquipo_Click">
-                        <Image Source="..\\img\EditarEscudo.ico" Width="20" Height="20"/>
+                    <Button Click="bActualizaEquipo_Click" >
+                        <Image Source="..\\img\EditarEscudo.ico" Width="20" Height="20" ToolTip="Editar Equipo"/>
                     </Button> 
                     <Button Click="bInsertaJugador_Click">
-                        <Image Source="..\\img\AddUser.ico" Width="20" Height="20"/>
+                        <Image Source="..\\img\AddUser.ico" Width="20" Height="20" ToolTip="Nuevo Jugador"/>
                     </Button> 
                     <Button Click="bActualizaJugador_Click">
-                        <Image Source="..\\img\EditUser.ico" Width="20" Height="20"/>
+                        <Image Source="..\\img\EditUser.ico" Width="20" Height="20" ToolTip="Editar Jugador"/>
                     </Button>  
                     <Button Click="bEliminaJugador_Click">
-                        <Image Source="..\\img\RemoveUser.ico" Width="20" Height="20"/>
+                        <Image Source="..\\img\RemoveUser.ico" Width="20" Height="20" ToolTip="Eliminar Jugador"/>
                     </Button>
                     
                 </ToolBar>
@@ -155,6 +179,7 @@
                     </StackPanel>
 
                 </Grid>
+                
 
 
             </TabItem>
@@ -190,7 +215,9 @@
                         <DataGrid Name="dataGridJugador" Margin="0,10,0,0" IsReadOnly="True"/>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button x:Name="bInsertaJugador2" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
                             <Button x:Name="bActualizaJugador2" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaJugador_Click" />
+                            <Button x:Name="bEliminaJugador2" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bEliminaJugador_Click"/>
                         </StackPanel>
 
                     </StackPanel>

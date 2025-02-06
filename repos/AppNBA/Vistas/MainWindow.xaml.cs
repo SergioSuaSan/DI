@@ -114,7 +114,7 @@ namespace AppNBA
         }
         private void cargarImagenPlantilla(string url)
         {
-            if (url != "")
+            if (url != "" && url != "null")
             {
                 BitmapImage imagen = new BitmapImage();
                 imagen.BeginInit();
