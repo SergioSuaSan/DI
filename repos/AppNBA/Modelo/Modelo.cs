@@ -17,15 +17,15 @@ namespace AppNBA
         SqlConnection myConexionSQL;
 
         public Modelo() {
-
+            
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
@@ -43,7 +43,6 @@ namespace AppNBA
         {
             return "name";
         }
-
         internal string getPKEquipo()
         {
             return "id";

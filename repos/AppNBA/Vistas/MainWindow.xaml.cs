@@ -111,6 +111,7 @@ namespace AppNBA
             imagen.EndInit();
             ImagenEquipo.Source = imagen;
             TabPlantilla.Source = imagen;
+            TabEquipo.Source = imagen;
         }
         private void cargarImagenPlantilla(string url)
         {
@@ -240,23 +241,31 @@ namespace AppNBA
             }
             else
             {
-                string error = control.eliminarJugador(LBPlantilla.SelectedValue.ToString());
+                //Creamos un Mensaje Box con opcion de Sí o No, de confirmación
+                var result = MessageBox.Show("¿Estás seguro?", "", MessageBoxButton.YesNo);
+                //Solamente si lo confirmamos, procedemos a la eliminación
+                if (result == MessageBoxResult.Yes)
+                {
+                    string error = control.eliminarJugador(LBPlantilla.SelectedValue.ToString());
 
-                if (error != null)
-                {
-                    MessageBox.Show("Ha habído un error: \n" + error);
+                    if (error != null)
+                    {
+                        MessageBox.Show("Ha habído un error: \n" + error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Jugador eliminado con éxito");
+                        this.muestraPlantilla(); //Volvemos a mostrar la lista de pedidos
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Jugador eliminado con éxito");
-                    this.muestraPlantilla(); //Volvemos a mostrar la lista de pedidos
-                }
+
+              
             }
 
 
         }
 
-        //Clicks de los menús
+        //Clicks exclusivos de los menús
         private void ayuda_Click(object sender, RoutedEventArgs e)
         {
             Ayuda ayuda = new Ayuda();
@@ -272,6 +281,53 @@ namespace AppNBA
         {
             AcercaDe acercaDe = new AcercaDe();
             acercaDe.ShowDialog();
+
+        }
+
+
+
+        /// <summary>
+        /// ATAJOS DE TECLADO
+        /// METODO QUE PERMITE UTILIZAR ATAJOS DE TECLADO EN LA VENTANA PRINCIPAL
+        /// SI QUEREMOS QUE SIRVA PARA TODAS LAS VENTANAS, USAR EL MÉDOTO DE DEBAJO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.E && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                bActualizaEquipo_Click(sender, e);
+            }
+            else if (e.Key == Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                bInsertaJugador_Click(sender, e);
+            }
+            else if (e.Key == Key.J && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                bActualizaJugador_Click(sender, e);
+            }
+            else if (e.Key == Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                bEliminaJugador_Click(sender, e);
+            }
+            else if (e.Key == Key.H && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                ayuda_Click(sender, e);
+            }
+            else if (e.Key == Key.I && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                AcercaDe_Click(sender, e);
+            }
+
+            else if (e.Key == Key.Q && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
 
         }
     }
