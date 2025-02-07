@@ -295,34 +295,33 @@ namespace AppNBA
         /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.E && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            if (Keyboard.Modifiers == ModifierKeys.Control)
             {
-                bActualizaEquipo_Click(sender, e);
-            }
-            else if (e.Key == Key.N && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                bInsertaJugador_Click(sender, e);
-            }
-            else if (e.Key == Key.J && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                bActualizaJugador_Click(sender, e);
-            }
-            else if (e.Key == Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                bEliminaJugador_Click(sender, e);
-            }
-            else if (e.Key == Key.H && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                ayuda_Click(sender, e);
-            }
-            else if (e.Key == Key.I && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                AcercaDe_Click(sender, e);
-            }
+                switch (e.Key)
+                {
+                    case Key.E:
+                        bActualizaEquipo_Click(sender, e);
+                        break;
+                    case Key.N:
+                        bInsertaJugador_Click(sender, e);
+                        break;
+                    case Key.J:
+                        bActualizaJugador_Click(sender, e);
+                        break;
+                    case Key.R:
+                        bEliminaJugador_Click(sender, e);
+                        break;
+                    case Key.H:
+                        ayuda_Click(sender, e);
+                        break;
+                    case Key.I:
+                        AcercaDe_Click(sender, e);
+                        break;
+                    case Key.Q:
+                        Application.Current.Shutdown();
+                        break;
 
-            else if (e.Key == Key.Q && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                Application.Current.Shutdown();
+                }
             }
         }
 
