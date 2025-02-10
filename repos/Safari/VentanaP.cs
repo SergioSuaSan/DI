@@ -151,7 +151,7 @@ namespace Safari
                 for (int columna = 0; columna < columnas; columna++)
                 {
                     //Pintamos la imagen que se llama igual que el nombre del Ser que hemos asignado en el Safari
-                    var image = Image.FromFile($"..\\..\\..\\img\\{controlador.getTipoSer(fila, columna)}.ico");
+                    var image = Image.FromFile($".\\img\\{controlador.getTipoSer(fila, columna)}.ico");
                     var bitmap = new Bitmap(100, 100);
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(image, (xInicial + (columna * anchoCelda)), (yInicial + (fila * altoCelda)), 50, 50);
@@ -262,7 +262,7 @@ namespace Safari
             if ((controlador.getTurnos()+1) % 3 == 0)
             {
 
-                var image = Image.FromFile($"..\\..\\..\\img\\moon.ico");
+                var image = Image.FromFile($".\\img\\moon.ico");
                 var bitmap = new Bitmap(100, 100);
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 g.DrawImage(image, 5, 5, 50, 50);
@@ -270,7 +270,7 @@ namespace Safari
             }
             else
             {
-                var image = Image.FromFile($"..\\..\\..\\img\\Sol.ico");
+                var image = Image.FromFile($".\\img\\Sol.ico");
                 var bitmap = new Bitmap(100, 100);
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 g.DrawImage(image, 5, 5, 50, 50);
