@@ -111,7 +111,11 @@ namespace AppNBA
             imagen.EndInit();
             ImagenEquipo.Source = imagen;
             TabPlantilla.Source = imagen;
+<<<<<<< Updated upstream
             //TabEquipo.Source = imagen;
+=======
+          
+>>>>>>> Stashed changes
         }
         private void cargarImagenPlantilla(string url)
         {
