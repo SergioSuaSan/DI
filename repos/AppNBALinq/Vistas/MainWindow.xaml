@@ -1,0 +1,249 @@
+﻿<Window x:Class="AppNBA.MainWindow"
+         KeyDown="Window_KeyDown"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppNBA"
+        mc:Ignorable="d"
+        Title="Equipos de la NBA" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/img/IcoVentana.ico">
+
+
+
+    
+    <Grid>
+        <!--    -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+           
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="panelPrincipal" >
+            <DockPanel x:Name="dockPrincipal" LastChildFill="False">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="_Archivo">
+                        <MenuItem Header="Editar Equipo" Click="bActualizaEquipo_Click" InputGestureText="Ctrl + E">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\EditarEscudo.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Añadir Jugador" Click="bInsertaJugador_Click" InputGestureText="Ctrl + N">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\AddUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Editar Jugador" Click="bActualizaJugador_Click" InputGestureText="Ctrl + J">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\EditUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Eliminar Jugador" Click="bEliminaJugador_Click" InputGestureText="Ctrl + R">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\RemoveUser.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Salir" Click="Salir_Click" InputGestureText="Ctrl + Q">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Exit.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="_Ayuda">
+                        <MenuItem Header="Ayuda" Click="ayuda_Click" InputGestureText="Ctrl + H">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\info.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Acerca de" Click="AcercaDe_Click" InputGestureText="Ctrl + I">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Info.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+
+                </Menu>
+                
+                
+            </DockPanel>
+
+
+        </StackPanel>
+
+        <StackPanel Name="panelSecundario" Grid.Row="1" >
+            <ToolBarTray DockPanel.Dock ="Top">
+                <ToolBar Band="1" BandIndex="1">
+                    <Button Click="bActualizaEquipo_Click" >
+                        <Image Source="..\\img\EditarEscudo.ico" Width="20" Height="20" ToolTip="Editar Equipo"/>
+                    </Button>
+
+                    <Separator/>
+
+                    <Button Click="bInsertaJugador_Click">
+                        <Image Source="..\\img\AddUser.ico" Width="20" Height="20" ToolTip="Nuevo Jugador"/>
+                    </Button> 
+                    <Button Click="bActualizaJugador_Click">
+                        <Image Source="..\\img\EditUser.ico" Width="20" Height="20" ToolTip="Editar Jugador"/>
+                    </Button>  
+                    <Button Click="bEliminaJugador_Click">
+                        <Image Source="..\\img\RemoveUser.ico" Width="20" Height="20" ToolTip="Eliminar Jugador"/>
+                    </Button>
+
+                    <Separator/>
+
+                    <Button Click="Salir_Click">
+                        <Image Source="..\\img\Exit.ico" Width="20" Height="20" ToolTip="Salir"/>
+                    </Button>
+
+                </ToolBar>
+                
+            </ToolBarTray>
+
+
+        </StackPanel>
+
+
+
+
+        <TabControl Grid.Column="1" Grid.Row="2">
+            <TabItem Name="TIEquipo" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabEquipo" Height="20" Width="20" Source="../img/IcoVentana.ico"/>
+                        <Label Content="EQUIPO"/>
+                    </StackPanel>
+                </TabItem.Header>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="1" Content="Equipos de la NBA" FontSize="40" FontWeight="DemiBold"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <ListBox Name="LBEquipos" Width="200" Height="250" SelectionChanged="LBEquipos_SelectionChanged" />
+
+
+                        <Separator Margin="10"/>
+
+                        <Image Name="ImagenEquipo" Width="100" Height="100" Stretch="UniformToFill"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button x:Name="bActualizaEquipo" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaEquipo_Click" />
+                    </StackPanel>
+
+                </Grid>
+
+            </TabItem> 
+            
+            <TabItem Name="TIPlantilla">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabPlantilla" Height="20" Width="20"/>
+                        <Label Content="PLANTILLA"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="1" Content="Plantilla" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <ListBox Name="LBPlantilla" Width="300" Height="250" SelectionChanged="LBPlantilla_SelectionChanged"/>
+
+
+                        <Separator Margin="10"/>
+
+                        <Image Name="ImagenPlantillaJugador" Width="200" Height="150" Stretch="UniformToFill"/>
+
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button x:Name="bInsertaJugador" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
+                        <Button x:Name="bActualizaJugador" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaJugador_Click" />
+                        <Button x:Name="bEliminaJugador" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bEliminaJugador_Click"/>
+                    </StackPanel>
+
+                </Grid>
+                
+
+
+            </TabItem>
+            <TabItem Name="TIJugadores" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="TabJugador" Height="20" Width="20"/>
+                        <Label Content="JUGADOR"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="1" Content="Datos del Jugador" FontSize="40" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" >
+                       
+                        
+
+                        <Image Name="ImagenJugador" Width="200" Height="150" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                        <DataGrid Name="dataGridJugador" Margin="0,10,0,0" IsReadOnly="True"/>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button x:Name="bInsertaJugador2" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
+                            <Button x:Name="bActualizaJugador2" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaJugador_Click" />
+                            <Button x:Name="bEliminaJugador2" Content="Eliminar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bEliminaJugador_Click"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                    
+
+                </Grid>
+
+            </TabItem> 
+            
+        </TabControl>
+    </Grid>
+</Window>
