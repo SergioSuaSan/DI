@@ -1,19 +1,11 @@
 ﻿using AppNBA.Vistas;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Printing;
 
 namespace AppNBA
 {
@@ -111,11 +103,8 @@ namespace AppNBA
             imagen.EndInit();
             ImagenEquipo.Source = imagen;
             TabPlantilla.Source = imagen;
-<<<<<<< Updated upstream
             //TabEquipo.Source = imagen;
-=======
-          
->>>>>>> Stashed changes
+
         }
         private void cargarImagenPlantilla(string url)
         {
@@ -288,7 +277,16 @@ namespace AppNBA
 
         }
 
+        // Aquí vamos a gestionar el evento de un botón que tendremos en la ventana y que
+        // indicará que el usuario quiere realizar la exportación a pdf de un Grid
+        private void ExportarPdf_Click(object sender, RoutedEventArgs e)
+        {
 
+            PrintWindow printWindow = new PrintWindow(VisualPlantilla);
+            printWindow.ShowDialog();
+
+
+        }
 
         /// <summary>
         /// ATAJOS DE TECLADO
@@ -323,6 +321,9 @@ namespace AppNBA
                         break;
                     case Key.Q:
                         Application.Current.Shutdown();
+                        break;
+                    case Key.P:
+                        ExportarPdf_Click(sender, e);
                         break;
 
                 }

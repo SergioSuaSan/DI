@@ -49,6 +49,11 @@
                                 <Image Source="..\\img\RemoveUser.ico"/>
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="Exportar" Click="ExportarPdf_Click" InputGestureText="Ctrl + P">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Exit.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                         <MenuItem Header="Salir" Click="Salir_Click" InputGestureText="Ctrl + Q">
                             <MenuItem.Icon >
                                 <Image Source="..\\img\Exit.ico"/>
@@ -161,7 +166,7 @@
                     </StackPanel>
                 </TabItem.Header>
 
-                <Grid>
+                <Grid x:Name="VisualPlantilla">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
