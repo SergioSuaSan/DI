@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AppNBA
 {
@@ -21,11 +15,11 @@ namespace AppNBA
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);

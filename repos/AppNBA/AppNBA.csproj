@@ -201,5 +201,9 @@
   <ItemGroup>
     <Resource Include="img\Exit.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Imprimir.ico" />
+    <Resource Include="img\Plantilla.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

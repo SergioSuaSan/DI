@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Printing;
 
 namespace AppNBA
 {
@@ -19,26 +18,27 @@ namespace AppNBA
         {
             control = new Controlador();
             InitializeComponent();
-            this.muestraEquipos();
-
-            
+            this.muestraEquipos(); 
         }
-
-
 
         /// <summary>
         /// MOSTRAR LOS DATOS EN LA VENTANA
         /// </summary>
+
+        //Métodos para cargar los datos en las listas y en los grids
         private void muestraEquipos()
         {
+            //Cargamos los datos de los equipos en la lista
             DataTable equiposTabla = control.muestraEquipos();
 
+            //Si no se ha podido cargar los datos, mostramos un mensaje de error
             if (equiposTabla is null)
             {
                 MessageBox.Show("Ha sucedido un error en la carga de los datos de Cliente");
             }
             else
             {
+                //Si se han cargado los datos, los mostramos en la lista
                 LBEquipos.ItemsSource = equiposTabla.DefaultView;
                 LBEquipos.SelectedValuePath = control.getPKEquipo();
                 LBEquipos.DisplayMemberPath = control.getNombreEquipo();
@@ -49,21 +49,25 @@ namespace AppNBA
 
             //Dejamos seleccionado el primer equipo por defecto
             LBEquipos.SelectedIndex = 0;
-      
+
+            //Cargamos la imagen del equipo seleccionado
             cargarImagenEquipo(control.getURLEquipo(LBEquipos.SelectedValue.ToString()));
 
 
         }
         private void muestraPlantilla()
         {
+            //Cargamos los datos de los jugadores en la lista
             DataTable plantillaTabla = control.muestraPlantilla(LBEquipos.SelectedValue.ToString());
 
+            //Si no se ha podido cargar los datos, mostramos un mensaje de error
             if (plantillaTabla is null)
             {
                 MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
             }
             else
             {
+                //Si se han cargado los datos, los mostramos en la lista
                 LBPlantilla.ItemsSource = plantillaTabla.DefaultView;
                 LBPlantilla.SelectedValuePath = control.getPKJugador();
                 LBPlantilla.DisplayMemberPath = control.getDatosJugador();
@@ -77,19 +81,24 @@ namespace AppNBA
             //Dejamos seleccionado el primer jugador por defecto
             LBPlantilla.SelectedIndex = 0;
 
+            //Cargamos la imagen del jugador seleccionado
             cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
 
         }
         private void muestraJugador()
         {
+            //Cargamos los datos de los jugadores en la lista
             DataTable jugadorTabla = control.muestraJugador(LBPlantilla.SelectedValue.ToString());
 
+            //Si no se ha podido cargar los datos, mostramos un mensaje de error
             if (jugadorTabla is null)
             {
+
                 MessageBox.Show("Ha sucedido un error en la carga de los datos de la Plantilla");
             }
             else
             {
+                //Si se han cargado los datos, los mostramos en el grid
                 dataGridJugador.ItemsSource = jugadorTabla.DefaultView;
             }
         }
@@ -97,10 +106,13 @@ namespace AppNBA
         //Métodos para cargar las imágenes con las url que hemos sacado previamente
         private void cargarImagenEquipo(string url)
         {
+            //Creamos un objeto BitmapImage para cargar la imagen
             BitmapImage imagen = new BitmapImage();
             imagen.BeginInit();
+            //Le pasamos la url de la imagen
             imagen.UriSource = new Uri(url);
             imagen.EndInit();
+            //Mostramos la imagen en el Image
             ImagenEquipo.Source = imagen;
             TabPlantilla.Source = imagen;
             //TabEquipo.Source = imagen;
@@ -108,23 +120,30 @@ namespace AppNBA
         }
         private void cargarImagenPlantilla(string url)
         {
+            //Si la url no es nula, cargamos la imagen
             if (url != "" && url != "null")
             {
+                //Creamos un objeto BitmapImage para cargar la imagen
                 BitmapImage imagen = new BitmapImage();
                 imagen.BeginInit();
+                //Le pasamos la url de la imagen
                 imagen.UriSource = new Uri(url);
                 imagen.EndInit();
+                //Mostramos la imagen en el Image
                 ImagenPlantillaJugador.Source = imagen;
                 ImagenJugador.Source = imagen;
                 TabJugador.Source = imagen;
                   
             } else
             {
-
+                //Si la url es nula, cargamos una imagen por defecto
+                //Creamos un objeto BitmapImage para cargar la imagen
                 BitmapImage imagen = new BitmapImage();
                 imagen.BeginInit();
+                //Le pasamos la url de la imagen. En este caso, debe ser relativa
                 imagen.UriSource = new Uri("../img/ImagenNotFound.ico", UriKind.Relative);
                 imagen.EndInit();
+                //Mostramos la imagen en el Image
                 ImagenPlantillaJugador.Source = imagen;
                 ImagenJugador.Source = imagen;
                 TabJugador.Source = imagen;
@@ -134,7 +153,12 @@ namespace AppNBA
             }
         }
 
-
+        //Método para imprimir los grids
+        private void imprimir(Grid grid)
+        {
+            PrintWindow printWindow = new PrintWindow(grid);
+            printWindow.ShowDialog();
+        }
 
 
 
@@ -166,70 +190,78 @@ namespace AppNBA
         /// <summary>
         /// CLICK DE LOS BOTONES
         /// </summary>
+        /// 
+
+        //Actualización de los equipos
         private void bActualizaEquipo_Click(object sender, RoutedEventArgs e)
         {
-            if (LBEquipos.SelectedValue != null)
+            if (LBEquipos.SelectedValue != null) //Si hay un equipo seleccionado
             {
-                DataTable equipo = control.getEquipo(LBEquipos.SelectedValue.ToString());
+                DataTable equipo = control.getEquipo(LBEquipos.SelectedValue.ToString()); //Obtenemos los datos del equipo
 
-                if (equipo != null)
+                if (equipo != null) //Si se han obtenido los datos
                 {
-                    UEquipoWindow equipoWindow = new UEquipoWindow(control, equipo);
+                    UEquipoWindow equipoWindow = new UEquipoWindow(control, equipo); //Creamos la ventana de actualización
 
-                    equipoWindow.ShowDialog();
-                    this.muestraEquipos();
+                    equipoWindow.ShowDialog(); //Mostramos la ventana
+                    this.muestraEquipos(); //Volvemos a mostrar la lista de equipos
                 }
                 else
                 {
-                    MessageBox.Show("Ha sucedido un error en la carga del Equipo.");
+
+                    MessageBox.Show("Ha sucedido un error en la carga del Equipo."); //Si no se han obtenido los datos, mostramos un mensaje de error
                 }
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un equipo");
+                MessageBox.Show("Debes seleccionar un equipo"); //Si no hay un equipo seleccionado, mostramos un mensaje de error
             }
         }
 
+        //Inserción de jugadores
         private void bInsertaJugador_Click(object sender, RoutedEventArgs e)
         {
-            NJugadorWindow nJugadorWindow = new NJugadorWindow(control, LBEquipos.SelectedValue.ToString());
+            NJugadorWindow nJugadorWindow = new NJugadorWindow(control, LBEquipos.SelectedValue.ToString()); //Creamos la ventana de inserción de jugador
 
-            nJugadorWindow.ShowDialog();
-            this.muestraPlantilla();
+            nJugadorWindow.ShowDialog(); //Mostramos la ventana
+            this.muestraPlantilla(); //Volvemos a mostrar la lista de jugadores
         }
-
+        
+        //Actualización de jugadores
         private void bActualizaJugador_Click(object sender, RoutedEventArgs e)
         {
-            if (LBEquipos.SelectedValue != null)
+            if (LBEquipos.SelectedValue != null) //Si hay un equipo seleccionado
             {
-                DataTable jugador = control.getJugador(LBPlantilla.SelectedValue.ToString());
+                DataTable jugador = control.getJugador(LBPlantilla.SelectedValue.ToString()); //Obtenemos los datos del jugador
 
-                if (jugador != null)
+                if (jugador != null) //Si se han obtenido los datos
                 {
-                    UJugadorWindow uJugador  = new UJugadorWindow(control, LBPlantilla.SelectedValue.ToString(),jugador);
+                    UJugadorWindow uJugador  = new UJugadorWindow(control, LBPlantilla.SelectedValue.ToString(),jugador); //Creamos la ventana de actualización
 
-                    uJugador.ShowDialog();
-                    this.muestraEquipos();
-                    this.muestraPlantilla();
-                    this.muestraJugador();
+                    uJugador.ShowDialog(); //Mostramos la ventana
+                    this.muestraEquipos(); //Volvemos a mostrar la lista de equipos
+                    this.muestraPlantilla(); //Volvemos a mostrar la lista de jugadores
+                    this.muestraJugador(); //Volvemos a mostrar los datos del jugador
                 }
                 else
                 {
+                    //Si no se han obtenido los datos, mostramos un mensaje de error
                     MessageBox.Show("Ha sucedido un error en la carga del Equipo.");
                 }
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un equipo");
+                MessageBox.Show("Debes seleccionar un equipo"); //Si no hay un equipo seleccionado, mostramos un mensaje de error
             }
         }
 
+        //Eliminación de jugadores
         private void bEliminaJugador_Click(object sender, RoutedEventArgs e)
         {
 
-            if (LBPlantilla.SelectedValue is null)
+            if (LBPlantilla.SelectedValue is null) //Si no hay un jugador seleccionado, mostramos un mensaje de error
             {
-                MessageBox.Show("Debes seleccionar un Jugador");
+                MessageBox.Show("Debes seleccionar un Jugador"); //Si no hay un equipo seleccionado, mostramos un mensaje de error
 
             }
             else
@@ -239,15 +271,15 @@ namespace AppNBA
                 //Solamente si lo confirmamos, procedemos a la eliminación
                 if (result == MessageBoxResult.Yes)
                 {
-                    string error = control.eliminarJugador(LBPlantilla.SelectedValue.ToString());
+                    string error = control.eliminarJugador(LBPlantilla.SelectedValue.ToString()); //Eliminamos el jugador
 
-                    if (error != null)
+                    if (error != null) //Si ha habido un error, mostramos un mensaje de error
                     {
-                        MessageBox.Show("Ha habído un error: \n" + error);
+                        MessageBox.Show("Ha habído un error: \n" + error); 
                     }
                     else
                     {
-                        MessageBox.Show("Jugador eliminado con éxito");
+                        MessageBox.Show("Jugador eliminado con éxito"); //Si no ha habido errores, mostramos un mensaje de éxito
                         this.muestraPlantilla(); //Volvemos a mostrar la lista de pedidos
                     }
                 }
@@ -259,17 +291,20 @@ namespace AppNBA
         }
 
         //Clicks exclusivos de los menús
+        //Ayuda
         private void ayuda_Click(object sender, RoutedEventArgs e)
         {
-            Ayuda ayuda = new Ayuda();
-            ayuda.ShowDialog();
+            Ayuda ayuda = new Ayuda(); //Creamos la ventana de ayuda
+            ayuda.ShowDialog(); //Mostramos la ventana
         }
 
+        //Salir
         private void Salir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        //Acerca de
         private void AcercaDe_Click(object sender, RoutedEventArgs e)
         {
             AcercaDe acercaDe = new AcercaDe();
@@ -277,16 +312,20 @@ namespace AppNBA
 
         }
 
-        // Aquí vamos a gestionar el evento de un botón que tendremos en la ventana y que
-        // indicará que el usuario quiere realizar la exportación a pdf de un Grid
-        private void ExportarPdf_Click(object sender, RoutedEventArgs e)
+        //Imprimir plantilla
+        private void bImprimir_Click(object sender, RoutedEventArgs e)
         {
-
-            PrintWindow printWindow = new PrintWindow(VisualPlantilla);
-            printWindow.ShowDialog();
-
-
+            imprimir(visualPlantilla);
         }
+
+        //Imprimir jugador
+        private void bImprimirJugador_Click(object sender, RoutedEventArgs e)
+        {
+            imprimir(visualJugador);
+        }
+
+
+    
 
         /// <summary>
         /// ATAJOS DE TECLADO
@@ -322,9 +361,7 @@ namespace AppNBA
                     case Key.Q:
                         Application.Current.Shutdown();
                         break;
-                    case Key.P:
-                        ExportarPdf_Click(sender, e);
-                        break;
+                
 
                 }
             }
@@ -332,7 +369,23 @@ namespace AppNBA
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.P:
+                        bImprimir_Click(sender, e);
+                        break;
+                    case Key.L:
+                        bImprimirJugador_Click(sender, e);
+                        break;
 
+                }
+            }
         }
+
+   
+
+      
     }
 }

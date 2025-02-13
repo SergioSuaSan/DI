@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AppNBA.Vistas
 {
@@ -43,6 +31,7 @@ namespace AppNBA.Vistas
         /// CLICKS DE LOS BOTONES DE LA VENTANA
         /// </summary>
 
+        //Botón para actualizar un jugador
         private void bActualizarJugador_Click(object sender, RoutedEventArgs e)
         {
             //Creamos un string con los datos que vamos a insertar
@@ -60,16 +49,17 @@ namespace AppNBA.Vistas
 
             if (error is null)
             {
-                MessageBox.Show("El equipo ha sido actualizado");
+                MessageBox.Show("El equipo ha sido actualizado"); //Si no ha habido error damos un mensaje de éxito
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Ha habido un error al actualizar el equipo: \n" + error);
+                MessageBox.Show("Ha habido un error al actualizar el equipo: \n" + error); //Si ha habido error lo notificamos
                 this.Close();
             }
         }
 
+        //Botón para cancelar la actualización
         private void bCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

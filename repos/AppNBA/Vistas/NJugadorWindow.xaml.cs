@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace AppNBA.Vistas
 {
@@ -33,6 +21,7 @@ namespace AppNBA.Vistas
         /// CLICKS DE LOS BOTONES DE LA VENTANA
         /// </summary>
 
+        //Botón para insertar un jugador
         private void bInsertarJugador_Click(object sender, RoutedEventArgs e)
         {
             //Creamos un string con los datos que vamos a insertar
@@ -46,21 +35,23 @@ namespace AppNBA.Vistas
             //Hacemos la inserción y notificamos si habido un error
             string error = control.insertarJugador(jugador);
 
-            if (error is null)
+            if (error is null) //Si no ha habido error
             {
-                MessageBox.Show("El jugador ha sido insertado");
-                this.Close();
+                MessageBox.Show("El jugador ha sido insertado"); //Notificamos
+                this.Close(); 
             }
-            else
+            else //Si ha habido error
             {
-                MessageBox.Show("Ha habido un error al actualizar el equipo: \n" + error);
-                this.Close();
+                MessageBox.Show("Ha habido un error al insertar el jugador: \n" + error); //Notificamos
+                this.Close(); //Cerramos la ventana
             }
+           
         }
 
+        //Botón para cancelar la inserción
         private void bCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Close(); //Cerramos la ventana
         }
     }
 }

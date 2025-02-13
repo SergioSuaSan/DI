@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNBA.Vistas"
         mc:Ignorable="d"
-        Title="PrintWindow" Height="450" Width="800">
+        Title="Vista Preliminar" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/img/Imprimir.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -14,16 +14,15 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+        
 
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <Grid x:Name="printPlantilla"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Width="800" Height="400" >
+            <DocumentViewer x:Name="printPlantilla" Width="800"/>
 
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
             
         <Button x:Name="bConfirmar" Content="Confirmar" Margin="5"  Foreground="Black" Padding="10" FontSize="20"  Click="bConfirmar_Click" />
         <Button x:Name="bCancelar" Content="Cancelar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bCancelar_Click" />

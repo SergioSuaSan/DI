@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace AppNBA
 {
@@ -16,7 +11,7 @@ namespace AppNBA
 
 
         /// <summary>
-        /// MÉTODOS PARA ENSEÑAR LOS DATOS DEL MODELO EN LA VENTANA
+        /// MÉTODOS PARA PINTAR EN LA VENTANA
         /// </summary>
         internal DataTable muestraEquipos()
         {
@@ -36,17 +31,15 @@ namespace AppNBA
         /// GETTERS
         /// METODOS PARA OBTENER DATOS EN EL MODELO Y DEVOLVERLOS EN LA VENTANA
         /// </summary>
-        internal string getDatosJugador()
-        {
-            return modelo.getDatosJugador();
-        }
+
+        //TABLA EQUIPOS
         internal DataTable getEquipo(string v)
         {
             return modelo.getEquipo(v);
         }
-        internal DataTable getJugador(string id)
+        internal string getURLEquipo(string id)
         {
-            return modelo.getJugador(id);
+            return modelo.getURLEquipo(id);
         }
         internal string getNombreEquipo()
         {
@@ -56,13 +49,19 @@ namespace AppNBA
         {
             return modelo.getPKEquipo();
         }
+
+        //TABLA JUGADORES
+        internal string getDatosJugador()
+        {
+            return modelo.getDatosJugador();
+        } 
+        internal DataTable getJugador(string id)
+        {
+            return modelo.getJugador(id);
+        }
         internal string getPKJugador()
         {
             return modelo.getPKJugador();
-        }
-        internal string getURLEquipo(string id)
-        {
-            return modelo.getURLEquipo(id);
         }
         internal string getURLJugador(string idJugador)
         {
@@ -70,10 +69,18 @@ namespace AppNBA
         }
 
 
+
         /// <summary>
         /// OPERACIONES CRUD
-        /// METODOS PARA INSERTAR, ACTUALIZAR Y ELIMINAR REGISTROS
         /// </summary>
+
+        //Metodos para insertar
+        internal string insertarJugador(string[] jugador)
+        {
+            return modelo.insertaJugador(jugador);
+        }
+
+        //Metodos para actualizar
         internal string actualizarEquipo(string[] equipo)
         {
            return modelo.actualizarEquipo(equipo);
@@ -82,14 +89,13 @@ namespace AppNBA
         {
             return modelo.actualizarJugador(jugador);   
         }
+
+        //Metodos para eliminar
         internal string eliminarJugador(string idJugador)
         {
             return modelo.eliminarJugador(idJugador);
         }
-        internal string insertarJugador(string[] jugador)
-        {
-            return modelo.insertaJugador(jugador);
-        }
+
 
     
     }

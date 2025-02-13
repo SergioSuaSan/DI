@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_088F267249354A16A310587AFAB743DA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_12B3532EBC4540529ABF89032D0F2C56"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -93,14 +99,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_041F5F8855FE00997AEF8A09F444FC23"
+        "MsmKey" = "8:_E6EE571C54A4460FBFB19E1AA71A687D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BCC39E0194FE4257996EB9A4BD35E4DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_041F5F8855FE00997AEF8A09F444FC23"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -121,6 +133,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -137,6 +165,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -195,6 +231,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_088F267249354A16A310587AFAB743DA"
+            {
+            "SourcePath" = "8:..\\..\\..\\MisIconos\\Objetos\\Archivos\\Plantilla.ico"
+            "TargetName" = "8:Plantilla.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CC77EE852E1E4BD4803CDBFA28E6B45A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12B3532EBC4540529ABF89032D0F2C56"
@@ -417,6 +473,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6EE571C54A4460FBFB19E1AA71A687D"
+            {
+            "SourcePath" = "8:..\\..\\..\\MisIconos\\Objetos\\Archivos\\Imprimir.ico"
+            "TargetName" = "8:Imprimir.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CC77EE852E1E4BD4803CDBFA28E6B45A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -485,7 +561,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NBASergio"
         "ProductCode" = "8:{26F3336A-B957-466C-AD10-4DE90370F173}"
-        "PackageCode" = "8:{C3507C22-BF73-4AE0-BC45-EE72D70B40A6}"
+        "PackageCode" = "8:{61FC1400-3984-4BE9-BE49-DF1E6DF40FBF}"
         "UpgradeCode" = "8:{3FDBF98D-CFE2-4D85-8680-AB53EFD053BD}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
