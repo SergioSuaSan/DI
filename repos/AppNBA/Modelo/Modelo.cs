@@ -15,11 +15,11 @@ namespace AppNBA
             //Creamos la conexión usando la clave que nos da la bbdd
 
             //CLAVE DE CLASE
-            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
+            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString"].ConnectionString;
 
 
             //CLAVE DE CASA
-            string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
+            //string miConexion = ConfigurationManager.ConnectionStrings["AppNBA.Properties.Settings.nbadbConnectionString1"].ConnectionString;
 
             //Se crea una conexion SQL como propiedad de clase
             myConexionSQL = new SqlConnection(miConexion);
@@ -346,7 +346,39 @@ namespace AppNBA
                 return null;
             }
         }
+        //EXAMEN 3. Método para buscar un jugador por apellido
+        internal DataTable buscaJugador(string apellido)
+        {
+            string consulta = "select id as Código, firstName as Nombre,lastname as Apellido, team as Equipo " +
+               $", position as Posición, jerseyNumber as 'Nº Camiseta' from player where lower(lastName) like '%{apellido}%'"; //Consulta para buscar un jugador por apellido
 
+
+            SqlCommand comando = new SqlCommand(consulta, myConexionSQL); //La clase SqlCommand se usa cuando tenemos parámetros
+
+
+            //Hará de puente para dejar los datos en un contenedor
+            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+
+            try
+            {
+                //Crea un cuerpo en el que todo lo que utilizas aquí forma parte del adaptador
+                using (adaptador)
+                {
+                    //Contenedor
+                    DataTable jugadorTabla = new DataTable();
+                    adaptador.Fill(jugadorTabla);
+
+
+                    return jugadorTabla;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
 
 
 
@@ -494,6 +526,6 @@ namespace AppNBA
             return null;
         }
 
-     
+    
     }
 }

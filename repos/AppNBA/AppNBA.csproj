@@ -65,6 +65,9 @@
     <Compile Include="Vistas\Ayuda.xaml.cs">
       <DependentUpon>Ayuda.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\BusquedaWindow.xaml.cs">
+      <DependentUpon>BusquedaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\NJugadorWindow.xaml.cs">
       <DependentUpon>NJugadorWindow.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\Ayuda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\BusquedaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +211,9 @@
   <ItemGroup>
     <Resource Include="img\Imprimir.ico" />
     <Resource Include="img\Plantilla.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Buscar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

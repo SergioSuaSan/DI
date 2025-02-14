@@ -4,6 +4,29 @@
              xmlns:local="clr-namespace:AppNBA"
              StartupUri="Vistas/MainWindow.xaml">
     <Application.Resources>
-         
+        <!--Examen 2-->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Aqua" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <!--Examen 2-->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="#FF6B6B6B" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <!--Examen 2-->
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
     </Application.Resources>
 </Application>

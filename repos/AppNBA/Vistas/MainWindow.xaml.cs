@@ -100,6 +100,13 @@ namespace AppNBA
             {
                 //Si se han cargado los datos, los mostramos en el grid
                 dataGridJugador.ItemsSource = jugadorTabla.DefaultView;
+
+                //EXAMEN 3. Si hay datos, seleccionamos el primero
+                if (jugadorTabla.Rows.Count > 0)
+                {
+                    dataGridJugador.SelectedIndex = 0;
+                   
+                }
             }
         }
 
@@ -183,6 +190,18 @@ namespace AppNBA
                 cargarImagenPlantilla(control.getURLJugador(LBPlantilla.SelectedValue.ToString()));
                 muestraJugador();
             }
+        }
+
+        //EXAMEN 3. Seleccionar un jugador del grid
+        private void dataGridJugador_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridJugador.SelectedIndex != -1) //Si hay un jugador seleccionado
+            {
+                //He intentado cargar la imagen del jugador seleccionado pero se me vuelve loco
+               //cargarImagenPlantilla(control.getURLJugador(dataGridJugador.SelectedIndex.ToString())); //Cargamos la imagen del jugador seleccionado
+
+            }
+
         }
 
 
@@ -324,8 +343,28 @@ namespace AppNBA
             imprimir(visualJugador);
         }
 
+        //EXAMEN 1. Imprimir equipo
+        private void bImprimirEquipo_Click(object sender, RoutedEventArgs e)
+        {
+            imprimir(visualEquipo);
+        }
 
-    
+        //EXAMEN 3. Buscar
+        private void Buscar_Click(object sender, RoutedEventArgs e)
+        {
+            BusquedaWindow buscar = new BusquedaWindow(control, dataGridJugador, ref ImagenJugador); //Creamos la ventana de búsqueda
+            buscar.ShowDialog(); //Mostramos la ventana
+            if (dataGridJugador.SelectedIndex != -1) //Si hay un jugador seleccionado
+            {
+                cargarImagenPlantilla(control.getURLJugador(dataGridJugador.SelectedIndex.ToString())); //Cargamos la imagen del jugador seleccionado
+            }
+            TIJugadores.Focus(); //Hacemos focus en la pestaña de jugadores
+
+
+        }
+
+
+
 
         /// <summary>
         /// ATAJOS DE TECLADO
@@ -358,10 +397,15 @@ namespace AppNBA
                     case Key.I:
                         AcercaDe_Click(sender, e);
                         break;
+                    //EXAMEN 3. Atajo de teclado para buscar
+                    case Key.B:
+                        Buscar_Click(sender, e);
+                        break;
+
                     case Key.Q:
                         Application.Current.Shutdown();
                         break;
-                
+                   
 
                 }
             }
@@ -379,13 +423,16 @@ namespace AppNBA
                     case Key.L:
                         bImprimirJugador_Click(sender, e);
                         break;
+                    //EXAMEN 1. Imprimir equipo. COloco otro atajo de teclado porque ya lo estaba usando para la plantilla
+                    case Key.T:
+                        bImprimirEquipo_Click(sender, e);
+                        break;
+
 
                 }
             }
         }
 
    
-
-      
     }
 }

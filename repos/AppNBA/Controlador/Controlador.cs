@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace AppNBA
 {
@@ -24,6 +25,13 @@ namespace AppNBA
         internal DataTable muestraPlantilla(string getPKEquipo)
         {
             return modelo.muestraPlantillaDeEquipo(getPKEquipo);
+        }
+
+        //EXAMEN 3
+        //Metodo para buscar un jugador
+        internal DataTable buscaJugador(string apellido)
+        {
+            return modelo.buscaJugador(apellido);
         }
 
 
@@ -96,7 +104,6 @@ namespace AppNBA
             return modelo.eliminarJugador(idJugador);
         }
 
-
-    
+      
     }
 }

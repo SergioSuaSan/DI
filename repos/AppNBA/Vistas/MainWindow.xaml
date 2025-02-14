@@ -49,6 +49,13 @@
                                 <Image Source="..\\img\RemoveUser.ico"/>
                             </MenuItem.Icon>
                         </MenuItem>
+                        <!-- EXAMEN 3 -->
+                        <MenuItem Header="Buscar" Click="Buscar_Click" InputGestureText="Ctrl + B">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Buscar.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        
                         <MenuItem Header="Salir" Click="Salir_Click" InputGestureText="Ctrl + Q">
                             <MenuItem.Icon >
                                 <Image Source="..\\img\Exit.ico"/>
@@ -57,6 +64,12 @@
                     </MenuItem>
 
                     <MenuItem Header="_Imprimir">
+                        <!-- EXAMEN 1 -->
+                        <MenuItem Header="Imprimir Equipo" Click="bImprimirEquipo_Click" InputGestureText="Ctrl + T">
+                            <MenuItem.Icon >
+                                <Image Source="..\\img\Imprimir.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                         <MenuItem Header="Imprimir Plantilla" Click="bImprimir_Click" InputGestureText="Ctrl + P">
                             <MenuItem.Icon >
                                 <Image Source="..\\img\Plantilla.ico"/>
@@ -110,9 +123,17 @@
                     <Button Click="bEliminaJugador_Click">
                         <Image Source="..\\img\RemoveUser.ico" Width="20" Height="20" ToolTip="Eliminar Jugador"/>
                     </Button>
+                    <!-- EXAMEN 3 -->
+                    <Button Click="Buscar_Click">
+                        <Image Source="..\\img\Buscar.ico" Width="20" Height="20" ToolTip="Busca Jugador"/>
+                    </Button>
 
                     <Separator/>
 
+                    <!-- EXAMEN 1 -->
+                    <Button Click="bImprimirEquipo_Click">
+                        <Image Source="..\\img\Imprimir.ico" Width="20" Height="20" ToolTip="Imprimir Equipo"/>
+                    </Button>
                     <Button Click="bImprimir_Click">
                         <Image Source="..\\img\Plantilla.ico" Width="20" Height="20" ToolTip="Imprimir Plantilla"/>
                     </Button>
@@ -144,7 +165,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 
-                <Grid>
+                <Grid x:Name="visualEquipo">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -171,6 +192,8 @@
 
                     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Button x:Name="bActualizaEquipo" Content="Actualizar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bActualizaEquipo_Click" />
+                        <!-- EXAMEN 1 -->
+                        <Button x:Name="bImprimirEquipo" Content="Imprimir Equipo" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bImprimirEquipo_Click" />
                     </StackPanel>
 
                 </Grid>
@@ -252,7 +275,10 @@
 
                         <Image Name="ImagenJugador" Width="200" Height="150" Stretch="UniformToFill" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
-                        <DataGrid Name="dataGridJugador" Margin="0,10,0,0" IsReadOnly="True"/>
+                        <!--EXAMEN 3. SELECTION CHANGED / VERTICALSCROLLBARVISIBILITY-->
+                            <DataGrid Name="dataGridJugador" Margin="0,10,0,0" Height="100" IsReadOnly="True" VerticalScrollBarVisibility="Auto" SelectionChanged="dataGridJugador_SelectionChanged"/>
+                            
+                   
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Button x:Name="bInsertaJugador2" Content="Insertar" Margin="5"  Foreground="Black" Padding="10" FontSize="20" Click="bInsertaJugador_Click" />
