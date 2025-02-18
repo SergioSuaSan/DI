@@ -352,7 +352,7 @@ namespace AppNBA
         //EXAMEN 3. Buscar
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
-            BusquedaWindow buscar = new BusquedaWindow(control, dataGridJugador, ref ImagenJugador); //Creamos la ventana de búsqueda
+            BusquedaWindow buscar = new BusquedaWindow(control, dataGridJugador, ImagenJugador); //Creamos la ventana de búsqueda
             buscar.ShowDialog(); //Mostramos la ventana
             if (dataGridJugador.SelectedIndex != -1) //Si hay un jugador seleccionado
             {

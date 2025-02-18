@@ -24,7 +24,7 @@ namespace AppNBA.Vistas
         Controlador control;
         DataGrid dataGridJugador;
         Image imagenJugador;
-        public BusquedaWindow(Controlador control, DataGrid dataGridJugador, ref Image imagenJugador)
+        public BusquedaWindow(Controlador control, DataGrid dataGridJugador, Image imagenJugador)
         {
             this.imagenJugador = imagenJugador;
             this.dataGridJugador = dataGridJugador;
