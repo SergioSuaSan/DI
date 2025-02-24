@@ -16,12 +16,13 @@ namespace MauiFlyout
         {
             var currentPage = Navigation.NavigationStack.LastOrDefault();
 
-            if (currentPage is not Page1)
+            if (currentPage is not Calculator)
             {
                 // Regresa a la raíz antes de navegar
-                await NavPage.PopToRootAsync();
+                //await NavPage.PopToRootAsync();
                 // Si no estamos en Page1, navega a ella
-                await NavPage.PushAsync(new Page1());
+                
+                await NavPage.PushAsync(new Calculator());
             }
             else
             {
@@ -39,7 +40,7 @@ namespace MauiFlyout
             if (currentPage is not Page2)
             {
                 // Regresa a la raíz antes de navegar
-                await NavPage.PopToRootAsync();
+                //await NavPage.PopToRootAsync();
                 // Si no estamos en Page1, navega a ella
                 await NavPage.PushAsync(new Page2());
             }
@@ -59,7 +60,7 @@ namespace MauiFlyout
             if (currentPage is not Page3)
             {
                 // Regresa a la raíz antes de navegar
-                await NavPage.PopToRootAsync();
+                //await NavPage.PopToRootAsync();
                 // Si no estamos en Page1, navega a ella
                 await NavPage.PushAsync(new Page3());
             }
@@ -70,6 +71,9 @@ namespace MauiFlyout
             }
 
         }
+
+
+
     }
 
 }
