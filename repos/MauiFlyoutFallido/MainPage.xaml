@@ -5,8 +5,9 @@
     <FlyoutPage.Flyout>
         <ContentPage Title="Menu">
             <StackLayout>
-                <Button Text="Calculadora" Clicked="OnOption1Clicked"/>
-                <Button Text="Binario-Decimal" Clicked="OnOption2Clicked"/>
+                <Button Text="Página 1" Clicked="OnOption1Clicked"/>
+                <Button Text="Página 2" Clicked="OnOption2Clicked"/>
+                <Button Text="Página 3" Clicked="OnOption3Clicked"/>
             </StackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>

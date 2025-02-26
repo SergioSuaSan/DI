@@ -4,8 +4,6 @@ namespace MauiFlyout
 {
     public partial class MainPage : FlyoutPage
     {
-        int count = 0;
-
 
         public MainPage()
         {
@@ -14,17 +12,15 @@ namespace MauiFlyout
 
         private async void OnOption1Clicked(object sender, EventArgs e)
         {
-            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            var currentPage = NavPage.RootPage;
 
-            if (currentPage is not Page1)
+            if (currentPage is not Calculator)
             {
-                // Regresa a la raíz antes de navegar
-               if (NavPage.Navigation.NavigationStack.Count > 1)
-                {
-                    await NavPage.PopToRootAsync();
-                }
+                //if (currentPage is not null)
+                //    await NavPage.PopToRootAsync();
+
                 // Si no estamos en Page1, navega a ella
-                await NavPage.PushAsync(new Page1());
+                await NavPage.PushAsync(new Calculator());
             }
             else
             {
@@ -41,12 +37,6 @@ namespace MauiFlyout
 
             if (currentPage is not Page2)
             {
-                // Regresa a la raíz antes de navegar
-                if (NavPage.Navigation.NavigationStack.Count > 1)
-                {
-                    await NavPage.PopToRootAsync();
-                }
-                // Si no estamos en Page1, navega a ella
                 await NavPage.PushAsync(new Page2());
             }
             else
@@ -57,7 +47,26 @@ namespace MauiFlyout
 
         }
 
-       
+        private async void OnOption3Clicked(object sender, EventArgs e)
+        {
+
+            var currentPage = Navigation.NavigationStack.LastOrDefault();
+
+            if (currentPage is not Page3)
+            {
+                // Si no estamos en Page1, navega a ella
+                await NavPage.PushAsync(new Page3());
+            }
+            else
+            {
+                // Por ejemplo, podrías hacer un Scroll hasta el principio o refrescar datos
+                await DisplayAlert("Información", "Ya estás en Page3.", "OK");
+            }
+
+        }
+
+
+
     }
 
 }

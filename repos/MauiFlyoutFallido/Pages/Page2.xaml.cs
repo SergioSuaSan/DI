@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace MauiFlyout.Pages
 {
@@ -7,58 +7,41 @@ namespace MauiFlyout.Pages
         private bool _pulsado = false;
         public Page2()
         {
-            Title = "Transformador Binario-Decimal";
+            Title = "Página 2";
             InitializeComponent();
-
+           
         }
 
         private void Cambio_Clicked(object sender, EventArgs e)
         {
-           
-            if (_pulsado) //Si está en decimal
+            if (_pulsado)
             {
                 _pulsado = false;
                 Cambio.Text = "→";
                 Binario.IsReadOnly = false;
                 Decimal.IsReadOnly = true;
                 Decimal.Text = "";
-                Binario.Text = "";
-
             }
-            else //Si está en binario
+            else
             {
-                
                 _pulsado = true;
                 Cambio.Text = "←";
                 Binario.IsReadOnly = true;
                 Decimal.IsReadOnly = false;
                 Binario.Text = "";
-                Decimal.Text = "";
 
 
             }
         }
 
-        private async void Calcular_Clicked(object sender, EventArgs e)
+        private void Calcular_Clicked(object sender, EventArgs e)
         {
-            //Creamos las variables necesarias para el ejercico
-            long deci = 0, bina = 0,  usado, potencia = 0, posicion = 1;
-            bool error = false;
-            long num = 0;
-
-            //Transformación de binario a decimal
             if (!_pulsado)
             {
-                //Comprobamos que el número binario sea correcto
-                try
-                {
-                    num = long.Parse(Binario.Text);
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("Error", "El número binario es incorrecto", "OK");
-
-                }
+                long num = long.Parse(Binario.Text);
+                //Creamos las variables necesarias para el ejercico
+                long deci = 0, usado, potencia = 0;
+                bool error = false;
 
                 //Vamos a crear un bucle que transforme el binario a decimal, mientras el número sea mayor a 0
                 while (num > 0)
@@ -90,7 +73,6 @@ namespace MauiFlyout.Pages
                 if (error)
                 {
                     Console.WriteLine("El formato del binario es incorrecto");
-                    Decimal.Text = "ERROR";
                 }
                 //Y si no hay error, solo si el numero restante es 0, escribirá el resultado. 
                 //Esto evita que salga 0 si dejas en blanco el número binario
@@ -105,40 +87,8 @@ namespace MauiFlyout.Pages
             else
             {
                 //Transformacion de decimal a binario
-                try
-                {
-                    num = long.Parse(Decimal.Text);
-                }
-                catch (Exception ex)
-                {
-
-                    await DisplayAlert("Error", "Tiene que ser un Número", "OK");
-                }
-
-                // Si el número es 0, directamente asignamos "0"  
-                if (num == 0)
-                {
-                    bina = 0;
-                }
-                else
-                {
-                    // Convertimos el número decimal a binario  
-                    while (num > 0)
-                    {
-                        usado = num % 2; // Obtenemos el residuo (0 o 1)  
-                        bina += usado * posicion; // Agregamos el dígito en la posición correcta  
-                        num = num / 2; // Reducimos el número dividiéndolo por 2  
-                        posicion *= 10; // Multiplicamos por 10 para desplazar el siguiente dígito  
-                    }
-                }
-
-                Binario.Text = bina.ToString();
-
-
 
             }
-               
-            
 
         }
     }
