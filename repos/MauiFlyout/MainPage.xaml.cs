@@ -4,8 +4,6 @@ namespace MauiFlyout
 {
     public partial class MainPage : FlyoutPage
     {
-        int count = 0;
-
 
         public MainPage()
         {
@@ -14,14 +12,14 @@ namespace MauiFlyout
 
         private async void OnOption1Clicked(object sender, EventArgs e)
         {
-            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            var currentPage = NavPage.RootPage;
 
             if (currentPage is not Calculator)
             {
-                // Regresa a la raíz antes de navegar
-                //await NavPage.PopToRootAsync();
+                //if (currentPage is not null)
+                //    await NavPage.PopToRootAsync();
+
                 // Si no estamos en Page1, navega a ella
-                
                 await NavPage.PushAsync(new Calculator());
             }
             else
@@ -39,9 +37,6 @@ namespace MauiFlyout
 
             if (currentPage is not Page2)
             {
-                // Regresa a la raíz antes de navegar
-                //await NavPage.PopToRootAsync();
-                // Si no estamos en Page1, navega a ella
                 await NavPage.PushAsync(new Page2());
             }
             else
@@ -59,8 +54,6 @@ namespace MauiFlyout
 
             if (currentPage is not Page3)
             {
-                // Regresa a la raíz antes de navegar
-                //await NavPage.PopToRootAsync();
                 // Si no estamos en Page1, navega a ella
                 await NavPage.PushAsync(new Page3());
             }

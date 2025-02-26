@@ -9,7 +9,7 @@ namespace MauiFlyout.Pages
             {
                 Children =
                 {
-                    new Label { Text = "Esta es la Opción 3", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand }
+                    new Label { Text = "Esta es la Opción 3" }
                 }
             };
         }

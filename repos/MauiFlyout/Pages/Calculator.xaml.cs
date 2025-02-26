@@ -3,12 +3,12 @@ namespace MauiFlyout.Pages
 
 
 
-    public partial class Calculator
+    public partial class Calculator : ContentPage
     {
         public Calculator()
         {
             InitializeComponent();
-            mathOperator = string.Empty;
+            mathOperator = "";
 
         }
         
@@ -21,7 +21,7 @@ namespace MauiFlyout.Pages
 
 
 
-        void OnSelectNumber(object sender, EventArgs e)
+        private void OnSelectNumber(object sender, EventArgs e)
         {
 
             Button button = (Button)sender;
@@ -46,7 +46,7 @@ namespace MauiFlyout.Pages
             this.resultText.Text += pressed;
         }
 
-        void OnSelectOperator(object sender, EventArgs e)
+        private void OnSelectOperator(object sender, EventArgs e)
         {
             LockNumberValue(resultText.Text);
 
@@ -74,7 +74,7 @@ namespace MauiFlyout.Pages
             }
         }
 
-        void OnClear(object sender, EventArgs e)
+        private void OnClear(object sender, EventArgs e)
         {
             firstNumber = 0;
             secondNumber = 0;
@@ -84,7 +84,7 @@ namespace MauiFlyout.Pages
             currentEntry = string.Empty;
         }
 
-        void OnCalculate(object sender, EventArgs e)
+        private void OnCalculate(object sender, EventArgs e)
         {
             if (currentState == 2)
             {
@@ -95,7 +95,7 @@ namespace MauiFlyout.Pages
 
                 this.CurrentCalculation.Text = $"{firstNumber} {mathOperator} {secondNumber}";
 
-                this.resultText.Text = result.ToTrimmedString(decimalFormat);
+                //this.resultText.Text = result.ToTrimmedString(decimalFormat);
                 firstNumber = result;
                 secondNumber = 0;
                 currentState = -1;
@@ -103,7 +103,7 @@ namespace MauiFlyout.Pages
             }
         }
 
-        void OnNegative(object sender, EventArgs e)
+        private void OnNegative(object sender, EventArgs e)
         {
             if (currentState == 1)
             {
@@ -114,7 +114,7 @@ namespace MauiFlyout.Pages
             }
         }
 
-        void OnPercentage(object sender, EventArgs e)
+        private void OnPercentage(object sender, EventArgs e)
         {
             if (currentState == 1)
             {
@@ -150,26 +150,26 @@ namespace MauiFlyout.Pages
         }
     }
 
-    public static class DoubleExtensions
-    {
-        public static string ToTrimmedString(this double target, string decimalFormat)
-        {
-            string strValue = target.ToString(decimalFormat); //Get the stock string
+    //public static class DoubleExtensions
+    //{
+    //    public static string ToTrimmedString(this double target, string decimalFormat)
+    //    {
+    //        string strValue = target.ToString(decimalFormat); //Get the stock string
 
-            //If there is a decimal point present
-            if (strValue.Contains("."))
-            {
-                //Remove all trailing zeros
-                strValue = strValue.TrimEnd('0');
+    //        //If there is a decimal point present
+    //        if (strValue.Contains("."))
+    //        {
+    //            //Remove all trailing zeros
+    //            strValue = strValue.TrimEnd('0');
 
-                //If all we are left with is a decimal point
-                if (strValue.EndsWith(".")) //then remove it
-                    strValue = strValue.TrimEnd('.');
-            }
+    //            //If all we are left with is a decimal point
+    //            if (strValue.EndsWith(".")) //then remove it
+    //                strValue = strValue.TrimEnd('.');
+    //        }
 
-            return strValue;
-        }
-     }
+    //        return strValue;
+    //    }
+    // }
 
 
 
