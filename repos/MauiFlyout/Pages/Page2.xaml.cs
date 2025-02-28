@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 
 namespace MauiFlyout.Pages
 {
@@ -12,13 +12,16 @@ namespace MauiFlyout.Pages
 
         }
 
-        private void Cambio_Clicked(object sender, EventArgs e)
+        private async void Cambio_Clicked(object sender, EventArgs e)
         {
-           
+            await Cambio.RelScaleTo(-0.2,100,Easing.Linear);
+            await Cambio.RelRotateTo(180, 200, Easing.Linear);
+            await Cambio.RelScaleTo(0.2, 100, Easing.Linear);
+
             if (_pulsado) //Si está en decimal
             {
                 _pulsado = false;
-                Cambio.Text = "→";
+                //Cambio.Text = "→";
                 Binario.IsReadOnly = false;
                 Decimal.IsReadOnly = true;
                 Decimal.Text = "";
@@ -29,7 +32,7 @@ namespace MauiFlyout.Pages
             {
                 
                 _pulsado = true;
-                Cambio.Text = "←";
+               // Cambio.Text = "←";
                 Binario.IsReadOnly = true;
                 Decimal.IsReadOnly = false;
                 Binario.Text = "";
