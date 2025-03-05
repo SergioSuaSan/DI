@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+
 
 namespace MauiFlyout.Pages
 {
@@ -14,10 +14,18 @@ namespace MauiFlyout.Pages
 
         private async void Cambio_Clicked(object sender, EventArgs e)
         {
-            await Cambio.RelScaleTo(-0.2,100,Easing.Linear);
+
+            Cambio.IsEnabled = false;
+
+
+            await Cambio.RelScaleTo(-0.2, 100, Easing.Linear);
             await Cambio.RelRotateTo(180, 200, Easing.Linear);
             await Cambio.RelScaleTo(0.2, 100, Easing.Linear);
 
+
+            //Cambio.Text = "Cambiando...";
+            //Cambio.IsEnabled = false;
+            //await Task.Delay(1000);
             if (_pulsado) //Si está en decimal
             {
                 _pulsado = false;
@@ -32,14 +40,18 @@ namespace MauiFlyout.Pages
             {
                 
                 _pulsado = true;
-               // Cambio.Text = "←";
+
+                //Cambio.Text = "←";
+
                 Binario.IsReadOnly = true;
                 Decimal.IsReadOnly = false;
                 Binario.Text = "";
                 Decimal.Text = "";
 
-
             }
+
+            Cambio.IsEnabled = true;
+
         }
 
         private async void Calcular_Clicked(object sender, EventArgs e)

@@ -12,7 +12,7 @@ namespace MauiFlyout
 
         private async void OnOption1Clicked(object sender, EventArgs e)
         {
-            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            var currentPage = NavPage.CurrentPage;
 
             if (currentPage is not Page1)
             {
@@ -35,7 +35,8 @@ namespace MauiFlyout
         private async void OnOption2Clicked(object sender, EventArgs e)
         {
 
-            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            var currentPage = NavPage.CurrentPage;
+      
 
             if (currentPage is not Page2)
             {

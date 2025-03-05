@@ -12,7 +12,7 @@
 
         <Entry x:Name="Binario" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Placeholder="Binario" FontSize="30"/>
 
-        <Button x:Name="Cambio" Text="→" Grid.Column="2" Grid.Row="1" Clicked="Cambio_Clicked" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button x:Name="Cambio" Text="→" Grid.Column="2" Grid.Row="1" Clicked="Cambio_Clicked" VerticalOptions="Center" HorizontalOptions="Center" Scale="1"/>
 
         <Entry x:Name="Decimal" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="End" Placeholder="Decimal" IsReadOnly="True" FontSize="30"/>
 
