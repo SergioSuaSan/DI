@@ -1,11 +1,15 @@
 
+using MauiFlyout.Model;
+
 namespace MauiFlyout.Pages
 {
     public partial class Page1 : ContentPage
     {
 
 
-
+        /// <summary>
+        /// Constructor de la página
+        /// </summary>
         public Page1()
         {
             Title = "Calculadora";
@@ -23,7 +27,11 @@ namespace MauiFlyout.Pages
         string decimalFormat = "N0";
 
 
-
+        /// <summary>
+        /// Método para manejar la selección de un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnSelectNumber(object sender, EventArgs e)
         {
 
@@ -49,6 +57,11 @@ namespace MauiFlyout.Pages
             this.resultText.Text += pressed;
         }
 
+        /// <summary>
+        /// Método para manejar la selección de un operador
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnSelectOperator(object sender, EventArgs e)
         {
             LockNumberValue(resultText.Text);
@@ -59,6 +72,10 @@ namespace MauiFlyout.Pages
             mathOperator = pressed;
         }
 
+        /// <summary>
+        /// Método para bloquear el valor de un número
+        /// </summary>
+        /// <param name="text"></param>
         private void LockNumberValue(string text)
         {
             double number;
@@ -77,6 +94,11 @@ namespace MauiFlyout.Pages
             }
         }
 
+        /// <summary>
+        /// Método para limpiar la calculadora
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnClear(object sender, EventArgs e)
         {
             firstNumber = 0;
@@ -87,6 +109,11 @@ namespace MauiFlyout.Pages
             currentEntry = string.Empty;
         }
 
+        /// <summary>
+        /// Método para calcular el resultado de una operación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnCalculate(object sender, EventArgs e)
         {
             if (currentState == 2)
@@ -106,6 +133,11 @@ namespace MauiFlyout.Pages
             }
         }
 
+        /// <summary>
+        /// Método para manejar el cambio de signo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnNegative(object sender, EventArgs e)
         {
             if (currentState == 1)
@@ -117,6 +149,11 @@ namespace MauiFlyout.Pages
             }
         }
 
+        /// <summary>
+        /// Método para manejar el porcentaje
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnPercentage(object sender, EventArgs e)
         {
             if (currentState == 1)

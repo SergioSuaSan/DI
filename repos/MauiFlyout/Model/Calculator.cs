@@ -1,7 +1,14 @@
-﻿namespace MauiFlyout;
+﻿namespace MauiFlyout.Model;
 
 public static class Calculator
 {
+    /// <summary>
+    /// Method to calculate the result of a mathematical operation
+    /// </summary>
+    /// <param name="value1"></param>
+    /// <param name="value2"></param>
+    /// <param name="mathOperator"></param>
+    /// <returns></returns>
     public static double Calculate(double value1, double value2, string mathOperator)
     {
         double result = 0;
@@ -26,6 +33,9 @@ public static class Calculator
     }
 }
 
+/// <summary>
+/// Extension method to format a double value as a string
+/// </summary>
 public static class DoubleExtensions
 {
     public static string ToTrimmedString(this double target, string decimalFormat)

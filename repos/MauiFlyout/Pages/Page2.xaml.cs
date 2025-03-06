@@ -5,6 +5,10 @@ namespace MauiFlyout.Pages
     public partial class Page2 : ContentPage
     {
         private bool _pulsado = false;
+
+        /// <summary>
+        /// Constructor de la página
+        /// </summary>
         public Page2()
         {
             Title = "Transformador Binario-Decimal";
@@ -12,12 +16,17 @@ namespace MauiFlyout.Pages
 
         }
 
+        /// <summary>
+        /// Función que se activa al pulsar el botón de cambio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Cambio_Clicked(object sender, EventArgs e)
         {
 
             Cambio.IsEnabled = false;
 
-
+            //Animación de cambio
             await Cambio.RelScaleTo(-0.2, 100, Easing.Linear);
             await Cambio.RelRotateTo(180, 200, Easing.Linear);
             await Cambio.RelScaleTo(0.2, 100, Easing.Linear);
@@ -54,6 +63,11 @@ namespace MauiFlyout.Pages
 
         }
 
+        /// <summary>
+        /// Función que se activa al pulsar el botón de calcular
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Calcular_Clicked(object sender, EventArgs e)
         {
             //Creamos las variables necesarias para el ejercico
