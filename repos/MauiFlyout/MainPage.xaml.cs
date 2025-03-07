@@ -69,7 +69,7 @@ namespace MauiFlyout
             var currentPage = NavPage.CurrentPage;
 
 
-            if (currentPage is not Page3)
+            if (currentPage is not Change)
             {
                 // Regresa a la raíz antes de navegar
                 if (NavPage.Navigation.NavigationStack.Count > 1)
@@ -77,7 +77,7 @@ namespace MauiFlyout
                     await NavPage.PopToRootAsync();
                 }
                 // Si no estamos en Page1, navega a ella
-                await NavPage.PushAsync(new Page3());
+                await NavPage.PushAsync(new Change());
             }
             else
             {

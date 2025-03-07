@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiFlyout.Pages.Change"
+             Title="Convertidos de Divisas">
+
+    <!--Examen
+        En la app funciona, en la página no. Es idéntico al de la app excepto por el / inicial, para meterlo en la raiz del proyecto
+    -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/StyleDivisa.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="16" 
+            RowDefinitions="*,2*,*,*,*"
+            ColumnDefinitions="*,*,*,2*,*">
+
+        <Label x:Name="CurrentCalculation" FontSize="32" Grid.ColumnSpan="5" Text="Convertidor de Divisas" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0"/>
+
+        <Entry x:Name="Euros" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Placeholder="Euros: €" FontSize="30" MaximumHeightRequest="50"/>
+
+        <Label x:Name="Cambio" Text="Cambio a:" Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Center" Scale="1"/>
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="3">
+            <Grid Padding="16" 
+           RowDefinitions="*,*,*,*,*,*"
+           ColumnDefinitions="10*,*,5*">
+                <Label Text="Dólares americanos" Grid.Column="0" Grid.Row="0"/>
+                <Label Text="Libras esterlinas" Grid.Column="0" Grid.Row="1"/>
+                <Label Text="Yenes japoneses" Grid.Column="0" Grid.Row="2"/>
+                <Label Text="Yuanes japoneses" Grid.Column="0" Grid.Row="3"/>
+                <Label Text="Pesos argentinos" Grid.Column="0" Grid.Row="4"/>
+                <Label Text="Rublos rusos" Grid.Column="0" Grid.Row="5"/>
+                
+                <Label  Text="→" Grid.Column="1" Grid.Row="2"  VerticalOptions="Center" HorizontalOptions="Center" Scale="1"/>
+               
+                
+                <Label x:Name="Dolares" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End" Text=""/>
+                <Label x:Name="Libras" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="End" Text="" />
+                <Label x:Name="Yenes" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="End" Text="" />
+                <Label x:Name="Yuanes" Grid.Row="3" Grid.Column="2" HorizontalTextAlignment="End" Text="" />
+                <Label x:Name="Pesos" Grid.Row="4" Grid.Column="2" HorizontalTextAlignment="End" Text="" />
+                <Label x:Name="Rublos" Grid.Row="5" Grid.Column="2" HorizontalTextAlignment="End" Text="" />
+                
+
+
+            </Grid>
+
+        </VerticalStackLayout>
+        
+        <Button x:Name="Calcular" Text="Calcular" Grid.Row="3" Grid.Column="2" Clicked="Calcular_Clicked"/>
+
+    </Grid>
+</ContentPage>

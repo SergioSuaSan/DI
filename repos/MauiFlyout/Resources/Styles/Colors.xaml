@@ -28,6 +28,22 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
+    <!--Examen-->
+    <Color x:Key="AzulO">#0004FA</Color>
+    <Color x:Key="AzulC">#00A1FF</Color>
+    <Color x:Key="AzulMC">#00F1FA</Color>
+
+    <SolidColorBrush x:Key="AzulOBrush" Color="{StaticResource AzulO}"/>
+    <SolidColorBrush x:Key="AzulCBrush" Color="{StaticResource AzulC}"/>
+    <SolidColorBrush x:Key="AzulMCBrush" Color="{StaticResource AzulMC}"/>
+    
+    
+
+
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDark}"/>
+    <SolidColorBrush x:Key="PrimaryDarkTextBrush" Color="{StaticResource PrimaryDarkText}"/>
+    
+
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
